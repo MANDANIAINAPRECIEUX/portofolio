@@ -1,5 +1,5 @@
-
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
         <span> je suis </span>
         <span>ANDRIAMIARIONS M. Précieux</span>
       </div>
+      <Footer />
     </>
   );
 }
