@@ -4,15 +4,18 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <>
-      <Navbar />
-      <div>bonjour</div>
-      <div>
-        <span> je suis </span>
-        <span>ANDRIAMIARIONS M. Précieux</span>
-
-        
+      <div
+        className="min-h-screen w-screen bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/photos/Design.png')" }}
+      >
+        <Navbar />
+        <div>bonjour</div>
+        <div>
+          <span> je suis </span>
+          <span>ANDRIAMIARIONS M. Précieux</span>
+        </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 }
