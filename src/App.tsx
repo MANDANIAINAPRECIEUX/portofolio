@@ -10,9 +10,7 @@ function App() {
         <span> je suis </span>
         <span>ANDRIAMIARIONS M. Précieux</span>
 
-        <div className="bg-red-500 text-white p-10 text-4xl">
-          TEST TAILWIND - SI VOUS VOYEZ DU ROUGE, TAILWIND FONCTIONNE
-        </div>
+        
       </div>
       <Footer />
     </>
