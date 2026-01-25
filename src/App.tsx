@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import Corps from "./components/Corps";
 
 function App() {
   return (
@@ -11,17 +12,15 @@ function App() {
         <div
           className=" absolute inset-0
       bg-gradient-to-b
-      from-black/60
+      from-black/50
       via-black/20
-      to-black/60"
+      to-black/50"
         ></div>
         <div className="relative z-10">
           <Navbar />
           <div>bonjour</div>
-          <div>
-            <span className="text-white"> je suis </span>
-            <span className="text-white">ANDRIAMIARIONS M. Précieux</span>
-          </div>
+          <Corps />
+
           <Footer />
         </div>
       </div>
