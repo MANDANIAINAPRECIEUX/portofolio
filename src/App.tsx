@@ -8,13 +8,16 @@ function App() {
         className="min-h-screen w-screen bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: "url('/photos/Design.png')" }}
       >
-        <Navbar />
-        <div>bonjour</div>
-        <div>
-          <span> je suis </span>
-          <span>ANDRIAMIARIONS M. Précieux</span>
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="relative z-10">
+          <Navbar />
+          <div>bonjour</div>
+          <div>
+            <span className="text-white"> je suis </span>
+            <span className="text-white">ANDRIAMIARIONS M. Précieux</span>
+          </div>
+          <Footer />
         </div>
-        <Footer />
       </div>
     </>
   );
