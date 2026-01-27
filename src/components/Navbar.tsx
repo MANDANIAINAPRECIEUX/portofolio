@@ -1,36 +1,16 @@
 "use client";
 import { Moon, Sun } from "lucide-react";
-import { useState } from "react";
 
-const Navbar = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+interface NavbarProps {
+  isDarkMode: boolean;
+  setIsDarkMode: (value: boolean) => void;
+}
 
+const Navbar = ({ isDarkMode, setIsDarkMode }: NavbarProps) => {
   return (
-    <nav className="sticky top-0 z-50   ">
+    <nav className="sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Navigation Links (optionnel) */}
-          <div className=" md:flex items-center gap-8">
-            <a
-              href="#accueil"
-              className="text-gray-600 hover:text-gray-900 transition-colors font-medium"
-            >
-              Accueil
-            </a>
-            <a
-              href="#projets"
-              className="text-gray-600 hover:text-gray-900 transition-colors font-medium"
-            >
-              Projets
-            </a>
-            <a
-              href="#contact"
-              className="text-gray-600 hover:text-gray-900 transition-colors font-medium"
-            >
-              Contact
-            </a>
-          </div>
-
+        <div className="flex items-center justify-end">
           {/* Toggle moderne */}
           <div className="relative flex items-center bg-gray-100 rounded-full p-1 shadow-inner">
             {/* Indicateur glissant */}
