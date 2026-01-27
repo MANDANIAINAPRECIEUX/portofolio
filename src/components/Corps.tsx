@@ -4,7 +4,7 @@ interface CorpsProps {
 
 const Corps = ({ isDarkMode }: CorpsProps) => {
   return (
-    <div className="max-w-2xl space-y-6">
+    <div className="max-w-2xl space-y-2">
       {/* Badge ou tag */}
       <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
         <span className="relative flex h-2 w-2">
