@@ -36,14 +36,7 @@ const Corps = ({ isDarkMode }: CorpsProps) => {
           >
             Ruby & JavaScript
           </span>
-          <span
-            className={`
-              text-2xl transition-all duration-700
-              ${isDarkMode ? "rotate-12 opacity-100" : "rotate-0 opacity-80"}
-            `}
-          >
-            ✨
-          </span>
+         
         </span>
       </h1>
 
