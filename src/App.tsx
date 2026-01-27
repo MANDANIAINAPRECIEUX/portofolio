@@ -34,7 +34,7 @@ function App() {
         {/* HERO SECTION */}
         <main className="flex-1 flex items-center">
           <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <Corps isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+            <Corps isDarkMode={isDarkMode} />
             <Mon_photo />
           </div>
         </main>

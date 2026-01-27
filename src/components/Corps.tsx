@@ -9,12 +9,13 @@ const Corps = ({ isDarkMode }: CorpsProps) => {
         Développeur Full-Stack{" "}
         <span
           className={`
+            
             inline-block
             transition-all duration-500
             ${
               isDarkMode
                 ? "translate-x-2 text-red-400"
-                : "translate-x-0 text-white"
+                : "translate-x-0 text-sky-400"
             }
           `}
         >
