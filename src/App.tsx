@@ -13,18 +13,19 @@ function App() {
       style={{ backgroundImage: "url('/photos/Design.png')" }}
     >
       {/* Overlay dynamique */}
-      <div
-        className={`
-          absolute inset-0
-          bg-gradient-to-b
-          backdrop-blur-[1px]
-          ${
-            isDarkMode
-              ? "from-slate-900/60 via-slate-800/40 to-slate-900/60"
-              : "from-black/60 via-black/45 to-black/60"
-          }
-        `}
-      />
+     <div
+  className={`
+    absolute inset-0
+    bg-gradient-to-b
+    backdrop-blur-[1px]
+    transition-colors duration-500
+    ${
+      isDarkMode
+        ? "from-slate-950/80 via-slate-900/55 to-slate-950/80"
+        : "from-black/60 via-black/40 to-black/60"
+    }
+  `}
+/>
 
       {/* Content */}
       <div className="relative z-10 flex flex-col min-h-screen">
