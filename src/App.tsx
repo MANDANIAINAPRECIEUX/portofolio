@@ -13,8 +13,8 @@ function App() {
       style={{ backgroundImage: "url('/photos/Design.png')" }}
     >
       {/* Overlay dynamique */}
-     <div
-  className={`
+      <div
+        className={`
     absolute inset-0
     bg-gradient-to-b
     backdrop-blur-[1px]
@@ -25,7 +25,7 @@ function App() {
         : "from-black/60 via-black/40 to-black/60"
     }
   `}
-/>
+      />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col min-h-screen">
@@ -34,7 +34,7 @@ function App() {
         {/* HERO SECTION */}
         <main className="flex-1 flex items-center">
           <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <Corps />
+            <Corps isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
             <Mon_photo />
           </div>
         </main>

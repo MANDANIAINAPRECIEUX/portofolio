@@ -1,13 +1,27 @@
-const Corps = () => {
+interface CorpsProps {
+  isDarkMode: boolean;
+}
+
+const Corps = ({ isDarkMode }: CorpsProps) => {
   return (
     <div className="max-w-2xl text-white space-y-4">
-      {/* Titre */}
       <h1 className="text-4xl font-bold leading-tight">
         Développeur Full-Stack{" "}
-        <span className="text-sky-400">Ruby & JavaScript</span>
+        <span
+          className={`
+            inline-block
+            transition-all duration-500
+            ${
+              isDarkMode
+                ? "translate-x-2 text-red-400"
+                : "translate-x-0 text-white"
+            }
+          `}
+        >
+          Ruby & JavaScript
+        </span>
       </h1>
 
-      {/* Description */}
       <p className="text-base text-white/90 leading-relaxed">
         Je travaille sur des <strong>projets applicatifs complets</strong>,
         allant de la conception de systèmes backend et d’APIs jusqu’au
