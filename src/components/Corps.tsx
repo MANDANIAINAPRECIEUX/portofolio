@@ -5,16 +5,7 @@ interface CorpsProps {
 const Corps = ({ isDarkMode }: CorpsProps) => {
   return (
     <div className="max-w-2xl space-y-2">
-      {/* Badge ou tag */}
-      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20">
-        <span className="relative flex h-2 w-2">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-        </span>
-        <span className="text-sm font-medium text-white/90">
-          Disponible pour de nouveaux projets
-        </span>
-      </div>
+      
 
       {/* Titre principal avec effet gradiant */}
       <h1 className="text-5xl md:text-6xl font-extrabold leading-tight">
