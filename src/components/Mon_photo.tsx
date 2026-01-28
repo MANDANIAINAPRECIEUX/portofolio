@@ -2,7 +2,7 @@ import React from 'react'
 
 const Mon_photo = () => {
   return (
-    <div>Mon_photo</div>
+    <div>Mon_photos</div>
   )
 }
 
