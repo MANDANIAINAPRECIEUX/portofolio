@@ -9,7 +9,7 @@ interface NavbarProps {
 const Navbar = ({ isDarkMode, setIsDarkMode }: NavbarProps) => {
   return (
     <nav className="sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="max-w-7xl mx-auto px-10 py-4">
         <div className="flex items-center justify-end">
           {/* Toggle moderne */}
           <div className="relative flex items-center bg-gray-100 rounded-full p-1 shadow-inner">
