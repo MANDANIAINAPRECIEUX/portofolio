@@ -1,4 +1,4 @@
-import React from 'react'
+
 
 const Mon_photo = () => {
   return (
