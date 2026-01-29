@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Corps from "./components/Corps";
 import Mon_photo from "./components/Mon_photo";
+import About from "./pages/About";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -38,7 +39,7 @@ function App() {
             <Mon_photo />
           </div>
         </main>
-
+        <About />
         <Footer />
       </div>
     </div>
