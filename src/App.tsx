@@ -33,7 +33,7 @@ function App() {
         <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
 
         {/* HERO SECTION */}
-        <main className="flex-1 flex items-center">
+        <main className=" flex-1 flex items-center">
           <div className=" px-6 md:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <Corps isDarkMode={isDarkMode} />
             <Mon_photo />
