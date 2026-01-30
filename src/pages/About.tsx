@@ -37,7 +37,7 @@ const About = () => {
           <p className="mt-3 text-sm leading-relaxed text-[#f1f1f1]/80">
             Proin porttitor, orci nec nonummy molestie, enim est eleifend mi,
             non fermentum diam nisl sit amet erat. Duis semper. Duis arcu massa,
-            scelerisque vitae, consequat in, pretium a, enim.
+            scelerisque vitae, consequat in, 
           </p>
         </div>
         <div>
