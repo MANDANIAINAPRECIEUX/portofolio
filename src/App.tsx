@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Corps from "./components/Corps";
 import Mon_photo from "./components/Mon_photo";
 import About from "./pages/About";
+import Triage from "./components/Triage";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -42,6 +43,7 @@ function App() {
         <About />
         <Footer />
       </div>
+      <Triage />
     </div>
   );
 }
