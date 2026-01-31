@@ -102,6 +102,7 @@ const ProjectList = () => {
           </label>
           <div className="flex gap-2">
             <button
+            type="button"
               onClick={() => setGroupBy("year")}
               className={`
                 flex items-center gap-2 px-4 py-2 rounded-lg font-medium
@@ -117,6 +118,7 @@ const ProjectList = () => {
               Année
             </button>
             <button
+            type="button"
               onClick={() => setGroupBy("type")}
               className={`
                 flex items-center gap-2 px-4 py-2 rounded-lg font-medium
@@ -140,6 +142,7 @@ const ProjectList = () => {
             Ordre
           </label>
           <button
+          type="button"
             onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
             className="
               flex items-center gap-2 px-4 py-2 rounded-lg
@@ -178,6 +181,7 @@ const ProjectList = () => {
             >
               {/* En-tête groupe (accordéon) */}
               <button
+              type="button"
                 onClick={() => toggleGroup(group)}
                 className="
                   w-full flex items-center justify-between
