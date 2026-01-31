@@ -1,5 +1,5 @@
 // components/ProjectList.tsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronDown, ChevronUp, Calendar, Folder } from "lucide-react";
 
 // Types
@@ -57,6 +57,9 @@ const ProjectList = () => {
   const [groupBy, setGroupBy] = useState<GroupBy>("year");
   const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
   const [expandedGroups, setExpandedGroups] = useState<Set<string>>(new Set());
+  useEffect(() => {
+    setExpandedGroups(new Set());
+  }, [groupBy]);
 
   // Toggle groupe accordéon
   const toggleGroup = (group: string) => {
@@ -70,12 +73,15 @@ const ProjectList = () => {
   };
 
   // Grouper les projets
-  const groupedProjects = PROJECTS.reduce((acc, project) => {
-    const key = groupBy === "year" ? String(project.year) : project.type;
-    if (!acc[key]) acc[key] = [];
-    acc[key].push(project);
-    return acc;
-  }, {} as Record<string, Project[]>);
+  const groupedProjects = PROJECTS.reduce(
+    (acc, project) => {
+      const key = groupBy === "year" ? String(project.year) : project.type;
+      if (!acc[key]) acc[key] = [];
+      acc[key].push(project);
+      return acc;
+    },
+    {} as Record<string, Project[]>,
+  );
 
   // Trier les groupes
   const sortedGroups = Object.keys(groupedProjects).sort((a, b) => {
