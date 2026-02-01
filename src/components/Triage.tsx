@@ -30,7 +30,7 @@ const PROJECTS: Project[] = [
   {
     id: 2,
     title: "API Transport Management",
-    description: "Backend pour système de gestion des transports",
+    description: "Backend pour systèmes de gestion des transports",
     year: 2025,
     type: "Backend",
     technologies: ["Ruby on Rails", "PostgreSQL", "Docker"],
