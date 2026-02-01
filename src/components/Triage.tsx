@@ -51,6 +51,14 @@ const PROJECTS: Project[] = [
     type: "IA/ML",
     technologies: ["Python", "TensorFlow", "NumPy"],
   },
+  {
+    id: 5,
+    title: "HUM",
+    description: "Classification d'images médicales",
+    year: 2025,
+    type: "IA/ML",
+    technologies: ["Python", "TensorFlow", "NumPy"],
+  },
 ];
 
 const ProjectList = () => {
