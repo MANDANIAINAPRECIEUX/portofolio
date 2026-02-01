@@ -110,7 +110,7 @@ const ProjectList = () => {
                 ${
                   groupBy === "year"
                     ? "bg-[#5B9BD5] text-white shadow-md"
-                    : "bg-white/10 text-[#f1f1f1]/70 hover:bg-white/20"
+                    : "bg-white/10 text-[#f1f1f1]/60 hover:bg-white/20"
                 }
               `}
             >
