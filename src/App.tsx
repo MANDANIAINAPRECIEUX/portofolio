@@ -30,7 +30,7 @@ function App() {
       />
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col min-h-screen">
+      <div className="relative z-40 flex flex-col min-h-screen">
         <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
 
         {/* HERO SECTION */}
@@ -40,10 +40,12 @@ function App() {
             <Mon_photo />
           </div>
         </main>
+        
         <About />
+        <Triage  />
         <Footer />
       </div>
-      <Triage />
+      
     </div>
   );
 }
