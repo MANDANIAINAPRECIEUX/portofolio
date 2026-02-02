@@ -156,7 +156,7 @@ const ProjectList = () => {
               </div>
             </div>
 
-            {/* Ligne 2 : Ordre */}
+            {/* Ligne 2 : Ordres */}
             <div>
               <label className="block text-sm font-medium text-[#f1f1f1]/80 mb-3">
                 Ordre
@@ -188,7 +188,7 @@ const ProjectList = () => {
             </div>
           </div>
 
-          {/* Liste groupée */}
+          {/* Liste groupé */}
           <div className="space-y-4 animate-fadeIn">
             {sortedGroups.map((group) => {
               const isExpanded = expandedGroups.has(group);
