@@ -8,14 +8,11 @@ import {
   Briefcase,
 } from "lucide-react";
 import PROJECTS from "../../types/Project";
+import type { Project } from "../../types/Project";
 // Types
-
 
 type GroupBy = "year" | "type";
 type SortOrder = "asc" | "desc";
-
-
-
 
 const ProjectList = () => {
   const [showProjects, setShowProjects] = useState(false); // 🔥 NOUVEAU
