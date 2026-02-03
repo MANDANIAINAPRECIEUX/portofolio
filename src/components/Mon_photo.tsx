@@ -1,15 +1,16 @@
 const Mon_photo = () => {
   return (
-    <div className="flex justify-center mt-2">
-      <div className=" rounded-full ">
+    <div className="flex justify-center ">
+      <div className=" rounded-full mb-24">
         <img
-          src="/photos/manda.png"
+          src="/photos/manda5.PNG"
           alt="Photo de profil"
-          className="w-full h-full object-cover   drop-shadow-[0_0_20px_rgba(255,255,255,0.9)] 
+          className="w-full h-full  object-cover scale-105  drop-shadow-[0_0_20px_rgba(255,255,255,0.9)] 
           transition-all duration-300 ease-out
-            hover:scale-105
+            hover:scale-115
             hover:drop-shadow-[0_0_40px_rgba(255,255,255,0.9)] "
         />
+       
       </div>
     </div>
   );
