@@ -1,3 +1,5 @@
+import Boxes from "./Boxes";
+
 interface CorpsProps {
   isDarkMode: boolean;
 }
@@ -44,8 +46,12 @@ const Corps = ({ isDarkMode }: CorpsProps) => {
         </p>
         {/* Points */}
         
-<div>
-  TECHNOLOGIES PRINCIPALES
+<div >
+  <h1>TECHNOLOGIES PRINCIPALES</h1>
+  <div className="flex gap-6">
+    <Boxes tech="React" />
+    <Boxes tech="TypeScript" />
+  </div>
 </div>
 
         {/* CTA */}
