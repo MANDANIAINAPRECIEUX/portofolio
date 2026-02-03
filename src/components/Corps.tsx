@@ -6,6 +6,7 @@ const Corps = ({ isDarkMode }: CorpsProps) => {
   return (
     <>
       <section className="max-w-2xl space-y-5 md:space-y-6">
+        <span className="text-2xl font-semibold text-white relative group">Bonjour, bienvenue sur mon site portfolio. Je suis</span>
         <div className="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/80">
          Mandaniaina Precieux
         </div>
