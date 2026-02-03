@@ -43,25 +43,11 @@ const Corps = ({ isDarkMode }: CorpsProps) => {
           jusqu&apos;au développement d&apos;interfaces interactives.
         </p>
         {/* Points */}
-        <div className="space-y-3 text-[0.98rem] md:text-[1.02rem] leading-relaxed text-white/80">
-          <div className="flex items-start gap-3">
-            <span className="text-xl mt-0.5">⚡</span>
-            <p>
-              Passionné par l&apos;
-              <strong className="text-white/95">automatisation</strong> et
-              l&apos;intégration de{" "}
-              <strong className="text-white/95">services intelligents</strong>.
-            </p>
-          </div>
-          <div className="flex items-start gap-3">
-            <span className="text-xl mt-0.5">🏗️</span>
-            <p>
-              Spécialisé dans les{" "}
-              <strong className="text-white/95">architectures modernes</strong> et
-              scalables.
-            </p>
-          </div>
-        </div>
+        
+<div>
+  TECHNOLOGIES PRINCIPALES
+</div>
+
         {/* CTA */}
         <div className="flex flex-wrap gap-3 pt-2">
           <button
