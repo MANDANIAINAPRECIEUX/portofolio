@@ -8,9 +8,11 @@ const Corps = ({ isDarkMode }: CorpsProps) => {
   return (
     <>
       <section className="max-w-2xl space-y-5 md:space-y-6">
-        <span className="text-2xl font-semibold text-white relative group">Bonjour, bienvenue sur mon site portfolio. Je suis</span>
+        <span className="text-2xl font-semibold text-white relative group">
+          Bonjour, bienvenue sur mon site portfolio. Je suis
+        </span>
         <div className="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/80">
-         Mandaniaina Precieux
+          Mandaniaina Precieux
         </div>
         {/* Titre principal */}
         <h1 className="tracking-tight font-extrabold leading-[1.05] text-[clamp(2.1rem,4vw,3.4rem)]">
@@ -45,20 +47,35 @@ const Corps = ({ isDarkMode }: CorpsProps) => {
           jusqu&apos;au développement d&apos;interfaces interactives.
         </p>
         {/* Points */}
-        
-<div >
-  <h1>TECHNOLOGIES PRINCIPALES</h1>
-  <div className="flex gap-6">
-    <Boxes tech="React" />
-    <Boxes tech="TypeScript" />
-  </div>
-</div>
+
+        {/* <div className="border border-blue-500 rounded-xl p-4">
+          <h2
+            className="text-3xl md:text-4xl lg:text-5xl font-black 
+               bg-gradient-to-r from-blue-400 via-purple-400 to-sky-500 
+               bg-clip-text text-transparent drop-shadow-2xl 
+               mb-12 text-center md:text-left tracking-tight
+               animate-fade-in"
+          >
+            TECHNOLOGIES PRINCIPALES
+          </h2>
+
+          <div className="flex gap-6 my-4">
+            <Boxes tech="React" />
+            <Boxes tech="Node.Js" />
+            <Boxes tech="Next.js" />
+            <Boxes tech="TypeScript" />
+          </div>
+          <div className="flex gap-6">
+            <Boxes tech="Ruby on rails" />
+            <Boxes tech="Sinatra" />
+          </div>
+        </div> */}
 
         {/* CTA */}
-        <div className="flex flex-wrap gap-3 pt-2">
+        <div className="flex flex-wrap gap-5 pt-32">
           <button
             className={`
-              px-5 py-3 rounded-xl font-semibold
+              px-8 py-5 rounded-xl font-semibold
               text-[0.98rem] md:text-[1rem]
               transition-all duration-300
               ${
@@ -72,7 +89,7 @@ const Corps = ({ isDarkMode }: CorpsProps) => {
           >
             Voir mes projets
           </button>
-          <button className="px-5 py-3 rounded-xl font-semibold text-[0.98rem] md:text-[1rem] bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]">
+          <button className="px-8 py-5 rounded-xl font-semibold text-[0.98rem] md:text-[1rem] bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]">
             Me contacter
           </button>
         </div>
