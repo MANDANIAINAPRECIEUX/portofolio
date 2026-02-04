@@ -5,6 +5,7 @@ import Corps from "./components/Corps";
 import Mon_photo from "./components/Mon_photo";
 import About from "./pages/About";
 import Triage from "./components/Triage";
+import Fleche from "./components/Fleche" ;
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -39,6 +40,7 @@ function App() {
             <Corps isDarkMode={isDarkMode} />
             <Mon_photo />
           </div>
+          <Fleche />
         </main>
 
         <About />
