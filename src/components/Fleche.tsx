@@ -1,4 +1,4 @@
-
+import React from 'react';
 
 const Fleche = () => {
   return (
@@ -14,25 +14,21 @@ const Fleche = () => {
       }}
     >
       {/* TEXTE DÉCOUVRIR */}
-      <span className="text-[11px] font-light tracking-[0.25em] uppercase text-gray-400 group-hover:text-gray-600 transition-colors duration-300 mb-3">
+      <span className="text-base md:text-lg font-bold tracking-[0.35em] uppercase text-white group-hover:text-gray-200 transition-colors duration-300 mb-4">
         Découvrir
       </span>
 
       {/* FLÈCHE CHEVRON */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-4 w-4 text-gray-400 group-hover:text-gray-600 animate-bounce transition-colors duration-300"
+        className="h-5 w-5 text-white group-hover:text-gray-200 animate-bounce transition-colors duration-300"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
         strokeWidth={1.5}
         aria-hidden="true"
       >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M19 9l-7 7-7-7"
-        />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
       </svg>
     </div>
   );
