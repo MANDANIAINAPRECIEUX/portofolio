@@ -39,12 +39,14 @@ function App() {
           <div className=" px-6 md:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-10 ">
             <Corps isDarkMode={isDarkMode} />
             <Mon_photo />
+               <Fleche />
           </div>
-          <Fleche />
+
         </main>
 
         <About />
         <Triage />
+                  <Fleche />
         <Footer />
       </div>
     </div>

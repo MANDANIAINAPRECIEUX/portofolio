@@ -1,40 +1,38 @@
-import React from 'react';
 
-// Interface pour les props (optionnelle, pour la flexibilité)
-interface DiscoverBtnProps {
-  onClick?: () => void;
-  className?: string; // Pour rajouter des marges depuis le parent si besoin
-}
 
-const Fleche: React.FC<DiscoverBtnProps> = ({ onClick, className = '' }) => {
+const Fleche = () => {
   return (
-    <div 
-      onClick={onClick}
-      // CLASSES TAILWIND EXPLIQUÉES :
-      // flex flex-col items-center : Centre les éléments verticalement
-      // cursor-pointer : Indique que c'est cliquable
-      // text-gray-500 hover:text-black : Transition de couleur gris vers noir
-      // transition-colors duration-300 : Douceur du changement de couleur
-      className={`flex flex-col items-center justify-center cursor-pointer text-gray-600 hover:text-black transition-colors duration-300 ${className}`}
+    <div
+      className="flex flex-col items-center justify-center cursor-pointer group focus:outline-none"
       role="button"
       tabIndex={0}
+      aria-label="Découvrir"
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.currentTarget.click();
+        }
+      }}
     >
-      {/* TEXTE */}
-      <span className="text-xs font-semibold tracking-[0.3em] uppercase mb-2">
+      {/* TEXTE DÉCOUVRIR */}
+      <span className="text-[11px] font-light tracking-[0.25em] uppercase text-gray-400 group-hover:text-gray-600 transition-colors duration-300 mb-3">
         Découvrir
       </span>
 
-      {/* FLÈCHE (SVG) */}
-      {/* animate-bounce : Animation native de Tailwind pour le rebond */}
-      <svg 
-        xmlns="http://www.w3.org/2000/svg" 
-        className="h-5 w-5 animate-bounce" 
-        fill="none" 
-        viewBox="0 0 24 24" 
+      {/* FLÈCHE CHEVRON */}
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-4 w-4 text-gray-400 group-hover:text-gray-600 animate-bounce transition-colors duration-300"
+        fill="none"
+        viewBox="0 0 24 24"
         stroke="currentColor"
-        strokeWidth={2}
+        strokeWidth={1.5}
+        aria-hidden="true"
       >
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M19 9l-7 7-7-7"
+        />
       </svg>
     </div>
   );
