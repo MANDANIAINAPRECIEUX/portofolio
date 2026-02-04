@@ -72,7 +72,7 @@ const Corps = ({ isDarkMode }: CorpsProps) => {
         </div> */}
 
         {/* CTA */}
-        <div className="flex flex-wrap gap-5 pt-32">
+        <div className="flex flex-wrap gap-10 py-10">
           <button
             className={`
               px-8 py-5 rounded-xl font-semibold
