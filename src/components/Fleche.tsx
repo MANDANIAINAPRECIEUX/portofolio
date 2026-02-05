@@ -1,6 +1,10 @@
-import React from 'react';
 
-const Fleche = () => {
+
+type FlecheProps = {
+  name: string
+}
+
+const Fleche = ({ name }: FlecheProps) => {
   return (
     <div
       className="flex flex-col items-center justify-center cursor-pointer group focus:outline-none"
@@ -15,7 +19,7 @@ const Fleche = () => {
     >
       {/* TEXTE DÉCOUVRIR */}
       <span className="text-base md:text-lg font-bold tracking-[0.35em] uppercase text-white group-hover:text-gray-200 transition-colors duration-300 mb-4">
-        Découvrir
+       {name}
       </span>
 
       {/* FLÈCHE CHEVRON */}

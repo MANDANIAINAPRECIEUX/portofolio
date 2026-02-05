@@ -5,7 +5,7 @@ import Corps from "./components/Corps";
 import Mon_photo from "./components/Mon_photo";
 import About from "./pages/About";
 import Triage from "./components/Triage";
-import Fleche from "./components/Fleche" ;
+import Fleche from "./components/Fleche";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -39,14 +39,17 @@ function App() {
           <div className=" px-6 md:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-10 ">
             <Corps isDarkMode={isDarkMode} />
             <Mon_photo />
-               <Fleche />
-          </div>
+           <div className="col-span-full flex justify-center">
+              <Fleche name="Découvrir" />
 
+            </div>
+          </div>
+           
         </main>
 
         <About />
         <Triage />
-                  <Fleche />
+        <Fleche  name="Découvrir"/>
         <Footer />
       </div>
     </div>

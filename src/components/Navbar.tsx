@@ -9,8 +9,18 @@ interface NavbarProps {
 const Navbar = ({ isDarkMode, setIsDarkMode }: NavbarProps) => {
   return (
     <nav className="sticky top-0 z-50">
-      <div className="flex items-center justify-end max-w-7xl mx-auto px-10 py-4">
-        
+      <div className="flex gap-38 items-center justify-end max-w-7xl mx-auto px-10 py-4">
+        <div className="text-white cursor-pointer px-3 py-1 rounded transition-all duration-300 hover:bg-yellow-400/30 hover:text-yellow-100">
+          Home
+        </div>
+
+        <div className="text-white cursor-pointer px-3 py-1 rounded transition-all duration-300 hover:bg-yellow-400/30 hover:text-yellow-100">
+          About
+        </div>
+
+        <div className="text-white cursor-pointer px-3 py-1 rounded transition-all duration-300 hover:bg-yellow-400/30 hover:text-yellow-100">
+          Projets
+        </div>
         <div className="flex items-center justify-end">
           {/* Toggle moderne */}
           <div className="relative flex items-center bg-gray-100 rounded-full p-1 shadow-inner">
