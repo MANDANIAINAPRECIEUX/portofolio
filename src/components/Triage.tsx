@@ -144,7 +144,7 @@ const ProjectList = () => {
               <div className="text-center mb-8">
                 <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 animate-fade-in">
                   <span className="text-center mb-8 bg-gradient-to-r from-[#f1f1f1] via-purple-300 to-[#f1f1f1] bg-clip-text text-transparent">
-                    Mes Projets
+                    Mes Projetss
                   </span>
                 </h2>
               </div>
