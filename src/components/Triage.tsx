@@ -140,23 +140,26 @@ const ProjectList = () => {
         <>
           {/* CONTRÔLES */}
           <div className="mb-10 space-y-6">
-            <div className="flex items-center justify-between">
-              <div className="text-center mb-8">
-                <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 animate-fade-in">
-                  <span className="text-center mb-8 bg-gradient-to-r from-[#f1f1f1] via-purple-300 to-[#f1f1f1] bg-clip-text text-transparent">
-                    Mes Projetss
+            <div className="relative flex items-center justify-center mb-10">
+              {/* Titre centré */}
+              <div className="text-center">
+                <h2 className="text-3xl md:text-4xl font-bold animate-fade-in">
+                  <span className="bg-gradient-to-r from-[#f1f1f1] via-purple-300 to-[#f1f1f1] bg-clip-text text-transparent">
+                    Mes Projets
                   </span>
                 </h2>
               </div>
 
+              {/* Bouton positionné à droite */}
               <button
                 type="button"
                 onClick={() => setShowProjects(false)}
-                className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-[#f1f1f1] text-sm font-medium transition-all duration-300 hover:scale-105"
+                className="absolute right-0 px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-[#f1f1f1] text-sm font-medium transition-all duration-300 hover:scale-105"
               >
                 Masquer
               </button>
             </div>
+
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex items-center gap-2">
                 <span className="text-sm font-medium text-[#f1f1f1]/80">
