@@ -143,7 +143,7 @@ const ProjectList = () => {
             <div className="relative flex items-center justify-center mb-10">
               {/* Titre centré */}
               <div className="text-center">
-                <h2 className="text-3xl md:text-4xl font-bold animate-fade-in">
+                <h2 className="text-5xl md:text-4xl font-bold animate-fade-in">
                   <span className="bg-gradient-to-r from-[#f1f1f1] via-purple-300 to-[#f1f1f1] bg-clip-text text-transparent">
                     Mes Projets
                   </span>

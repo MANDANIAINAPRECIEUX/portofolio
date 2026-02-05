@@ -52,7 +52,7 @@ function App() {
           <Triage />
         </div>
         <div className="mt-4">
-          <Fleche  name="Découvrir"/>
+          <Fleche  name="DISCUTTONS DE VOTRE PROJET"/>
         </div>
         <Footer />
       </div>
