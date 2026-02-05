@@ -23,7 +23,7 @@ const Corps = ({ isDarkMode }: CorpsProps) => {
           <span className="mt-3 inline-flex items-center gap-3">
             <span
               className={`
-                bg-clip-text text-transparent bg-gradient-to-r
+                bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-violet-400 to-purple-300
                 transition-all duration-700 ease-out
                 ${
                   isDarkMode
@@ -39,7 +39,7 @@ const Corps = ({ isDarkMode }: CorpsProps) => {
         {/* Description principale */}
         <p className="text-[clamp(1.02rem,1.4vw,1.15rem)] leading-relaxed text-white/90">
           Je travaille sur des{" "}
-          <span className="font-semibold text-white relative group">
+          <span className="font-semibold text-white  relative group">
             projets applicatifs complets
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-sky-400 to-blue-400 group-hover:w-full transition-all duration-300" />
           </span>

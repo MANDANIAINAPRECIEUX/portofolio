@@ -48,8 +48,12 @@ function App() {
         </main>
 
         <About />
-        <Triage />
-        <Fleche  name="Découvrir"/>
+        <div className="mt-8">
+          <Triage />
+        </div>
+        <div className="mt-4">
+          <Fleche  name="Découvrir"/>
+        </div>
         <Footer />
       </div>
     </div>

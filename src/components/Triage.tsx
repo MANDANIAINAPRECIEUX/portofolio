@@ -82,7 +82,7 @@ const ProjectList = () => {
 
   const isCarousel = (projects: Project[]): boolean => projects.length > 3;
 
-  // 🔥 Fonction pour créer des "pages" de 3 cards
+  // Fonction pour créer des "pages" de 3 cards
   const chunkProjects = (projects: Project[], size: number) => {
     const chunks = [];
     for (let i = 0; i < projects.length; i += size) {
@@ -109,7 +109,7 @@ const ProjectList = () => {
             >
               <span>✕ Fermer</span>
             </button>
-            <div className="relative pt-[56.25%] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-[#5B9BD5]/50">
+            <div className="relative pt-[56.25%] rounded-2xl overflow-hidden shadow-2xl ring-4 ring-purple-500/50">
               <iframe
                 src={selectedVideo}
                 className="absolute inset-0 w-full h-full"
@@ -141,9 +141,14 @@ const ProjectList = () => {
           {/* CONTRÔLES */}
           <div className="mb-10 space-y-6">
             <div className="flex items-center justify-between">
-              <h2 className="text-3xl md:text-4xl font-bold text-[#f1f1f1]">
-                Mes Projets
-              </h2>
+              <div className="text-center mb-8">
+                <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 animate-fade-in">
+                  <span className="text-center mb-8 bg-gradient-to-r from-[#f1f1f1] via-purple-300 to-[#f1f1f1] bg-clip-text text-transparent">
+                    Mes Projets
+                  </span>
+                </h2>
+              </div>
+
               <button
                 type="button"
                 onClick={() => setShowProjects(false)}
@@ -212,7 +217,7 @@ const ProjectList = () => {
 
               const currentSlide = carouselStates[group]?.current || 0;
 
-              // 🔥 Créer des pages de 3 cards
+              // Créer des pages de 3 cards
               const projectPages = isCarouselGroup
                 ? chunkProjects(projects, SLIDES_PER_VIEW)
                 : [];
@@ -229,7 +234,7 @@ const ProjectList = () => {
                     <h3 className="text-2xl md:text-3xl font-bold text-[#f1f1f1]">
                       {group}
                     </h3>
-                    <span className="px-3 py-1 rounded-full bg-[#5B9BD5]/20 text-[#5B9BD5] text-sm font-semibold">
+                    <span className="px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-sm font-semibold">
                       {projects.length} projet{projects.length > 1 ? "s" : ""}
                     </span>
                   </div>
@@ -237,7 +242,7 @@ const ProjectList = () => {
                   {/* 🔥 CAROUSEL OU GRILLE */}
                   {isCarouselGroup ? (
                     <div className="relative px-16">
-                      {/* SLIDES CONTAINER - CORRIGÉ avec pages */}
+                      {/* SLIDES CONTAINER */}
                       <div className="overflow-hidden">
                         <div
                           className="flex transition-transform duration-500 ease-in-out"
@@ -271,7 +276,7 @@ const ProjectList = () => {
                         disabled={currentSlide === 0}
                         className={`
                           absolute -left-2 top-1/2 -translate-y-1/2 
-                          bg-white/20 hover:bg-white/30 backdrop-blur-sm 
+                          bg-white/20 hover:bg-purple-400/30 backdrop-blur-sm 
                           p-3 rounded-full text-white shadow-2xl 
                           transition-all duration-300 hover:scale-110 z-10
                           ${currentSlide === 0 ? "opacity-30 cursor-not-allowed" : ""}
@@ -286,7 +291,7 @@ const ProjectList = () => {
                         disabled={currentSlide === totalSlides - 1}
                         className={`
                           absolute -right-2 top-1/2 -translate-y-1/2 
-                          bg-white/20 hover:bg-white/30 backdrop-blur-sm 
+                          bg-white/20 hover:bg-purple-400/30 backdrop-blur-sm 
                           p-3 rounded-full text-white shadow-2xl 
                           transition-all duration-300 hover:scale-110 z-10
                           ${currentSlide === totalSlides - 1 ? "opacity-30 cursor-not-allowed" : ""}
@@ -310,30 +315,25 @@ const ProjectList = () => {
                             }
                             className={`
                               w-3 h-3 rounded-full transition-all duration-300
-                              ${i === currentSlide ? "bg-white scale-125 shadow-lg" : "bg-white/40 hover:bg-white/60"}
+                              ${i === currentSlide ? "bg-purple-400 scale-125 shadow-lg shadow-purple-400/50" : "bg-white/40 hover:bg-purple-300/60"}
                             `}
                           />
                         ))}
                       </div>
                     </div>
                   ) : (
-                    // GRILLE NORMALE
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                      {projects.map((project) => (
-                        <ProjectCard
-                          key={project.id}
-                          project={project}
-                          groupBy={groupBy}
-                          onVideoClick={setSelectedVideo}
-                        />
-                      ))}
-                    </div>
-                  )}
-
-                  {/* Compteur carousel */}
-                  {isCarouselGroup && (
-                    <div className="text-center mt-8 text-sm text-[#f1f1f1]/70">
-                      {currentSlide + 1} / {totalSlides}
+                    // 🔥 GRILLE NORMALE avec espacement identique au carousel
+                    <div className="px-16">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {projects.map((project) => (
+                          <ProjectCard
+                            key={project.id}
+                            project={project}
+                            groupBy={groupBy}
+                            onVideoClick={setSelectedVideo}
+                          />
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
@@ -346,7 +346,7 @@ const ProjectList = () => {
   );
 };
 
-// COMPOSANT CARD (inchangé)
+// COMPOSANT CARD avec accents violets
 const ProjectCard = ({
   project,
   groupBy,
@@ -361,14 +361,14 @@ const ProjectCard = ({
     group relative p-6 rounded-2xl 
     bg-gradient-to-br from-[#093540]/40 to-[#526687]/20
     border-2 border-[#5B9BD5]/30 backdrop-blur-sm 
-    hover:border-[#5B9BD5] hover:shadow-2xl hover:shadow-[#5B9BD5]/20 
+    hover:border-purple-400/50 hover:shadow-2xl hover:shadow-purple-500/20 
     transition-all duration-500 hover:scale-[1.03]
     flex flex-col
     w-full
     h-[420px]
   "
   >
-    <div className="absolute top-4 right-4 px-2 py-1 rounded-lg bg-[#5B9BD5]/20 text-[#5B9BD5] text-xs font-bold">
+    <div className="absolute top-4 right-4 px-2 py-1 rounded-lg bg-purple-500/20 text-purple-400 text-xs font-bold">
       {groupBy === "year" ? project.type : project.year}
     </div>
 
@@ -395,7 +395,7 @@ const ProjectCard = ({
       {project.video && (
         <button
           onClick={() => onVideoClick(project.video!)}
-          className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-red-500/90 hover:bg-red-600 text-white text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
+          className="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-purple-500/90 hover:bg-violet-600 text-white text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/30"
         >
           <Play className="w-4 h-4" /> Démo
         </button>
