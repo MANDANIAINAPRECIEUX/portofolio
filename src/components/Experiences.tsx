@@ -105,7 +105,7 @@ const Experiences = () => {
           <p className="mt-6 text-lg text-white/70 max-w-3xl mx-auto">
             Plus de{" "}
             <span className="text-purple-400 font-semibold">
-              11 ans d'expérience
+              13 ans d'expérience
             </span>{" "}
             combinant expertise médicale, gestion de projet et développement
             logiciel
