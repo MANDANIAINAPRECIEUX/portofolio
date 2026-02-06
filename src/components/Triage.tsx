@@ -11,6 +11,8 @@ import {
   ExternalLink,
   Github,
   Play,
+  Rocket,
+  FolderOpen,
 } from "lucide-react";
 import PROJECTS from "../../types/Project";
 import type { Project } from "../../types/Project";
@@ -93,6 +95,15 @@ const ProjectList = () => {
 
   return (
     <div className="w-full max-w-7xl mx-auto p-6">
+      <div className="flex items-center justify-center gap-3 my-16">
+        <div className="h-[2px] flex-1 max-w-xs bg-gradient-to-r from-transparent to-purple-400"></div>
+        <div className="relative">
+          <div className="w-3 h-3 rounded-full bg-purple-400"></div>
+          <div className="absolute inset-0 w-3 h-3 rounded-full bg-purple-400 blur-md animate-pulse"></div>
+        </div>
+        <div className="h-[2px] flex-1 max-w-xs bg-gradient-to-l from-transparent to-purple-400"></div>
+      </div>
+
       {/* MODAL VIDÉO */}
       {selectedVideo && (
         <div
@@ -143,8 +154,9 @@ const ProjectList = () => {
             <div className="relative flex items-center justify-center mb-10">
               {/* Titre centré */}
               <div className="text-center">
-                <h2 className="text-5xl md:text-4xl font-bold animate-fade-in">
-                  <span className="bg-gradient-to-r from-[#f1f1f1] via-purple-300 to-[#f1f1f1] bg-clip-text text-transparent">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold animate-fade-in">
+                  <span className="inline-flex items-center gap-4 bg-gradient-to-r from-[#f1f1f1] via-purple-300 to-[#f1f1f1] bg-clip-text text-transparent">
+                    <FolderOpen className="w-12 h-12 md:w-14 md:h-14 text-purple-400" />
                     Mes Projets
                   </span>
                 </h2>

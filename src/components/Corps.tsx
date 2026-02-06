@@ -7,89 +7,100 @@ interface CorpsProps {
 const Corps = ({ isDarkMode }: CorpsProps) => {
   return (
     <>
-      <section className="max-w-2xl space-y-5 md:space-y-6">
-        <span className="text-2xl font-semibold text-white relative group">
+      <section className="max-w-2xl space-y-6 md:space-y-8">
+        {/* Introduction - Taille augmentée */}
+        <p className="text-base md:text-lg font-normal text-white/80 tracking-wide">
           Bonjour, bienvenue sur mon site portfolio. Je suis
-        </span>
-        <div className="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/80">
-          Mandaniaina Precieux
-        </div>
-        {/* Titre principal */}
-        <h1 className="tracking-tight font-extrabold leading-[1.05] text-[clamp(2.1rem,4vw,3.4rem)]">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/80">
-            Développeur Full-Stack
-          </span>
-          <br />
-          <span className="mt-3 inline-flex items-center gap-3">
+        </p>
+
+      {/* Nom avec apparition lettre par lettre */}
+<div className="text-5xl md:text-7xl lg:text-8xl font-extrabold leading-[0.95]">
+  <div className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/80">
+    {"Mandaniaina".split("").map((letter, index) => (
+      <span
+        key={index}
+        className="inline-block animate-fade-in"
+        style={{
+          animationDelay: `${index * 0.1}s`,
+          animationFillMode: 'backwards'
+        }}
+      >
+        {letter}
+      </span>
+    ))}
+    <br />
+    {"Precieux".split("").map((letter, index) => (
+      <span
+        key={index}
+        className="inline-block animate-fade-in"
+        style={{
+          animationDelay: `${(index + 11) * 0.1}s`, // 11 = longueur de "Mandaniaina"
+          animationFillMode: 'backwards'
+        }}
+      >
+        {letter}
+      </span>
+    ))}
+  </div>
+</div>
+
+
+        {/* Titre principal - MOYEN */}
+        <h1 className="space-y-3">
+          <div className="text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/80">
+              Développeur Full-Stack
+            </span>
+          </div>
+
+          {/* Technologies - MOYEN-PETIT avec accent violet */}
+          <div className="text-xl md:text-2xl lg:text-3xl font-semibold">
             <span
               className={`
-                bg-clip-text text-transparent bg-gradient-to-r from-purple-400 via-violet-400 to-purple-300
+                bg-clip-text text-transparent bg-gradient-to-r
                 transition-all duration-700 ease-out
                 ${
                   isDarkMode
-                    ? "from-red-300 via-pink-300 to-rose-300 translate-x-1"
-                    : "from-sky-300 via-cyan-300 to-blue-300"
+                    ? "from-red-300 via-pink-300 to-rose-300"
+                    : "from-purple-400 via-violet-400 to-purple-300"
                 }
               `}
             >
               Ruby & JavaScript
             </span>
-          </span>
+          </div>
         </h1>
-        {/* Description principale */}
-        <p className="text-[clamp(1.02rem,1.4vw,1.15rem)] leading-relaxed text-white/90">
-          Je travaille sur des{" "}
-          <span className="font-semibold text-white  relative group">
-            projets applicatifs complets
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-sky-400 to-blue-400 group-hover:w-full transition-all duration-300" />
-          </span>
-          , allant de la conception de systèmes backend et d&apos;APIs
-          jusqu&apos;au développement d&apos;interfaces interactives.
+
+        {/* Description - PLUS GRANDE et plus visible */}
+        <p className="text-lg md:text-xl leading-relaxed text-white/95 max-w-2xl font-light">
+          Je développe des{" "}
+          <span className="font-semibold text-white relative group">
+            applications multiplateformes
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-violet-400 group-hover:w-full transition-all duration-300" />
+          </span>{" "}
+          — web, mobile et desktop — de la conception à la création
+          d&apos;interfaces utilisateur interactives.
         </p>
-        {/* Points */}
 
-        {/* <div className="border border-blue-500 rounded-xl p-4">
-          <h2
-            className="text-3xl md:text-4xl lg:text-5xl font-black 
-               bg-gradient-to-r from-blue-400 via-purple-400 to-sky-500 
-               bg-clip-text text-transparent drop-shadow-2xl 
-               mb-12 text-center md:text-left tracking-tight
-               animate-fade-in"
-          >
-            TECHNOLOGIES PRINCIPALES
-          </h2>
-
-          <div className="flex gap-6 my-4">
-            <Boxes tech="React" />
-            <Boxes tech="Node.Js" />
-            <Boxes tech="Next.js" />
-            <Boxes tech="TypeScript" />
-          </div>
-          <div className="flex gap-6">
-            <Boxes tech="Ruby on rails" />
-            <Boxes tech="Sinatra" />
-          </div>
-        </div> */}
-
-        {/* CTA */}
-        <div className="flex flex-wrap gap-10 py-10">
+        {/* CTA - Buttons avec violet intégré */}
+        <div className="flex flex-wrap gap-4 pt-8">
           <button
             className={`
-              px-8 py-5 rounded-xl font-semibold
-              text-[0.98rem] md:text-[1rem]
+              px-8 py-4 rounded-xl font-semibold
+              text-sm md:text-base
               transition-all duration-300
               ${
                 isDarkMode
                   ? "bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600"
-                  : "bg-gradient-to-r from-sky-500 to-blue-500 hover:from-sky-600 hover:to-blue-600"
+                  : "bg-gradient-to-r from-purple-500 to-blue-600 hover:from-purple-600 hover:to-blue-700 shadow-lg shadow-purple-500/30"
               }
-              text-white shadow-lg hover:shadow-xl hover:scale-[1.03]
+              text-white hover:shadow-xl hover:scale-[1.03]
               active:scale-[0.98]
             `}
           >
             Voir mes projets
           </button>
-          <button className="px-8 py-5 rounded-xl font-semibold text-[0.98rem] md:text-[1rem] bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]">
+          <button className="px-8 py-4 rounded-xl font-semibold text-sm md:text-base bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]">
             Me contacter
           </button>
         </div>
