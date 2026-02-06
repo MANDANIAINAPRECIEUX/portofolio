@@ -1,78 +1,173 @@
 const About = () => {
   return (
-    <div className=" w-full mt-12 ">
-      <div className="rounded-2xl bg-[#172033] p-6  shadow-lg mx-12">
-        <div className=" border-2 border-[#5B9BD5] rounded-3xl p-16 shadow-lg">
-          <div className="flex items-stretch gap-6">
-            {/* Image: même hauteur que le texte */}
-            <div className="w-80 md:w-104 lg:w-120 shrink-0 overflow-hidden rounded-2xl">
-              <img
-                src="/photos/manda.png"
-                alt="moi"
-                className="h-full w-full object-cover  object-center -translate-x-20 -translate-y-12"
-              />
-            </div>
-            {/* Texte */}
-            <div className="flex-1">
-              <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[#f1f1f1]">
-                À propos de moi
-              </h2>
-              <div className="mt-3 h-1 w-20 rounded-full bg-[#5B9BD5]" />
-              <p className="mt-5 mx-4 text-lg md:text-xl leading-relaxed text-[#f1f1f1]/90">
-                Basé à Madagascar, je suis diplômé en informatique et
-                développeur full-stack passionné par les technologies du web. Je
-                conçois des applications complètes, du backend au frontend, avec
-                un fort accent sur la qualité du code et l’expérience
-                utilisateur. Issu d’une première carrière en chirurgie dentaire,
-                ma reconversion en ingénierie informatique m’a apporté rigueur
-                et sens du détail. Curieux et en apprentissage continu, j’aime
-                automatiser, optimiser et développer des solutions fiables et
-                évolutives.
-              </p>
-            </div>
-          </div>
-          {/* boutton telechargement cv */}
-          <div className="mt-10 flex justify-center">
-            <button
-              className="
-  group
-  flex items-center gap-3
-  px-8 py-4 
-  bg-gradient-to-r from-[#5B9BD5] to-[#4682B4]
-  hover:from-[#4682B4] hover:to-[#5B9BD5]
-  text-white text-xl font-semibold
-  rounded-xl
-  shadow-lg hover:shadow-xl
-  transition-all duration-300
-  hover:scale-105 active:scale-95
-"
-            >
-              <svg
-                className="w-5 h-5 group-hover:animate-bounce"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-              Télécharger mon CV
-            </button>
+    <div className="w-full py-20">
+      {/* Conteneur principal avec gradient subtil */}
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        {/* Titre de section avec animation */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold animate-fade-in">
+            <span className="inline-flex items-center gap-4 bg-gradient-to-r from-[#f1f1f1] via-purple-300 to-[#f1f1f1] bg-clip-text text-transparent">
+              <span className="text-5xl">👨‍💻</span>À propos
+            </span>
+          </h2>
+
+          {/* Ligne de séparation stylée */}
+          <div className="flex items-center justify-center gap-3 mt-6">
+            <div className="h-[2px] w-16 md:w-24 bg-gradient-to-r from-transparent to-[#5B9BD5]"></div>
+            <div className="w-2 h-2 rounded-full bg-purple-400 shadow-lg shadow-purple-400/50"></div>
+            <div className="h-[2px] w-32 md:w-48 bg-gradient-to-r from-[#5B9BD5] via-purple-400 to-[#5B9BD5]"></div>
+            <div className="w-2 h-2 rounded-full bg-purple-400 shadow-lg shadow-purple-400/50"></div>
+            <div className="h-[2px] w-16 md:w-24 bg-gradient-to-l from-transparent to-[#5B9BD5]"></div>
           </div>
         </div>
-        {/* <div className=" border-2 mt-8 border-[#5B9BD5] rounded-3xl p-16 shadow-lg">
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-[#f1f1f1]">
-            mes expériences professionnels
-          </h2>
-          <div className="mt-3 h-1 w-20 rounded-full bg-[#526687]" />
-          <p className="mt-3 text-sm leading-relaxed text-[#f1f1f1]/80">
-           
-          </p>
-        </div> */}
+
+        {/* Card principale avec effet glassmorphism */}
+        <div className="relative group">
+          {/* Glow effect background */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-[#5B9BD5] via-purple-500 to-[#5B9BD5] rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+
+          {/* Card content */}
+          <div className="relative bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl rounded-3xl border border-[#5B9BD5]/30 shadow-2xl overflow-hidden">
+            {/* Effet de brillance au survol */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+
+            <div className="relative p-8 md:p-12 lg:p-16">
+              <div className="flex flex-col lg:flex-row items-stretch gap-8 lg:gap-12">
+                {/* Image avec cadre animé */}
+                <div className="lg:w-1/3 shrink-0">
+                  <div className="relative group/img">
+                    {/* Cadre animé violet-bleu */}
+                    <div className="absolute -inset-2 bg-gradient-to-r from-purple-500 via-[#5B9BD5] to-purple-500 rounded-2xl blur-md opacity-50 group-hover/img:opacity-75 transition-opacity duration-300"></div>
+
+                    {/* Bordure fixe */}
+                    <div className="relative rounded-2xl p-[3px] bg-gradient-to-br from-[#5B9BD5] via-purple-400 to-[#5B9BD5] shadow-xl">
+                      <div className="rounded-xl overflow-hidden bg-[#0a1f2e]">
+                        <img
+                          src="/photos/manda.png"
+                          alt="Mandaniaina Precieux"
+                          className="w-full h-full object-cover object-center transform -translate-x-8 -translate-y-6 scale-110 transition-transform duration-500 group-hover/img:scale-115"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Contenu texte */}
+                <div className="flex-1 space-y-6">
+                  {/* Titre avec gradient */}
+                  <div>
+                    <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent">
+                      Qui suis-je ?
+                    </h3>
+                    <div className="mt-3 h-1 w-20 rounded-full bg-gradient-to-r from-[#5B9BD5] to-purple-500"></div>
+                  </div>
+
+                  {/* Paragraphes avec meilleure lisibilité */}
+                  <div className="space-y-4 text-base md:text-lg leading-relaxed text-[#f1f1f1]/90">
+                    <p>
+                      Basé à{" "}
+                      <span className="font-semibold text-purple-300">
+                        Madagascar
+                      </span>
+                      , je suis diplômé en informatique et développeur{" "}
+                      <span className="font-semibold text-white relative group/word">
+                        full-stack
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-violet-400 group-hover/word:w-full transition-all duration-300"></span>
+                      </span>{" "}
+                      passionné par les technologies du web.
+                    </p>
+
+                    <p>
+                      Je conçois des applications complètes, du backend au
+                      frontend, avec un fort accent sur la{" "}
+                      <span className="text-purple-300 font-medium">
+                        qualité du code
+                      </span>{" "}
+                      et l'
+                      <span className="text-purple-300 font-medium">
+                        expérience utilisateur
+                      </span>
+                      .
+                    </p>
+
+                    <p>
+                      Issu d'une première carrière en{" "}
+                      <span className="text-[#5B9BD5] font-medium">
+                        chirurgie dentaire
+                      </span>
+                      , ma reconversion en ingénierie informatique m'a apporté{" "}
+                      <span className="font-semibold text-white">rigueur</span>{" "}
+                      et{" "}
+                      <span className="font-semibold text-white">
+                        sens du détail
+                      </span>
+                      .
+                    </p>
+
+                    <p className="text-[#f1f1f1]/80 italic">
+                      Curieux et en apprentissage continu, j'aime automatiser,
+                      optimiser et développer des solutions fiables et
+                      évolutives.
+                    </p>
+                  </div>
+
+                  {/* Stats rapides (optionnel) */}
+                  <div className="grid grid-cols-3 gap-4 pt-6 border-t border-white/10">
+                    <div className="text-center">
+                      <div className="text-2xl md:text-3xl font-bold text-purple-400">
+                        3+
+                      </div>
+                      <div className="text-xs md:text-sm text-white/60 mt-1">
+                        Années d'exp.
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl md:text-3xl font-bold text-[#5B9BD5]">
+                        15+
+                      </div>
+                      <div className="text-xs md:text-sm text-white/60 mt-1">
+                        Projets réalisés
+                      </div>
+                    </div>
+                    <div className="text-center">
+                      <div className="text-2xl md:text-3xl font-bold text-purple-400">
+                        10+
+                      </div>
+                      <div className="text-xs md:text-sm text-white/60 mt-1">
+                        Technologies
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bouton CV avec meilleur design */}
+              <div className="mt-12 flex justify-center">
+                <button className="group/btn relative px-8 py-4 bg-gradient-to-r from-purple-500 to-violet-600 hover:from-purple-600 hover:to-violet-700 text-white font-semibold rounded-xl shadow-lg shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105 active:scale-95 overflow-hidden">
+                  {/* Effet de brillance */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-700"></div>
+
+                  <span className="relative flex items-center gap-3 text-base md:text-lg">
+                    <svg
+                      className="w-5 h-5 group-hover/btn:animate-bounce"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                    Télécharger mon CV
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

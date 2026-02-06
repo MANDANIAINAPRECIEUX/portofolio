@@ -6,6 +6,10 @@ import Mon_photo from "./components/Mon_photo";
 import About from "./pages/About";
 import Triage from "./components/Triage";
 import Fleche from "./components/Fleche";
+import Diplomes from "./components/Diplomes";
+import Technologies from "./components/Technologies";
+import Experiences from "./components/Experiences";
+import Contact from "./components/Contact";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -24,7 +28,7 @@ function App() {
     transition-colors duration-500
     ${
       isDarkMode
-        ? "from-slate-950/80 via-slate-900/55 to-slate-950/80"
+        ? "from-slate-950/60 via-slate-900/55 to-slate-950/70"
         : "from-black/60 via-black/40 to-black/60"
     }
   `}
@@ -39,21 +43,23 @@ function App() {
           <div className=" px-6 md:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-10 ">
             <Corps isDarkMode={isDarkMode} />
             <Mon_photo />
-           <div className="col-span-full flex justify-center">
+            <div className="col-span-full flex justify-center">
               <Fleche name="Découvrir" />
-
             </div>
           </div>
-           
         </main>
 
         <About />
-        <div className="mt-8">
+        <div className="mt-2">
           <Triage />
         </div>
         <div className="mt-4">
-          <Fleche  name="DISCUTTONS DE VOTRE PROJET"/>
+          <Fleche name="DISCUTTONS DE VOTRE PROJET" />
         </div>
+        <Diplomes />
+        <Technologies />
+         <Experiences />
+          <Contact />
         <Footer />
       </div>
     </div>

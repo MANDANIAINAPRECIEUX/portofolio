@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 // 1️⃣ Syntaxe CORRECTE : props en PARAMÈTRES
 interface BoxesProps {
