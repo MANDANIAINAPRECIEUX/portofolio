@@ -277,7 +277,7 @@ const Contact = () => {
               {isSubmitted ? (
                 // Message de succès
                 <div className="text-center py-16">
-                  <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-green-500/20 mb-8 animate-bounce">
+                  <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-purple-500/20 mb-8 animate-bounce">
                     <CheckCircle2 className="w-12 h-12 text-green-400" />
                   </div>
                   <h3 className="text-3xl font-bold text-white mb-4">
