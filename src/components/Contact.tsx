@@ -12,6 +12,7 @@ import {
   X,
 } from "lucide-react";
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -24,6 +25,8 @@ const Contact = () => {
   const [focusedField, setFocusedField] = useState<string | null>(null);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -34,14 +37,48 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: "", email: "", subject: "", message: "" });
-      setIsModalOpen(false);
-    }, 3000);
+    setIsLoading(true);
+    setError(null);
+
+    console.log("🚀 DÉBUT DE L'ENVOI");
+    console.log("📝 Données du formulaire:", formData);
+
+    try {
+      console.log("📤 Envoi vers EmailJS...");
+
+      const result = await emailjs.send(
+        "service_95xdnni",
+        "template_o6vnq4e",
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        "BNkwaqkgFyKfYQVhk",
+      );
+
+      console.log("✅ SUCCÈS! Réponse EmailJS:", result);
+      console.log("Status:", result.status);
+      console.log("Text:", result.text);
+
+      setIsSubmitted(true);
+      setIsLoading(false);
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setIsModalOpen(false);
+      }, 3000);
+    } catch (err) {
+      console.error("❌ ERREUR COMPLÈTE:", err);
+      console.error("Type d'erreur:", typeof err);
+      console.error("Détails:", JSON.stringify(err, null, 2));
+      setError("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
+      setIsLoading(false);
+    }
   };
 
   const contactInfo = [
@@ -209,214 +246,213 @@ const Contact = () => {
         </div>
       </div>
 
-     {/* Modal du formulaire */}
-{isModalOpen && (
-  <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in overflow-y-auto">
-    <div className="relative w-full max-w-3xl my-8">
-      {/* Bouton de fermeture - VERSION AMÉLIORÉE */}
-      <button
-        onClick={() => setIsModalOpen(false)}
-        aria-label="Fermer le formulaire de contact"
-        className="absolute -top-3 -right-3 z-20 p-3 bg-white hover:bg-gray-100 rounded-full shadow-2xl transition-all duration-300 group hover:scale-110 border-2 border-gray-200"
-      >
-        <X className="w-6 h-6 text-gray-800 group-hover:rotate-90 transition-transform duration-300" />
-      </button>
-
-      {/* Glow effect du formulaire */}
-      <div className="absolute -inset-2 bg-gradient-to-r from-purple-500 via-[#5B9BD5] to-purple-500 rounded-3xl blur-2xl opacity-50"></div>
-
-      {/* Card du formulaire */}
-      <div className="relative bg-gradient-to-br from-[#172033] to-[#0a1f2e] backdrop-blur-xl rounded-3xl border border-white/20 p-10 md:p-12">
-        {/* Titre du modal */}
-        <div className="text-center mb-10">
-          <h3 className="text-4xl font-bold text-white mb-3">
-            Envoyez-moi un message 📨
-          </h3>
-          <p className="text-lg text-white/70">
-            Je vous répondrai dans les plus brefs délais
-          </p>
-        </div>
-
-        {isSubmitted ? (
-          // Message de succès
-          <div className="text-center py-16">
-            <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-green-500/20 mb-8 animate-bounce">
-              <CheckCircle2 className="w-12 h-12 text-green-400" />
-            </div>
-            <h3 className="text-3xl font-bold text-white mb-4">
-              Message envoyé avec succès ! 🎉
-            </h3>
-            <p className="text-lg text-white/70">
-              Merci pour votre message. Je vous répondrai dans les plus
-              brefs délais.
-            </p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-7">
-            {/* Nom */}
-            <div className="relative">
-              <label
-                htmlFor="name"
-                className={`absolute left-14 transition-all duration-300 pointer-events-none z-10 ${
-                  focusedField === "name" || formData.name
-                    ? "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-purple-400 font-medium"
-                    : "top-5 text-base text-white/50"
-                }`}
-              >
-                Votre nom
-              </label>
-              <div className="relative flex items-center">
-                <div className="absolute left-5 flex items-center justify-center w-8">
-                  <User
-                    className={`w-5 h-5 transition-colors duration-300 ${
-                      focusedField === "name"
-                        ? "text-purple-400"
-                        : "text-white/30"
-                    }`}
-                  />
-                </div>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField("name")}
-                  onBlur={() => setFocusedField(null)}
-                  required
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-5 py-5 text-white text-base focus:outline-none focus:border-purple-400/50 focus:bg-white/10 transition-all duration-300"
-                />
-              </div>
-            </div>
-
-            {/* Email */}
-            <div className="relative">
-              <label
-                htmlFor="email"
-                className={`absolute left-14 transition-all duration-300 pointer-events-none z-10 ${
-                  focusedField === "email" || formData.email
-                    ? "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-purple-400 font-medium"
-                    : "top-5 text-base text-white/50"
-                }`}
-              >
-                Votre email
-              </label>
-              <div className="relative flex items-center">
-                <div className="absolute left-5 flex items-center justify-center w-8">
-                  <AtSign
-                    className={`w-5 h-5 transition-colors duration-300 ${
-                      focusedField === "email"
-                        ? "text-purple-400"
-                        : "text-white/30"
-                    }`}
-                  />
-                </div>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField("email")}
-                  onBlur={() => setFocusedField(null)}
-                  required
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-5 py-5 text-white text-base focus:outline-none focus:border-purple-400/50 focus:bg-white/10 transition-all duration-300"
-                />
-              </div>
-            </div>
-
-            {/* Sujet */}
-            <div className="relative">
-              <label
-                htmlFor="subject"
-                className={`absolute left-14 transition-all duration-300 pointer-events-none z-10 ${
-                  focusedField === "subject" || formData.subject
-                    ? "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-purple-400 font-medium"
-                    : "top-5 text-base text-white/50"
-                }`}
-              >
-                Sujet
-              </label>
-              <div className="relative flex items-center">
-                <div className="absolute left-5 flex items-center justify-center w-8">
-                  <Mail
-                    className={`w-5 h-5 transition-colors duration-300 ${
-                      focusedField === "subject"
-                        ? "text-purple-400"
-                        : "text-white/30"
-                    }`}
-                  />
-                </div>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField("subject")}
-                  onBlur={() => setFocusedField(null)}
-                  required
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-5 py-5 text-white text-base focus:outline-none focus:border-purple-400/50 focus:bg-white/10 transition-all duration-300"
-                />
-              </div>
-            </div>
-
-            {/* Message */}
-            <div className="relative">
-              <label
-                htmlFor="message"
-                className={`absolute left-14 transition-all duration-300 pointer-events-none z-10 ${
-                  focusedField === "message" || formData.message
-                    ? "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-purple-400 font-medium"
-                    : "top-5 text-base text-white/50"
-                }`}
-              >
-                Votre message
-              </label>
-              <div className="relative">
-                <div className="absolute left-5 top-5 flex items-center justify-center w-8">
-                  <MessageSquare
-                    className={`w-5 h-5 transition-colors duration-300 ${
-                      focusedField === "message"
-                        ? "text-purple-400"
-                        : "text-white/30"
-                    }`}
-                  />
-                </div>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  onFocus={() => setFocusedField("message")}
-                  onBlur={() => setFocusedField(null)}
-                  required
-                  rows={6}
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-5 py-5 text-white text-base focus:outline-none focus:border-purple-400/50 focus:bg-white/10 transition-all duration-300 resize-none"
-                />
-              </div>
-            </div>
-
-            {/* Bouton d'envoi */}
-            <button type="submit" className="group relative w-full mt-8">
-              {/* Glow effect */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-[#5B9BD5] to-purple-500 rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
-
-              {/* Button */}
-              <div className="relative bg-gradient-to-r from-purple-500 to-[#5B9BD5] rounded-2xl px-10 py-5 flex items-center justify-center gap-4 group-hover:scale-105 transition-transform duration-300">
-                <span className="text-white font-bold text-xl">
-                  Envoyer le message
-                </span>
-                <Send className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
-              </div>
+      {/* Modal du formulaire */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in overflow-y-auto">
+          <div className="relative w-full max-w-3xl my-8">
+            {/* Bouton de fermeture - VERSION AMÉLIORÉE */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              aria-label="Fermer le formulaire de contact"
+              className="absolute -top-3 -right-3 z-20 p-3 bg-white hover:bg-gray-100 rounded-full shadow-2xl transition-all duration-300 group hover:scale-110 border-2 border-gray-200"
+            >
+              <X className="w-6 h-6 text-gray-800 group-hover:rotate-90 transition-transform duration-300" />
             </button>
-          </form>
-        )}
-      </div>
-    </div>
-  </div>
-)}
 
+            {/* Glow effect du formulaire */}
+            <div className="absolute -inset-2 bg-gradient-to-r from-purple-500 via-[#5B9BD5] to-purple-500 rounded-3xl blur-2xl opacity-50"></div>
+
+            {/* Card du formulaire */}
+            <div className="relative bg-gradient-to-br from-[#172033] to-[#0a1f2e] backdrop-blur-xl rounded-3xl border border-white/20 p-10 md:p-12">
+              {/* Titre du modal */}
+              <div className="text-center mb-10">
+                <h3 className="text-4xl font-bold text-white mb-3">
+                  Envoyez-moi un message 📨
+                </h3>
+                <p className="text-lg text-white/70">
+                  Je vous répondrai dans les plus brefs délais
+                </p>
+              </div>
+
+              {isSubmitted ? (
+                // Message de succès
+                <div className="text-center py-16">
+                  <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-green-500/20 mb-8 animate-bounce">
+                    <CheckCircle2 className="w-12 h-12 text-green-400" />
+                  </div>
+                  <h3 className="text-3xl font-bold text-white mb-4">
+                    Message envoyé avec succès ! 🎉
+                  </h3>
+                  <p className="text-lg text-white/70">
+                    Merci pour votre message. Je vous répondrai dans les plus
+                    brefs délais.
+                  </p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-7">
+                  {/* Nom */}
+                  <div className="relative">
+                    <label
+                      htmlFor="name"
+                      className={`absolute left-14 transition-all duration-300 pointer-events-none z-10 ${
+                        focusedField === "name" || formData.name
+                          ? "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-purple-400 font-medium"
+                          : "top-5 text-base text-white/50"
+                      }`}
+                    >
+                      Votre nom
+                    </label>
+                    <div className="relative flex items-center">
+                      <div className="absolute left-5 flex items-center justify-center w-8">
+                        <User
+                          className={`w-5 h-5 transition-colors duration-300 ${
+                            focusedField === "name"
+                              ? "text-purple-400"
+                              : "text-white/30"
+                          }`}
+                        />
+                      </div>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        onFocus={() => setFocusedField("name")}
+                        onBlur={() => setFocusedField(null)}
+                        required
+                        className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-5 py-5 text-white text-base focus:outline-none focus:border-purple-400/50 focus:bg-white/10 transition-all duration-300"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Email */}
+                  <div className="relative">
+                    <label
+                      htmlFor="email"
+                      className={`absolute left-14 transition-all duration-300 pointer-events-none z-10 ${
+                        focusedField === "email" || formData.email
+                          ? "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-purple-400 font-medium"
+                          : "top-5 text-base text-white/50"
+                      }`}
+                    >
+                      Votre email
+                    </label>
+                    <div className="relative flex items-center">
+                      <div className="absolute left-5 flex items-center justify-center w-8">
+                        <AtSign
+                          className={`w-5 h-5 transition-colors duration-300 ${
+                            focusedField === "email"
+                              ? "text-purple-400"
+                              : "text-white/30"
+                          }`}
+                        />
+                      </div>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        onFocus={() => setFocusedField("email")}
+                        onBlur={() => setFocusedField(null)}
+                        required
+                        className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-5 py-5 text-white text-base focus:outline-none focus:border-purple-400/50 focus:bg-white/10 transition-all duration-300"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Sujet */}
+                  <div className="relative">
+                    <label
+                      htmlFor="subject"
+                      className={`absolute left-14 transition-all duration-300 pointer-events-none z-10 ${
+                        focusedField === "subject" || formData.subject
+                          ? "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-purple-400 font-medium"
+                          : "top-5 text-base text-white/50"
+                      }`}
+                    >
+                      Sujet
+                    </label>
+                    <div className="relative flex items-center">
+                      <div className="absolute left-5 flex items-center justify-center w-8">
+                        <Mail
+                          className={`w-5 h-5 transition-colors duration-300 ${
+                            focusedField === "subject"
+                              ? "text-purple-400"
+                              : "text-white/30"
+                          }`}
+                        />
+                      </div>
+                      <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        onFocus={() => setFocusedField("subject")}
+                        onBlur={() => setFocusedField(null)}
+                        required
+                        className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-5 py-5 text-white text-base focus:outline-none focus:border-purple-400/50 focus:bg-white/10 transition-all duration-300"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Message */}
+                  <div className="relative">
+                    <label
+                      htmlFor="message"
+                      className={`absolute left-14 transition-all duration-300 pointer-events-none z-10 ${
+                        focusedField === "message" || formData.message
+                          ? "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-purple-400 font-medium"
+                          : "top-5 text-base text-white/50"
+                      }`}
+                    >
+                      Votre message
+                    </label>
+                    <div className="relative">
+                      <div className="absolute left-5 top-5 flex items-center justify-center w-8">
+                        <MessageSquare
+                          className={`w-5 h-5 transition-colors duration-300 ${
+                            focusedField === "message"
+                              ? "text-purple-400"
+                              : "text-white/30"
+                          }`}
+                        />
+                      </div>
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        onFocus={() => setFocusedField("message")}
+                        onBlur={() => setFocusedField(null)}
+                        required
+                        rows={6}
+                        className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-5 py-5 text-white text-base focus:outline-none focus:border-purple-400/50 focus:bg-white/10 transition-all duration-300 resize-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Bouton d'envoi */}
+                  <button type="submit" className="group relative w-full mt-8">
+                    {/* Glow effect */}
+                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-[#5B9BD5] to-purple-500 rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                    {/* Button */}
+                    <div className="relative bg-gradient-to-r from-purple-500 to-[#5B9BD5] rounded-2xl px-10 py-5 flex items-center justify-center gap-4 group-hover:scale-105 transition-transform duration-300">
+                      <span className="text-white font-bold text-xl">
+                        Envoyer le message
+                      </span>
+                      <Send className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
+                    </div>
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
