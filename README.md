@@ -71,3 +71,76 @@ export default defineConfig([
   },
 ])
 ```
+# Portfolio Personnel - Andriamiarison Mandaniaina Précieux
+
+
+Portfolio web moderne et interactif présentant mon parcours professionnel, mes compétences et mes projets dans les domaines de la santé, du développement logiciel et de la gestion de projet.
+
+
+
+## 🌐 Demo Live
+
+🔗 **[Voir le portfolio en ligne](https://votre-site.com)**
+
+---
+
+## ✨ Fonctionnalités
+
+### 🎨 Design Moderne
+- **Interface glassmorphism** avec effets de transparence et de flou
+- **Animations fluides** avec transitions CSS personnalisées
+- **Thème sombre** avec palette violet/bleu
+- **Responsive design** adapté à tous les écrans (mobile, tablette, desktop)
+
+### 📄 Sections
+1. **Hero** - Présentation dynamique avec animations typographiques
+2. **À propos** - Parcours professionnel et formation
+3. **Compétences** - Grille interactive de compétences techniques
+4. **Expériences** - Timeline centrale avec cards alternées gauche/droite
+5. **Statistiques** - Cards 3D flip avec chiffres clés
+6. **Projets** - Portfolio de projets avec filtres
+7. **Contact** - Formulaire fonctionnel avec envoi d'emails
+
+### 🚀 Fonctionnalités Avancées
+- ✅ **Formulaire de contact fonctionnel** avec EmailJS
+- ✅ **Timeline interactive** avec effet d'accordéon
+- ✅ **Cards 3D flip** au survol pour les statistiques
+- ✅ **Modal animé** pour le formulaire de contact
+- ✅ **Effets de glow** et d'ombres dynamiques
+- ✅ **Labels flottants** dans les champs de formulaire
+- ✅ **Loading states** et gestion d'erreurs
+
+---
+
+## 🛠️ Technologies Utilisées
+
+### Frontend
+- **[React 18+](https://reactjs.org/)** - Bibliothèque UI
+- **[TypeScript](https://www.typescriptlang.org/)** - Typage statique
+- **[Vite](https://vitejs.dev/)** - Build tool ultra-rapide
+- **[Tailwind CSS](https://tailwindcss.com/)** - Framework CSS utility-first
+
+### Librairies
+- **[Lucide React](https://lucide.dev/)** - Icônes modernes
+- **[EmailJS](https://www.emailjs.com/)** - Service d'envoi d'emails
+- **[React Router](https://reactrouter.com/)** - Navigation (optionnel)
+
+### Outils de Développement
+- **ESLint** - Linting du code
+- **Prettier** - Formatage du code
+- **Git** - Contrôle de version
+
+---
+
+## 📦 Installation
+
+### Prérequis
+- Node.js 18+ et npm/yarn installés
+- Compte [EmailJS](https://www.emailjs.com/) (gratuit)
+
+### Étapes d'installation
+
+1. **Cloner le repository**
+```bash
+git clone https://github.com/MANDANIAINAPRECIEUX/portfolio.git
+cd portfolio
