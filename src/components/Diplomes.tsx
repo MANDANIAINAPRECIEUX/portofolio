@@ -2,7 +2,7 @@ import { GraduationCap, Award, BookOpen, Calendar } from "lucide-react";
 
 const Diplomes = () => {
   return (
-    <div className="w-full py-20">
+    <div id="parcours" className="w-full py-20">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
         {/* Titre de section */}
