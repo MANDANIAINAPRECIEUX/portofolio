@@ -39,23 +39,21 @@ function App() {
       <div className="relative z-40 flex flex-col">
         <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
 
-      {/* HERO SECTION - Fullscreen */}
-<main id="home" className="min-h-screen flex items-center py-4 md:py-8">
-  {/*                                                ↑ Petit padding vertical */}
-  <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-center">
-      {/*                                       ↑ Réduit le gap  ↑ Aligne verticalement */}
-      <Corps isDarkMode={isDarkMode} />
-      <Mon_photo />
+        {/* HERO SECTION - ID pour navigation */}
+        <main id="home" className="min-h-screen flex items-center">
+          <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-10 md:py-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-16">
+              {/*                                         ↑ Gap responsive */}
+              <Corps isDarkMode={isDarkMode} />
+              <Mon_photo />
 
-      {/* Fleche "Découvrir" */}
-      <div className="col-span-full flex justify-center mt-4 md:mt-6">
-        {/*                                              ↑ Réduit l'espacement */}
-        <Fleche name="Découvrir" />
-      </div>
-    </div>
-  </div>
-</main>
+              {/* Fleche "Découvrir" */}
+              <div className="col-span-full flex justify-center mt-8 md:mt-12">
+                <Fleche name="Découvrir" />
+              </div>
+            </div>
+          </div>
+        </main>
 
         {/* Sections avec IDs pour navigation */}
         <section id="about" className="w-full">
