@@ -56,7 +56,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }: NavbarProps) => {
               ${
                 isDarkMode
                   ? "translate-x-9 bg-gradient-to-br from-indigo-500 to-purple-600"
-                  : "translate-x-0 bg-gradient-to-br from-yellow-400 to-orange-500"
+                  : "translate-x-0 bg-gradient-to-br from-purple-400 to-blue-500"
               }
             `}
           />
