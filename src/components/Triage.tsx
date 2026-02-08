@@ -94,7 +94,7 @@ const ProjectList = () => {
   };
 
   return (
-    <div className="w-full max-w-7xl mx-auto p-6">
+    <div id="projets" className="w-full max-w-7xl mx-auto p-6">
       <div className="flex items-center justify-center gap-3 my-16">
         <div className="h-[2px] flex-1 max-w-xs bg-gradient-to-r from-transparent to-purple-400"></div>
         <div className="relative">
