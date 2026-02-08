@@ -7,7 +7,7 @@ interface CorpsProps {
 const Corps = ({ isDarkMode }: CorpsProps) => {
   return (
     <>
-      <section className="max-w-2xl space-y-6 md:space-y-8">
+      <section className="max-w-2xl space-y-6 md:space-y-8 pt-4">
         {/* Introduction - Taille augmentée */}
         <p className="text-base md:text-lg font-normal text-white/80 tracking-wide">
           Bonjour, bienvenue sur mon site portfolio. Je suis
@@ -83,7 +83,7 @@ const Corps = ({ isDarkMode }: CorpsProps) => {
         </p>
 
         {/* CTA - Buttons avec violet intégré */}
-        <div className="flex flex-wrap gap-4 pt-8">
+        <div className="flex flex-wrap gap-10 pt-24">
           <button
             className={`
               px-8 py-4 rounded-xl font-semibold

@@ -123,7 +123,7 @@ const About = () => {
                     </div>
                     <div className="text-center">
                       <div className="text-2xl md:text-3xl font-bold text-[#5B9BD5]">
-                        15+
+                       35+
                       </div>
                       <div className="text-xs md:text-sm text-white/60 mt-1">
                         Projets réalisés

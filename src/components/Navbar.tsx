@@ -2,6 +2,9 @@
 import { Moon, Sun, Menu, X } from "lucide-react";
 import { useState } from "react";
 
+// ❌ SUPPRIMEZ cette ligne incorrecte :
+// import {Link} from 'react-dom';
+
 interface NavbarProps {
   isDarkMode: boolean;
   setIsDarkMode: (value: boolean) => void;
@@ -24,12 +27,13 @@ const Navbar = ({ isDarkMode, setIsDarkMode }: NavbarProps) => {
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo / Nom */}
-          <div className="flex items-center gap-3 group cursor-pointer">
+          <a 
+            href="#home" 
+            className="flex items-center gap-3 group cursor-pointer"
+          >
             <div className="relative">
-              {/* Cercle animé */}
               <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-[#5B9BD5] rounded-full blur-md opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
 
-              {/* Logo */}
               <div className="relative w-10 h-10 rounded-full bg-gradient-to-br from-purple-500 to-[#5B9BD5] flex items-center justify-center text-white font-bold text-lg shadow-lg">
                 MP
               </div>
@@ -38,7 +42,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }: NavbarProps) => {
             <span className="hidden md:block text-xl font-bold bg-gradient-to-r from-white via-purple-200 to-white bg-clip-text text-transparent">
               Mandaniaina
             </span>
-          </div>
+          </a>
 
           {/* Navigation Desktop */}
           <div className="hidden md:flex items-center gap-2">
@@ -64,7 +68,6 @@ const Navbar = ({ isDarkMode, setIsDarkMode }: NavbarProps) => {
           <div className="flex items-center gap-4">
             {/* Toggle Dark/Light Mode */}
             <div className="relative flex items-center bg-white/10 backdrop-blur-sm rounded-full p-1 border border-white/20 shadow-lg">
-              {/* Indicateur glissant */}
               <div
                 className={`
                   absolute w-9 h-9 rounded-full shadow-md
@@ -77,7 +80,6 @@ const Navbar = ({ isDarkMode, setIsDarkMode }: NavbarProps) => {
                 `}
               />
 
-              {/* Bouton Soleil */}
               <button
                 type="button"
                 onClick={() => setIsDarkMode(false)}
@@ -97,7 +99,6 @@ const Navbar = ({ isDarkMode, setIsDarkMode }: NavbarProps) => {
                 <Sun size={18} strokeWidth={2.5} />
               </button>
 
-              {/* Bouton Lune */}
               <button
                 type="button"
                 onClick={() => setIsDarkMode(true)}

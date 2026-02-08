@@ -106,7 +106,7 @@ const Contact = () => {
   ];
 
   return (
-    <div className="w-full py-32 relative overflow-hidden">
+    <div id="contact" className="w-full py-32 relative overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent"></div>
       <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>

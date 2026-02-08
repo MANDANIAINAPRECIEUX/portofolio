@@ -40,7 +40,7 @@ function App() {
 
         {/* HERO SECTION */}
         <main className="min-h-screen flex-1 flex items-center">
-          <div className=" px-6 md:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-10 ">
+          <div className=" pt-10 md:px-12 lg:px-20 grid grid-cols-1 md:grid-cols-2 gap-10 ">
             <Corps isDarkMode={isDarkMode} />
             <Mon_photo />
             <div className="col-span-full flex justify-center">
