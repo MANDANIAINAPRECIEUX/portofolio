@@ -14,7 +14,11 @@ import {
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 
-const Contact = () => {
+interface ContactProps {
+  isDarkMode: boolean;
+}
+
+const Contact = ({ isDarkMode }: ContactProps) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -94,7 +98,9 @@ const Contact = () => {
       label: "GitHub",
       value: "MANDANIAINAPRECIEUX",
       href: "https://github.com/MANDANIAINAPRECIEUX",
-      color: "from-purple-500 to-violet-600",
+      color: isDarkMode
+        ? "from-pink-500 to-rose-600"
+        : "from-purple-500 to-violet-600",
     },
     {
       icon: MessageSquare,
@@ -108,33 +114,115 @@ const Contact = () => {
   return (
     <div id="contact" className="w-full py-32 relative overflow-hidden">
       {/* Background effects */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent"></div>
-      <div className="absolute top-20 left-10 w-72 h-72 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#5B9BD5]/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <div
+        className={`
+          absolute inset-0 bg-gradient-to-b from-transparent to-transparent
+          transition-colors duration-700
+          ${isDarkMode ? "via-pink-500/5" : "via-purple-500/5"}
+        `}
+      ></div>
+      <div
+        className={`
+          absolute top-20 left-10 w-72 h-72 rounded-full blur-3xl animate-pulse
+          transition-colors duration-700
+          ${isDarkMode ? "bg-pink-500/10" : "bg-purple-500/10"}
+        `}
+      ></div>
+      <div
+        className={`
+          absolute bottom-20 right-10 w-96 h-96 rounded-full blur-3xl animate-pulse delay-1000
+          transition-colors duration-700
+          ${isDarkMode ? "bg-rose-400/10" : "bg-[#5B9BD5]/10"}
+        `}
+      ></div>
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-16 relative z-10">
         {/* En-tête de section */}
         <div className="text-center mb-24">
           <div className="inline-flex items-center gap-4 mb-6">
-            <Sparkles className="w-10 h-10 text-purple-400 animate-pulse" />
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-[#f1f1f1] via-purple-300 to-[#f1f1f1] bg-clip-text text-transparent">
+            <Sparkles
+              className={`
+                w-10 h-10 animate-pulse transition-colors duration-700
+                ${isDarkMode ? "text-pink-400" : "text-purple-400"}
+              `}
+            />
+            <h2
+              className={`
+                text-5xl md:text-6xl lg:text-7xl font-bold bg-gradient-to-r bg-clip-text text-transparent
+                transition-all duration-700
+                ${
+                  isDarkMode
+                    ? "from-[#f1f1f1] via-pink-300 to-[#f1f1f1]"
+                    : "from-[#f1f1f1] via-purple-300 to-[#f1f1f1]"
+                }
+              `}
+            >
               Me Contacter
             </h2>
-            <Sparkles className="w-10 h-10 text-[#5B9BD5] animate-pulse" />
+            <Sparkles
+              className={`
+                w-10 h-10 animate-pulse transition-colors duration-700
+                ${isDarkMode ? "text-rose-400" : "text-[#5B9BD5]"}
+              `}
+            />
           </div>
 
           {/* Ligne de séparation */}
           <div className="flex items-center justify-center gap-4 mt-8">
-            <div className="h-[2px] w-20 md:w-32 bg-gradient-to-r from-transparent to-purple-400"></div>
-            <div className="w-3 h-3 rounded-full bg-purple-400 shadow-lg shadow-purple-400/50"></div>
-            <div className="h-[2px] w-40 md:w-64 bg-gradient-to-r from-purple-400 via-[#5B9BD5] to-purple-400"></div>
-            <div className="w-3 h-3 rounded-full bg-[#5B9BD5] shadow-lg shadow-[#5B9BD5]/50"></div>
-            <div className="h-[2px] w-20 md:w-32 bg-gradient-to-l from-transparent to-[#5B9BD5]"></div>
+            <div
+              className={`
+                h-[2px] w-20 md:w-32 bg-gradient-to-r from-transparent
+                transition-colors duration-700
+                ${isDarkMode ? "to-pink-400" : "to-purple-400"}
+              `}
+            ></div>
+            <div
+              className={`
+                w-3 h-3 rounded-full shadow-lg transition-all duration-700
+                ${
+                  isDarkMode
+                    ? "bg-pink-400 shadow-pink-400/50"
+                    : "bg-purple-400 shadow-purple-400/50"
+                }
+              `}
+            ></div>
+            <div
+              className={`
+                h-[2px] w-40 md:w-64 bg-gradient-to-r transition-colors duration-700
+                ${
+                  isDarkMode
+                    ? "from-pink-400 via-rose-400 to-pink-400"
+                    : "from-purple-400 via-[#5B9BD5] to-purple-400"
+                }
+              `}
+            ></div>
+            <div
+              className={`
+                w-3 h-3 rounded-full shadow-lg transition-all duration-700
+                ${
+                  isDarkMode
+                    ? "bg-rose-400 shadow-rose-400/50"
+                    : "bg-[#5B9BD5] shadow-[#5B9BD5]/50"
+                }
+              `}
+            ></div>
+            <div
+              className={`
+                h-[2px] w-20 md:w-32 bg-gradient-to-l from-transparent
+                transition-colors duration-700
+                ${isDarkMode ? "to-rose-400" : "to-[#5B9BD5]"}
+              `}
+            ></div>
           </div>
 
           <p className="mt-8 text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
             Une question ? Un projet ? N'hésitez pas à me contacter.
-            <span className="text-purple-400 font-semibold">
+            <span
+              className={`
+                font-semibold transition-colors duration-700
+                ${isDarkMode ? "text-pink-400" : "text-purple-400"}
+              `}
+            >
               {" "}
               Je réponds sous 24h
             </span>{" "}
@@ -172,7 +260,10 @@ const Contact = () => {
                   >
                     {/* Glow effect */}
                     <div
-                      className={`absolute -inset-1 bg-gradient-to-r ${info.color} rounded-2xl blur-xl opacity-0 group-hover:opacity-40 transition-opacity duration-500`}
+                      className={`
+                        absolute -inset-1 bg-gradient-to-r ${info.color} rounded-2xl blur-xl
+                        opacity-0 group-hover:opacity-40 transition-all duration-700
+                      `}
                     ></div>
 
                     {/* Card */}
@@ -180,7 +271,10 @@ const Contact = () => {
                       <div className="flex items-center gap-5">
                         {/* Icône */}
                         <div
-                          className={`p-4 rounded-xl bg-gradient-to-br ${info.color} bg-opacity-20 group-hover:scale-110 transition-transform duration-300`}
+                          className={`
+                            p-4 rounded-xl bg-gradient-to-br ${info.color} bg-opacity-20
+                            group-hover:scale-110 transition-transform duration-300
+                          `}
                         >
                           <Icon className="w-7 h-7 text-white" />
                         </div>
@@ -190,7 +284,16 @@ const Contact = () => {
                           <div className="text-sm text-white/50 mb-1.5">
                             {info.label}
                           </div>
-                          <div className="text-base md:text-lg text-white font-medium group-hover:text-purple-300 transition-colors duration-300">
+                          <div
+                            className={`
+                              text-base md:text-lg text-white font-medium transition-colors duration-700
+                              ${
+                                isDarkMode
+                                  ? "group-hover:text-pink-300"
+                                  : "group-hover:text-purple-300"
+                              }
+                            `}
+                          >
                             {info.value}
                           </div>
                         </div>
@@ -210,10 +313,30 @@ const Contact = () => {
               className="group relative w-full mt-12"
             >
               {/* Glow effect */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-[#5B9BD5] to-purple-500 rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500 animate-pulse"></div>
+              <div
+                className={`
+                  absolute -inset-1 rounded-2xl blur-xl animate-pulse
+                  opacity-50 group-hover:opacity-100 transition-all duration-700
+                  ${
+                    isDarkMode
+                      ? "bg-gradient-to-r from-pink-500 via-rose-400 to-red-500"
+                      : "bg-gradient-to-r from-purple-500 via-[#5B9BD5] to-purple-500"
+                  }
+                `}
+              ></div>
 
               {/* Button */}
-              <div className="relative bg-gradient-to-r from-purple-500 to-[#5B9BD5] rounded-2xl px-10 py-6 flex items-center justify-center gap-4 group-hover:scale-105 transition-transform duration-300 shadow-2xl">
+              <div
+                className={`
+                  relative rounded-2xl px-10 py-6 flex items-center justify-center gap-4
+                  group-hover:scale-105 transition-all duration-700 shadow-2xl
+                  ${
+                    isDarkMode
+                      ? "bg-gradient-to-r from-pink-500 to-rose-500"
+                      : "bg-gradient-to-r from-purple-500 to-[#5B9BD5]"
+                  }
+                `}
+              >
                 <Mail className="w-7 h-7 text-white" />
                 <span className="text-white font-bold text-2xl">
                   Contactez-moi
@@ -226,7 +349,17 @@ const Contact = () => {
           {/* Colonne droite - Image cartoon */}
           <div className="relative group">
             {/* Glow effect subtil */}
-            <div className="absolute -inset-6 bg-gradient-to-r from-purple-500/20 via-[#5B9BD5]/20 to-purple-500/20 rounded-3xl blur-3xl opacity-50 group-hover:opacity-75 transition-opacity duration-500"></div>
+            <div
+              className={`
+                absolute -inset-6 rounded-3xl blur-3xl
+                opacity-50 group-hover:opacity-75 transition-all duration-700
+                ${
+                  isDarkMode
+                    ? "bg-gradient-to-r from-pink-500/20 via-rose-400/20 to-pink-500/20"
+                    : "bg-gradient-to-r from-purple-500/20 via-[#5B9BD5]/20 to-purple-500/20"
+                }
+              `}
+            ></div>
 
             {/* Container image */}
             <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#172033]/30 to-[#0a1f2e]/30 backdrop-blur-sm border border-white/10 p-4 group-hover:border-white/20 transition-all duration-300">
@@ -240,8 +373,20 @@ const Contact = () => {
             </div>
 
             {/* Décorations */}
-            <div className="absolute -top-8 -right-8 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-[#5B9BD5]/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            <div
+              className={`
+                absolute -top-8 -right-8 w-32 h-32 rounded-full blur-3xl animate-pulse
+                transition-colors duration-700
+                ${isDarkMode ? "bg-pink-500/10" : "bg-purple-500/10"}
+              `}
+            ></div>
+            <div
+              className={`
+                absolute -bottom-8 -left-8 w-40 h-40 rounded-full blur-3xl animate-pulse delay-1000
+                transition-colors duration-700
+                ${isDarkMode ? "bg-rose-400/10" : "bg-[#5B9BD5]/10"}
+              `}
+            ></div>
           </div>
         </div>
       </div>
@@ -250,7 +395,7 @@ const Contact = () => {
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in overflow-y-auto">
           <div className="relative w-full max-w-3xl my-8">
-            {/* Bouton de fermeture - VERSION AMÉLIORÉE */}
+            {/* Bouton de fermeture */}
             <button
               onClick={() => setIsModalOpen(false)}
               aria-label="Fermer le formulaire de contact"
@@ -260,7 +405,16 @@ const Contact = () => {
             </button>
 
             {/* Glow effect du formulaire */}
-            <div className="absolute -inset-2 bg-gradient-to-r from-purple-500 via-[#5B9BD5] to-purple-500 rounded-3xl blur-2xl opacity-50"></div>
+            <div
+              className={`
+                absolute -inset-2 rounded-3xl blur-2xl opacity-50 transition-colors duration-700
+                ${
+                  isDarkMode
+                    ? "bg-gradient-to-r from-pink-500 via-rose-400 to-red-500"
+                    : "bg-gradient-to-r from-purple-500 via-[#5B9BD5] to-purple-500"
+                }
+              `}
+            ></div>
 
             {/* Card du formulaire */}
             <div className="relative bg-gradient-to-br from-[#172033] to-[#0a1f2e] backdrop-blur-xl rounded-3xl border border-white/20 p-10 md:p-12">
@@ -277,8 +431,19 @@ const Contact = () => {
               {isSubmitted ? (
                 // Message de succès
                 <div className="text-center py-16">
-                  <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-purple-500/20 mb-8 animate-bounce">
-                    <CheckCircle2 className="w-12 h-12 text-purple-400" />
+                  <div
+                    className={`
+                      inline-flex items-center justify-center w-24 h-24 rounded-full mb-8 animate-bounce
+                      transition-colors duration-700
+                      ${isDarkMode ? "bg-pink-500/20" : "bg-purple-500/20"}
+                    `}
+                  >
+                    <CheckCircle2
+                      className={`
+                        w-12 h-12 transition-colors duration-700
+                        ${isDarkMode ? "text-pink-400" : "text-purple-400"}
+                      `}
+                    />
                   </div>
                   <h3 className="text-3xl font-bold text-white mb-4">
                     Message envoyé avec succès ! 🎉
@@ -294,22 +459,32 @@ const Contact = () => {
                   <div className="relative">
                     <label
                       htmlFor="name"
-                      className={`absolute left-14 transition-all duration-300 pointer-events-none z-10 ${
-                        focusedField === "name" || formData.name
-                          ? "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-purple-400 font-medium"
-                          : "top-5 text-base text-white/50"
-                      }`}
+                      className={`
+                        absolute left-14 transition-all duration-700 pointer-events-none z-10
+                        ${
+                          focusedField === "name" || formData.name
+                            ? isDarkMode
+                              ? "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-pink-400 font-medium"
+                              : "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-purple-400 font-medium"
+                            : "top-5 text-base text-white/50"
+                        }
+                      `}
                     >
                       Votre nom
                     </label>
                     <div className="relative flex items-center">
                       <div className="absolute left-5 flex items-center justify-center w-8">
                         <User
-                          className={`w-5 h-5 transition-colors duration-300 ${
-                            focusedField === "name"
-                              ? "text-purple-400"
-                              : "text-white/30"
-                          }`}
+                          className={`
+                            w-5 h-5 transition-colors duration-700
+                            ${
+                              focusedField === "name"
+                                ? isDarkMode
+                                  ? "text-pink-400"
+                                  : "text-purple-400"
+                                : "text-white/30"
+                            }
+                          `}
                         />
                       </div>
                       <input
@@ -321,7 +496,17 @@ const Contact = () => {
                         onFocus={() => setFocusedField("name")}
                         onBlur={() => setFocusedField(null)}
                         required
-                        className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-5 py-5 text-white text-base focus:outline-none focus:border-purple-400/50 focus:bg-white/10 transition-all duration-300"
+                        className={`
+                          w-full bg-white/5 border rounded-2xl pl-14 pr-5 py-5 text-white text-base
+                          focus:outline-none focus:bg-white/10 transition-all duration-700
+                          ${
+                            focusedField === "name"
+                              ? isDarkMode
+                                ? "border-pink-400/50"
+                                : "border-purple-400/50"
+                              : "border-white/10"
+                          }
+                        `}
                       />
                     </div>
                   </div>
@@ -330,22 +515,32 @@ const Contact = () => {
                   <div className="relative">
                     <label
                       htmlFor="email"
-                      className={`absolute left-14 transition-all duration-300 pointer-events-none z-10 ${
-                        focusedField === "email" || formData.email
-                          ? "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-purple-400 font-medium"
-                          : "top-5 text-base text-white/50"
-                      }`}
+                      className={`
+                        absolute left-14 transition-all duration-700 pointer-events-none z-10
+                        ${
+                          focusedField === "email" || formData.email
+                            ? isDarkMode
+                              ? "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-pink-400 font-medium"
+                              : "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-purple-400 font-medium"
+                            : "top-5 text-base text-white/50"
+                        }
+                      `}
                     >
                       Votre email
                     </label>
                     <div className="relative flex items-center">
                       <div className="absolute left-5 flex items-center justify-center w-8">
                         <AtSign
-                          className={`w-5 h-5 transition-colors duration-300 ${
-                            focusedField === "email"
-                              ? "text-purple-400"
-                              : "text-white/30"
-                          }`}
+                          className={`
+                            w-5 h-5 transition-colors duration-700
+                            ${
+                              focusedField === "email"
+                                ? isDarkMode
+                                  ? "text-pink-400"
+                                  : "text-purple-400"
+                                : "text-white/30"
+                            }
+                          `}
                         />
                       </div>
                       <input
@@ -357,7 +552,17 @@ const Contact = () => {
                         onFocus={() => setFocusedField("email")}
                         onBlur={() => setFocusedField(null)}
                         required
-                        className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-5 py-5 text-white text-base focus:outline-none focus:border-purple-400/50 focus:bg-white/10 transition-all duration-300"
+                        className={`
+                          w-full bg-white/5 border rounded-2xl pl-14 pr-5 py-5 text-white text-base
+                          focus:outline-none focus:bg-white/10 transition-all duration-700
+                          ${
+                            focusedField === "email"
+                              ? isDarkMode
+                                ? "border-pink-400/50"
+                                : "border-purple-400/50"
+                              : "border-white/10"
+                          }
+                        `}
                       />
                     </div>
                   </div>
@@ -366,22 +571,32 @@ const Contact = () => {
                   <div className="relative">
                     <label
                       htmlFor="subject"
-                      className={`absolute left-14 transition-all duration-300 pointer-events-none z-10 ${
-                        focusedField === "subject" || formData.subject
-                          ? "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-purple-400 font-medium"
-                          : "top-5 text-base text-white/50"
-                      }`}
+                      className={`
+                        absolute left-14 transition-all duration-700 pointer-events-none z-10
+                        ${
+                          focusedField === "subject" || formData.subject
+                            ? isDarkMode
+                              ? "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-pink-400 font-medium"
+                              : "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-purple-400 font-medium"
+                            : "top-5 text-base text-white/50"
+                        }
+                      `}
                     >
                       Sujet
                     </label>
                     <div className="relative flex items-center">
                       <div className="absolute left-5 flex items-center justify-center w-8">
                         <Mail
-                          className={`w-5 h-5 transition-colors duration-300 ${
-                            focusedField === "subject"
-                              ? "text-purple-400"
-                              : "text-white/30"
-                          }`}
+                          className={`
+                            w-5 h-5 transition-colors duration-700
+                            ${
+                              focusedField === "subject"
+                                ? isDarkMode
+                                  ? "text-pink-400"
+                                  : "text-purple-400"
+                                : "text-white/30"
+                            }
+                          `}
                         />
                       </div>
                       <input
@@ -393,7 +608,17 @@ const Contact = () => {
                         onFocus={() => setFocusedField("subject")}
                         onBlur={() => setFocusedField(null)}
                         required
-                        className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-5 py-5 text-white text-base focus:outline-none focus:border-purple-400/50 focus:bg-white/10 transition-all duration-300"
+                        className={`
+                          w-full bg-white/5 border rounded-2xl pl-14 pr-5 py-5 text-white text-base
+                          focus:outline-none focus:bg-white/10 transition-all duration-700
+                          ${
+                            focusedField === "subject"
+                              ? isDarkMode
+                                ? "border-pink-400/50"
+                                : "border-purple-400/50"
+                              : "border-white/10"
+                          }
+                        `}
                       />
                     </div>
                   </div>
@@ -402,22 +627,32 @@ const Contact = () => {
                   <div className="relative">
                     <label
                       htmlFor="message"
-                      className={`absolute left-14 transition-all duration-300 pointer-events-none z-10 ${
-                        focusedField === "message" || formData.message
-                          ? "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-purple-400 font-medium"
-                          : "top-5 text-base text-white/50"
-                      }`}
+                      className={`
+                        absolute left-14 transition-all duration-700 pointer-events-none z-10
+                        ${
+                          focusedField === "message" || formData.message
+                            ? isDarkMode
+                              ? "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-pink-400 font-medium"
+                              : "-top-2.5 text-xs bg-[#0a1f2e] px-3 text-purple-400 font-medium"
+                            : "top-5 text-base text-white/50"
+                        }
+                      `}
                     >
                       Votre message
                     </label>
                     <div className="relative">
                       <div className="absolute left-5 top-5 flex items-center justify-center w-8">
                         <MessageSquare
-                          className={`w-5 h-5 transition-colors duration-300 ${
-                            focusedField === "message"
-                              ? "text-purple-400"
-                              : "text-white/30"
-                          }`}
+                          className={`
+                            w-5 h-5 transition-colors duration-700
+                            ${
+                              focusedField === "message"
+                                ? isDarkMode
+                                  ? "text-pink-400"
+                                  : "text-purple-400"
+                                : "text-white/30"
+                            }
+                          `}
                         />
                       </div>
                       <textarea
@@ -429,7 +664,17 @@ const Contact = () => {
                         onBlur={() => setFocusedField(null)}
                         required
                         rows={6}
-                        className="w-full bg-white/5 border border-white/10 rounded-2xl pl-14 pr-5 py-5 text-white text-base focus:outline-none focus:border-purple-400/50 focus:bg-white/10 transition-all duration-300 resize-none"
+                        className={`
+                          w-full bg-white/5 border rounded-2xl pl-14 pr-5 py-5 text-white text-base
+                          focus:outline-none focus:bg-white/10 transition-all duration-700 resize-none
+                          ${
+                            focusedField === "message"
+                              ? isDarkMode
+                                ? "border-pink-400/50"
+                                : "border-purple-400/50"
+                              : "border-white/10"
+                          }
+                        `}
                       />
                     </div>
                   </div>
@@ -437,10 +682,30 @@ const Contact = () => {
                   {/* Bouton d'envoi */}
                   <button type="submit" className="group relative w-full mt-8">
                     {/* Glow effect */}
-                    <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 via-[#5B9BD5] to-purple-500 rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    <div
+                      className={`
+                        absolute -inset-1 rounded-2xl blur-xl
+                        opacity-50 group-hover:opacity-100 transition-all duration-700
+                        ${
+                          isDarkMode
+                            ? "bg-gradient-to-r from-pink-500 via-rose-400 to-red-500"
+                            : "bg-gradient-to-r from-purple-500 via-[#5B9BD5] to-purple-500"
+                        }
+                      `}
+                    ></div>
 
                     {/* Button */}
-                    <div className="relative bg-gradient-to-r from-purple-500 to-[#5B9BD5] rounded-2xl px-10 py-5 flex items-center justify-center gap-4 group-hover:scale-105 transition-transform duration-300">
+                    <div
+                      className={`
+                        relative rounded-2xl px-10 py-5 flex items-center justify-center gap-4
+                        group-hover:scale-105 transition-all duration-700
+                        ${
+                          isDarkMode
+                            ? "bg-gradient-to-r from-pink-500 to-rose-500"
+                            : "bg-gradient-to-r from-purple-800 to-[#5B9BD5]"
+                        }
+                      `}
+                    >
                       <span className="text-white font-bold text-xl">
                         Envoyer le message
                       </span>

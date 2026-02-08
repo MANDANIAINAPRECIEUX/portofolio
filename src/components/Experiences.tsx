@@ -13,9 +13,13 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 
-const Experiences = () => {
+interface ExperiencesProps {
+  isDarkMode: boolean;
+}
+
+const Experiences = ({ isDarkMode }: ExperiencesProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [flippedCard, setFlippedCard] = useState<number | null>(null); // ← Nouveau state pour les stats
+  const [flippedCard, setFlippedCard] = useState<number | null>(null);
 
   const experiences = [
     {
@@ -81,7 +85,6 @@ const Experiences = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
-  // ← Nouvelle fonction pour toggle les cartes stats
   const toggleStatCard = (index: number) => {
     setFlippedCard(flippedCard === index ? null : index);
   };
@@ -92,25 +95,84 @@ const Experiences = () => {
         {/* Titre de section */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold animate-fade-in">
-            <span className="inline-flex items-center gap-4 bg-gradient-to-r from-[#f1f1f1] via-purple-300 to-[#f1f1f1] bg-clip-text text-transparent">
-              <Briefcase className="w-12 h-12 md:w-14 md:h-14 text-purple-400" />
+            <span
+              className={`
+                inline-flex items-center gap-4 bg-gradient-to-r bg-clip-text text-transparent
+                transition-all duration-700
+                ${
+                  isDarkMode
+                    ? "from-[#f1f1f1] via-pink-300 to-[#f1f1f1]"
+                    : "from-[#f1f1f1] via-purple-300 to-[#f1f1f1]"
+                }
+              `}
+            >
+              <Briefcase
+                className={`
+                  w-12 h-12 md:w-14 md:h-14 transition-colors duration-700
+                  ${isDarkMode ? "text-pink-400" : "text-purple-400"}
+                `}
+              />
               Expériences Professionnelles
             </span>
           </h2>
 
           {/* Ligne de séparation */}
           <div className="flex items-center justify-center gap-3 mt-6">
-            <div className="h-[2px] w-16 md:w-24 bg-gradient-to-r from-transparent to-[#5B9BD5]"></div>
-            <div className="w-2 h-2 rounded-full bg-purple-400 shadow-lg shadow-purple-400/50"></div>
-            <div className="h-[2px] w-32 md:w-48 bg-gradient-to-r from-[#5B9BD5] via-purple-400 to-[#5B9BD5]"></div>
-            <div className="w-2 h-2 rounded-full bg-purple-400 shadow-lg shadow-purple-400/50"></div>
-            <div className="h-[2px] w-16 md:w-24 bg-gradient-to-l from-transparent to-[#5B9BD5]"></div>
+            <div
+              className={`
+                h-[2px] w-16 md:w-24 bg-gradient-to-r from-transparent
+                transition-colors duration-700
+                ${isDarkMode ? "to-rose-400" : "to-[#5B9BD5]"}
+              `}
+            ></div>
+            <div
+              className={`
+                w-2 h-2 rounded-full shadow-lg transition-all duration-700
+                ${
+                  isDarkMode
+                    ? "bg-pink-400 shadow-pink-400/50"
+                    : "bg-purple-400 shadow-purple-400/50"
+                }
+              `}
+            ></div>
+            <div
+              className={`
+                h-[2px] w-32 md:w-48 bg-gradient-to-r transition-colors duration-700
+                ${
+                  isDarkMode
+                    ? "from-rose-400 via-pink-400 to-rose-400"
+                    : "from-[#5B9BD5] via-purple-400 to-[#5B9BD5]"
+                }
+              `}
+            ></div>
+            <div
+              className={`
+                w-2 h-2 rounded-full shadow-lg transition-all duration-700
+                ${
+                  isDarkMode
+                    ? "bg-pink-400 shadow-pink-400/50"
+                    : "bg-purple-400 shadow-purple-400/50"
+                }
+              `}
+            ></div>
+            <div
+              className={`
+                h-[2px] w-16 md:w-24 bg-gradient-to-l from-transparent
+                transition-colors duration-700
+                ${isDarkMode ? "to-rose-400" : "to-[#5B9BD5]"}
+              `}
+            ></div>
           </div>
 
           {/* Sous-titre */}
           <p className="mt-6 text-lg text-white/70 max-w-3xl mx-auto">
             Plus de{" "}
-            <span className="text-purple-400 font-semibold">
+            <span
+              className={`
+                font-semibold transition-colors duration-700
+                ${isDarkMode ? "text-pink-400" : "text-purple-400"}
+              `}
+            >
               13 ans d'expérience
             </span>{" "}
             combinant expertise médicale, gestion de projet et développement
@@ -121,7 +183,17 @@ const Experiences = () => {
         {/* Timeline centrale avec cards alternées */}
         <div className="relative">
           {/* Ligne verticale centrale */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-purple-400 via-[#5B9BD5] to-purple-400 -translate-x-1/2 hidden lg:block"></div>
+          <div
+            className={`
+              absolute left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b -translate-x-1/2 hidden lg:block
+              transition-colors duration-700
+              ${
+                isDarkMode
+                  ? "from-pink-400 via-rose-400 to-pink-400"
+                  : "from-purple-400 via-[#5B9BD5] to-purple-400"
+              }
+            `}
+          ></div>
 
           {/* Expériences */}
           <div className="space-y-12">
@@ -135,11 +207,17 @@ const Experiences = () => {
                 <div key={index} className="relative group">
                   {/* Point sur la timeline centrale */}
                   <div
-                    className={`hidden lg:flex absolute left-1/2 top-8 -translate-x-1/2 w-5 h-5 rounded-full shadow-lg z-20 transition-all duration-300 ${
-                      isOpen
-                        ? "scale-125 bg-gradient-to-br from-purple-400 to-[#5B9BD5]"
-                        : "scale-100 bg-white/20"
-                    }`}
+                    className={`
+                      hidden lg:flex absolute left-1/2 top-8 -translate-x-1/2 w-5 h-5 rounded-full shadow-lg z-20
+                      transition-all duration-700
+                      ${
+                        isOpen
+                          ? isDarkMode
+                            ? "scale-125 bg-gradient-to-br from-pink-400 to-rose-400"
+                            : "scale-125 bg-gradient-to-br from-purple-400 to-[#5B9BD5]"
+                          : "scale-100 bg-white/20"
+                      }
+                    `}
                   >
                     <div className="absolute inset-1 rounded-full bg-[#0a1f2e]"></div>
                   </div>
@@ -156,22 +234,36 @@ const Experiences = () => {
                     >
                       {/* Glow effect */}
                       <div
-                        className={`absolute -inset-1 bg-gradient-to-r ${
-                          isPurple
-                            ? "from-purple-500 via-violet-500 to-purple-500"
-                            : "from-[#5B9BD5] via-[#4682B4] to-[#5B9BD5]"
-                        } rounded-2xl blur-xl transition-opacity duration-500 ${
-                          isOpen ? "opacity-40" : "opacity-20"
-                        } group-hover:opacity-40`}
+                        className={`
+                          absolute -inset-1 rounded-2xl blur-xl transition-all duration-700
+                          ${
+                            isOpen
+                              ? "opacity-40"
+                              : "opacity-20 group-hover:opacity-40"
+                          }
+                          ${
+                            isPurple
+                              ? isDarkMode
+                                ? "bg-gradient-to-r from-pink-500 via-rose-500 to-pink-500"
+                                : "bg-gradient-to-r from-purple-500 via-violet-500 to-purple-500"
+                              : isDarkMode
+                                ? "bg-gradient-to-r from-rose-400 via-red-400 to-rose-400"
+                                : "bg-gradient-to-r from-[#5B9BD5] via-[#4682B4] to-[#5B9BD5]"
+                          }
+                        `}
                       ></div>
 
                       {/* Card content */}
                       <div
-                        className={`relative bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl shadow-xl overflow-hidden transition-all duration-300 ${
-                          isOpen
-                            ? "border-white/20"
-                            : "border-white/10 hover:border-white/20"
-                        }`}
+                        className={`
+                          relative bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl
+                          rounded-2xl shadow-xl overflow-hidden transition-all duration-700
+                          ${
+                            isOpen
+                              ? "border-white/20"
+                              : "border-white/10 hover:border-white/20"
+                          }
+                        `}
                       >
                         {/* En-tête cliquable */}
                         <div className="p-6 md:p-8 flex items-start justify-between gap-4">
@@ -179,33 +271,63 @@ const Experiences = () => {
                             {/* Badge + Icône */}
                             <div className="flex items-center gap-3 flex-wrap">
                               <div
-                                className={`p-2 rounded-lg ${
-                                  isPurple
-                                    ? "bg-purple-500/20"
-                                    : "bg-[#5B9BD5]/20"
-                                }`}
+                                className={`
+                                  p-2 rounded-lg transition-colors duration-700
+                                  ${
+                                    isPurple
+                                      ? isDarkMode
+                                        ? "bg-pink-500/20"
+                                        : "bg-purple-500/20"
+                                      : isDarkMode
+                                        ? "bg-rose-400/20"
+                                        : "bg-[#5B9BD5]/20"
+                                  }
+                                `}
                               >
                                 <Icon
-                                  className={`w-5 h-5 ${
-                                    isPurple
-                                      ? "text-purple-400"
-                                      : "text-[#5B9BD5]"
-                                  }`}
+                                  className={`
+                                    w-5 h-5 transition-colors duration-700
+                                    ${
+                                      isPurple
+                                        ? isDarkMode
+                                          ? "text-pink-400"
+                                          : "text-purple-400"
+                                        : isDarkMode
+                                          ? "text-rose-400"
+                                          : "text-[#5B9BD5]"
+                                    }
+                                  `}
                                 />
                               </div>
                               <span
-                                className={`text-xs font-semibold uppercase tracking-wider ${
-                                  isPurple
-                                    ? "text-purple-300"
-                                    : "text-[#5B9BD5]"
-                                }`}
+                                className={`
+                                  text-xs font-semibold uppercase tracking-wider transition-colors duration-700
+                                  ${
+                                    isPurple
+                                      ? isDarkMode
+                                        ? "text-pink-300"
+                                        : "text-purple-300"
+                                      : isDarkMode
+                                        ? "text-rose-400"
+                                        : "text-[#5B9BD5]"
+                                  }
+                                `}
                               >
                                 {exp.type}
                               </span>
                             </div>
 
                             {/* Titre principal */}
-                            <h3 className="text-lg md:text-xl font-bold text-white group-hover:text-purple-300 transition-colors duration-300">
+                            <h3
+                              className={`
+                                text-lg md:text-xl font-bold text-white transition-colors duration-700
+                                ${
+                                  isDarkMode
+                                    ? "group-hover:text-pink-300"
+                                    : "group-hover:text-purple-300"
+                                }
+                              `}
+                            >
                               {exp.title}
                             </h3>
 
@@ -217,34 +339,54 @@ const Experiences = () => {
 
                           {/* Icône chevron */}
                           <div
-                            className={`flex-shrink-0 transition-transform duration-300 ${
-                              isOpen ? "rotate-180" : "rotate-0"
-                            }`}
+                            className={`
+                              flex-shrink-0 transition-transform duration-300
+                              ${isOpen ? "rotate-180" : "rotate-0"}
+                            `}
                           >
                             <ChevronDown
-                              className={`w-6 h-6 ${
-                                isPurple ? "text-purple-400" : "text-[#5B9BD5]"
-                              }`}
+                              className={`
+                                w-6 h-6 transition-colors duration-700
+                                ${
+                                  isPurple
+                                    ? isDarkMode
+                                      ? "text-pink-400"
+                                      : "text-purple-400"
+                                    : isDarkMode
+                                      ? "text-rose-400"
+                                      : "text-[#5B9BD5]"
+                                }
+                              `}
                             />
                           </div>
                         </div>
 
                         {/* Détails dépliables */}
                         <div
-                          className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                            isOpen
-                              ? "max-h-[800px] opacity-100"
-                              : "max-h-0 opacity-0"
-                          }`}
+                          className={`
+                            overflow-hidden transition-all duration-500 ease-in-out
+                            ${
+                              isOpen
+                                ? "max-h-[800px] opacity-100"
+                                : "max-h-0 opacity-0"
+                            }
+                          `}
                         >
                           <div className="px-6 md:px-8 pb-6 md:pb-8 space-y-6">
                             {/* Séparateur */}
                             <div
-                              className={`h-[1px] bg-gradient-to-r ${
-                                isPurple
-                                  ? "from-transparent via-purple-400/30 to-transparent"
-                                  : "from-transparent via-[#5B9BD5]/30 to-transparent"
-                              }`}
+                              className={`
+                                h-[1px] bg-gradient-to-r transition-colors duration-700
+                                ${
+                                  isPurple
+                                    ? isDarkMode
+                                      ? "from-transparent via-pink-400/30 to-transparent"
+                                      : "from-transparent via-purple-400/30 to-transparent"
+                                    : isDarkMode
+                                      ? "from-transparent via-rose-400/30 to-transparent"
+                                      : "from-transparent via-[#5B9BD5]/30 to-transparent"
+                                }
+                              `}
                             ></div>
 
                             {/* Période et lieu */}
@@ -270,11 +412,19 @@ const Experiences = () => {
                                   className="flex items-start gap-3 group/mission"
                                 >
                                   <CheckCircle2
-                                    className={`w-5 h-5 mt-0.5 flex-shrink-0 ${
-                                      isPurple
-                                        ? "text-purple-400"
-                                        : "text-[#5B9BD5]"
-                                    } group-hover/mission:scale-110 transition-transform duration-300`}
+                                    className={`
+                                      w-5 h-5 mt-0.5 flex-shrink-0 group-hover/mission:scale-110
+                                      transition-all duration-700
+                                      ${
+                                        isPurple
+                                          ? isDarkMode
+                                            ? "text-pink-400"
+                                            : "text-purple-400"
+                                          : isDarkMode
+                                            ? "text-rose-400"
+                                            : "text-[#5B9BD5]"
+                                      }
+                                    `}
                                   />
                                   <p className="text-sm md:text-base text-white/80 leading-relaxed">
                                     {mission}
@@ -300,7 +450,16 @@ const Experiences = () => {
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
               En chiffres
             </h3>
-            <div className="h-1 w-20 bg-gradient-to-r from-purple-400 to-[#5B9BD5] rounded-full mx-auto"></div>
+            <div
+              className={`
+                h-1 w-20 rounded-full mx-auto transition-colors duration-700
+                ${
+                  isDarkMode
+                    ? "bg-gradient-to-r from-pink-400 to-rose-400"
+                    : "bg-gradient-to-r from-purple-400 to-[#5B9BD5]"
+                }
+              `}
+            ></div>
           </div>
 
           {/* Instruction mobile */}
@@ -318,22 +477,62 @@ const Experiences = () => {
               onClick={() => toggleStatCard(0)}
             >
               <div
-                className={`relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] ${
-                  flippedCard === 0
-                    ? "[transform:rotateY(180deg)]"
-                    : "lg:group-hover:[transform:rotateY(180deg)]"
-                }`}
+                className={`
+                  relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d]
+                  ${
+                    flippedCard === 0
+                      ? "[transform:rotateY(180deg)]"
+                      : "lg:group-hover:[transform:rotateY(180deg)]"
+                  }
+                `}
               >
                 {/* Face avant */}
                 <div className="absolute inset-0 [backface-visibility:hidden]">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                  <div
+                    className={`
+                      absolute -inset-1 rounded-2xl blur-xl opacity-20 group-hover:opacity-40
+                      transition-all duration-700
+                      ${
+                        isDarkMode
+                          ? "bg-gradient-to-r from-pink-500 to-rose-500"
+                          : "bg-gradient-to-r from-purple-500 to-violet-500"
+                      }
+                    `}
+                  ></div>
 
-                  <div className="relative h-full bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-purple-400/20 p-8 text-center flex flex-col justify-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-purple-500/20 mb-4 mx-auto">
-                      <Calendar className="w-8 h-8 text-purple-400" />
+                  <div
+                    className={`
+                      relative h-full bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl
+                      rounded-2xl p-8 text-center flex flex-col justify-center
+                      transition-all duration-700
+                      ${
+                        isDarkMode
+                          ? "border border-pink-400/20"
+                          : "border border-purple-400/20"
+                      }
+                    `}
+                  >
+                    <div
+                      className={`
+                        inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 mx-auto
+                        transition-colors duration-700
+                        ${isDarkMode ? "bg-pink-500/20" : "bg-purple-500/20"}
+                      `}
+                    >
+                      <Calendar
+                        className={`
+                          w-8 h-8 transition-colors duration-700
+                          ${isDarkMode ? "text-pink-400" : "text-purple-400"}
+                        `}
+                      />
                     </div>
 
-                    <div className="text-4xl md:text-5xl font-bold text-purple-400 mb-2">
+                    <div
+                      className={`
+                        text-4xl md:text-5xl font-bold mb-2 transition-colors duration-700
+                        ${isDarkMode ? "text-pink-400" : "text-purple-400"}
+                      `}
+                    >
                       13
                     </div>
 
@@ -341,7 +540,14 @@ const Experiences = () => {
                       Années d'expérience
                     </div>
 
-                    <div className="mt-4 text-xs text-purple-400/60 animate-pulse">
+                    <div
+                      className={`
+                        mt-4 text-xs animate-pulse transition-colors duration-700
+                        ${
+                          isDarkMode ? "text-pink-400/60" : "text-purple-400/60"
+                        }
+                      `}
+                    >
                       <span className="hidden lg:inline">
                         Survolez pour détails ›
                       </span>
@@ -352,11 +558,35 @@ const Experiences = () => {
 
                 {/* Face arrière */}
                 <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl blur-xl opacity-40"></div>
+                  <div
+                    className={`
+                      absolute -inset-1 rounded-2xl blur-xl opacity-40 transition-colors duration-700
+                      ${
+                        isDarkMode
+                          ? "bg-gradient-to-r from-pink-500 to-rose-500"
+                          : "bg-gradient-to-r from-purple-500 to-violet-500"
+                      }
+                    `}
+                  ></div>
 
-                  <div className="relative h-full bg-gradient-to-br from-purple-900/40 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-purple-400/40 p-6 flex flex-col justify-center">
+                  <div
+                    className={`
+                      relative h-full backdrop-blur-xl rounded-2xl p-6 flex flex-col justify-center
+                      transition-all duration-700
+                      ${
+                        isDarkMode
+                          ? "bg-gradient-to-br from-pink-900/40 to-[#0a1f2e]/95 border border-pink-400/40"
+                          : "bg-gradient-to-br from-purple-900/40 to-[#0a1f2e]/95 border border-purple-400/40"
+                      }
+                    `}
+                  >
                     <div className="space-y-3 text-left">
-                      <div className="flex items-center gap-2 text-purple-300 mb-3">
+                      <div
+                        className={`
+                          flex items-center gap-2 mb-3 transition-colors duration-700
+                          ${isDarkMode ? "text-pink-300" : "text-purple-300"}
+                        `}
+                      >
                         <Calendar className="w-5 h-5" />
                         <span className="font-semibold text-sm">
                           Parcours professionnel
@@ -366,13 +596,23 @@ const Experiences = () => {
                       <div className="text-white/90 space-y-2 text-sm">
                         <div className="flex justify-between items-center pb-2 border-b border-white/10">
                           <span className="text-white/60">Total</span>
-                          <span className="font-bold text-purple-400">
+                          <span
+                            className={`
+                              font-bold transition-colors duration-700
+                              ${isDarkMode ? "text-pink-400" : "text-purple-400"}
+                            `}
+                          >
                             13 ans
                           </span>
                         </div>
                         <div className="flex justify-between items-center pb-2 border-b border-white/10">
                           <span className="text-white/60">Santé (2013)</span>
-                          <span className="font-bold text-purple-400">
+                          <span
+                            className={`
+                              font-bold transition-colors duration-700
+                              ${isDarkMode ? "text-pink-400" : "text-purple-400"}
+                            `}
+                          >
                             13 ans
                           </span>
                         </div>
@@ -380,7 +620,12 @@ const Experiences = () => {
                           <span className="text-white/60">
                             Informatique (2024)
                           </span>
-                          <span className="font-bold text-[#5B9BD5]">
+                          <span
+                            className={`
+                              font-bold transition-colors duration-700
+                              ${isDarkMode ? "text-rose-400" : "text-[#5B9BD5]"}
+                            `}
+                          >
                             3 ans
                           </span>
                         </div>
@@ -390,8 +635,26 @@ const Experiences = () => {
                       </div>
 
                       <div className="mt-4 h-1 bg-white/10 rounded-full overflow-hidden flex">
-                        <div className="h-full bg-gradient-to-r from-purple-400 to-purple-500 w-[77%]"></div>
-                        <div className="h-full bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] w-[23%]"></div>
+                        <div
+                          className={`
+                            h-full w-[77%] transition-colors duration-700
+                            ${
+                              isDarkMode
+                                ? "bg-gradient-to-r from-pink-400 to-pink-500"
+                                : "bg-gradient-to-r from-purple-400 to-purple-500"
+                            }
+                          `}
+                        ></div>
+                        <div
+                          className={`
+                            h-full w-[23%] transition-colors duration-700
+                            ${
+                              isDarkMode
+                                ? "bg-gradient-to-r from-rose-400 to-red-400"
+                                : "bg-gradient-to-r from-[#5B9BD5] to-[#4682B4]"
+                            }
+                          `}
+                        ></div>
                       </div>
                     </div>
                   </div>
@@ -405,22 +668,62 @@ const Experiences = () => {
               onClick={() => toggleStatCard(1)}
             >
               <div
-                className={`relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] ${
-                  flippedCard === 1
-                    ? "[transform:rotateY(180deg)]"
-                    : "lg:group-hover:[transform:rotateY(180deg)]"
-                }`}
+                className={`
+                  relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d]
+                  ${
+                    flippedCard === 1
+                      ? "[transform:rotateY(180deg)]"
+                      : "lg:group-hover:[transform:rotateY(180deg)]"
+                  }
+                `}
               >
                 {/* Face avant */}
                 <div className="absolute inset-0 [backface-visibility:hidden]">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                  <div
+                    className={`
+                      absolute -inset-1 rounded-2xl blur-xl opacity-20 group-hover:opacity-40
+                      transition-all duration-700
+                      ${
+                        isDarkMode
+                          ? "bg-gradient-to-r from-rose-400 to-red-400"
+                          : "bg-gradient-to-r from-[#5B9BD5] to-[#4682B4]"
+                      }
+                    `}
+                  ></div>
 
-                  <div className="relative h-full bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-[#5B9BD5]/20 p-8 text-center flex flex-col justify-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#5B9BD5]/20 mb-4 mx-auto">
-                      <Briefcase className="w-8 h-8 text-[#5B9BD5]" />
+                  <div
+                    className={`
+                      relative h-full bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl
+                      rounded-2xl p-8 text-center flex flex-col justify-center
+                      transition-all duration-700
+                      ${
+                        isDarkMode
+                          ? "border border-rose-400/20"
+                          : "border border-[#5B9BD5]/20"
+                      }
+                    `}
+                  >
+                    <div
+                      className={`
+                        inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 mx-auto
+                        transition-colors duration-700
+                        ${isDarkMode ? "bg-rose-400/20" : "bg-[#5B9BD5]/20"}
+                      `}
+                    >
+                      <Briefcase
+                        className={`
+                          w-8 h-8 transition-colors duration-700
+                          ${isDarkMode ? "text-rose-400" : "text-[#5B9BD5]"}
+                        `}
+                      />
                     </div>
 
-                    <div className="text-4xl md:text-5xl font-bold text-[#5B9BD5] mb-2">
+                    <div
+                      className={`
+                        text-4xl md:text-5xl font-bold mb-2 transition-colors duration-700
+                        ${isDarkMode ? "text-rose-400" : "text-[#5B9BD5]"}
+                      `}
+                    >
                       4
                     </div>
 
@@ -428,7 +731,12 @@ const Experiences = () => {
                       Postes clés
                     </div>
 
-                    <div className="mt-4 text-xs text-[#5B9BD5]/60 animate-pulse">
+                    <div
+                      className={`
+                        mt-4 text-xs animate-pulse transition-colors duration-700
+                        ${isDarkMode ? "text-rose-400/60" : "text-[#5B9BD5]/60"}
+                      `}
+                    >
                       <span className="hidden lg:inline">
                         Survolez pour détails ›
                       </span>
@@ -439,11 +747,35 @@ const Experiences = () => {
 
                 {/* Face arrière */}
                 <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] rounded-2xl blur-xl opacity-40"></div>
+                  <div
+                    className={`
+                      absolute -inset-1 rounded-2xl blur-xl opacity-40 transition-colors duration-700
+                      ${
+                        isDarkMode
+                          ? "bg-gradient-to-r from-rose-400 to-red-400"
+                          : "bg-gradient-to-r from-[#5B9BD5] to-[#4682B4]"
+                      }
+                    `}
+                  ></div>
 
-                  <div className="relative h-full bg-gradient-to-br from-[#5B9BD5]/20 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-[#5B9BD5]/40 p-6 flex flex-col justify-center">
+                  <div
+                    className={`
+                      relative h-full backdrop-blur-xl rounded-2xl p-6 flex flex-col justify-center
+                      transition-all duration-700
+                      ${
+                        isDarkMode
+                          ? "bg-gradient-to-br from-rose-900/30 to-[#0a1f2e]/95 border border-rose-400/40"
+                          : "bg-gradient-to-br from-[#5B9BD5]/20 to-[#0a1f2e]/95 border border-[#5B9BD5]/40"
+                      }
+                    `}
+                  >
                     <div className="space-y-2 text-left">
-                      <div className="flex items-center gap-2 text-[#5B9BD5] mb-3">
+                      <div
+                        className={`
+                          flex items-center gap-2 mb-3 transition-colors duration-700
+                          ${isDarkMode ? "text-rose-400" : "text-[#5B9BD5]"}
+                        `}
+                      >
                         <Briefcase className="w-5 h-5" />
                         <span className="font-semibold text-sm">
                           Rôles principaux
@@ -452,19 +784,39 @@ const Experiences = () => {
 
                       <div className="space-y-2 text-xs text-white/90">
                         <div className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#5B9BD5] mt-1.5 flex-shrink-0"></div>
+                          <div
+                            className={`
+                              w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 transition-colors duration-700
+                              ${isDarkMode ? "bg-rose-400" : "bg-[#5B9BD5]"}
+                            `}
+                          ></div>
                           <span>Chirurgien-Dentiste & Manager</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#5B9BD5] mt-1.5 flex-shrink-0"></div>
+                          <div
+                            className={`
+                              w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 transition-colors duration-700
+                              ${isDarkMode ? "bg-rose-400" : "bg-[#5B9BD5]"}
+                            `}
+                          ></div>
                           <span>Chef de Projet E-Santé</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#5B9BD5] mt-1.5 flex-shrink-0"></div>
+                          <div
+                            className={`
+                              w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 transition-colors duration-700
+                              ${isDarkMode ? "bg-rose-400" : "bg-[#5B9BD5]"}
+                            `}
+                          ></div>
                           <span>Consultant Médical</span>
                         </div>
                         <div className="flex items-start gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#5B9BD5] mt-1.5 flex-shrink-0"></div>
+                          <div
+                            className={`
+                              w-1.5 h-1.5 rounded-full mt-1.5 flex-shrink-0 transition-colors duration-700
+                              ${isDarkMode ? "bg-rose-400" : "bg-[#5B9BD5]"}
+                            `}
+                          ></div>
                           <span>Développeur Full-Stack</span>
                         </div>
                       </div>
@@ -480,22 +832,62 @@ const Experiences = () => {
               onClick={() => toggleStatCard(2)}
             >
               <div
-                className={`relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] ${
-                  flippedCard === 2
-                    ? "[transform:rotateY(180deg)]"
-                    : "lg:group-hover:[transform:rotateY(180deg)]"
-                }`}
+                className={`
+                  relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d]
+                  ${
+                    flippedCard === 2
+                      ? "[transform:rotateY(180deg)]"
+                      : "lg:group-hover:[transform:rotateY(180deg)]"
+                  }
+                `}
               >
                 {/* Face avant */}
                 <div className="absolute inset-0 [backface-visibility:hidden]">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                  <div
+                    className={`
+                      absolute -inset-1 rounded-2xl blur-xl opacity-20 group-hover:opacity-40
+                      transition-all duration-700
+                      ${
+                        isDarkMode
+                          ? "bg-gradient-to-r from-pink-500 to-rose-500"
+                          : "bg-gradient-to-r from-purple-500 to-violet-500"
+                      }
+                    `}
+                  ></div>
 
-                  <div className="relative h-full bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-purple-400/20 p-8 text-center flex flex-col justify-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-purple-500/20 mb-4 mx-auto">
-                      <Target className="w-8 h-8 text-purple-400" />
+                  <div
+                    className={`
+                      relative h-full bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl
+                      rounded-2xl p-8 text-center flex flex-col justify-center
+                      transition-all duration-700
+                      ${
+                        isDarkMode
+                          ? "border border-pink-400/20"
+                          : "border border-purple-400/20"
+                      }
+                    `}
+                  >
+                    <div
+                      className={`
+                        inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 mx-auto
+                        transition-colors duration-700
+                        ${isDarkMode ? "bg-pink-500/20" : "bg-purple-500/20"}
+                      `}
+                    >
+                      <Target
+                        className={`
+                          w-8 h-8 transition-colors duration-700
+                          ${isDarkMode ? "text-pink-400" : "text-purple-400"}
+                        `}
+                      />
                     </div>
 
-                    <div className="text-4xl md:text-5xl font-bold text-purple-400 mb-2">
+                    <div
+                      className={`
+                        text-4xl md:text-5xl font-bold mb-2 transition-colors duration-700
+                        ${isDarkMode ? "text-pink-400" : "text-purple-400"}
+                      `}
+                    >
                       3
                     </div>
 
@@ -503,7 +895,14 @@ const Experiences = () => {
                       Domaines d'expertise
                     </div>
 
-                    <div className="mt-4 text-xs text-purple-400/60 animate-pulse">
+                    <div
+                      className={`
+                        mt-4 text-xs animate-pulse transition-colors duration-700
+                        ${
+                          isDarkMode ? "text-pink-400/60" : "text-purple-400/60"
+                        }
+                      `}
+                    >
                       <span className="hidden lg:inline">
                         Survolez pour détails ›
                       </span>
@@ -514,11 +913,35 @@ const Experiences = () => {
 
                 {/* Face arrière */}
                 <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl blur-xl opacity-40"></div>
+                  <div
+                    className={`
+                      absolute -inset-1 rounded-2xl blur-xl opacity-40 transition-colors duration-700
+                      ${
+                        isDarkMode
+                          ? "bg-gradient-to-r from-pink-500 to-rose-500"
+                          : "bg-gradient-to-r from-purple-500 to-violet-500"
+                      }
+                    `}
+                  ></div>
 
-                  <div className="relative h-full bg-gradient-to-br from-purple-900/40 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-purple-400/40 p-6 flex flex-col justify-center">
+                  <div
+                    className={`
+                      relative h-full backdrop-blur-xl rounded-2xl p-6 flex flex-col justify-center
+                      transition-all duration-700
+                      ${
+                        isDarkMode
+                          ? "bg-gradient-to-br from-pink-900/40 to-[#0a1f2e]/95 border border-pink-400/40"
+                          : "bg-gradient-to-br from-purple-900/40 to-[#0a1f2e]/95 border border-purple-400/40"
+                      }
+                    `}
+                  >
                     <div className="space-y-3 text-left">
-                      <div className="flex items-center gap-2 text-purple-300 mb-3">
+                      <div
+                        className={`
+                          flex items-center gap-2 mb-3 transition-colors duration-700
+                          ${isDarkMode ? "text-pink-300" : "text-purple-300"}
+                        `}
+                      >
                         <Target className="w-5 h-5" />
                         <span className="font-semibold text-sm">
                           Expertise croisée
@@ -526,8 +949,22 @@ const Experiences = () => {
                       </div>
 
                       <div className="space-y-3">
-                        <div className="bg-purple-500/10 rounded-lg p-3 border border-purple-400/20">
-                          <div className="font-semibold text-purple-300 text-sm mb-1">
+                        <div
+                          className={`
+                            rounded-lg p-3 transition-colors duration-700
+                            ${
+                              isDarkMode
+                                ? "bg-pink-500/10 border border-pink-400/20"
+                                : "bg-purple-500/10 border border-purple-400/20"
+                            }
+                          `}
+                        >
+                          <div
+                            className={`
+                              font-semibold text-sm mb-1 transition-colors duration-700
+                              ${isDarkMode ? "text-pink-300" : "text-purple-300"}
+                            `}
+                          >
                             🦷 Dentisterie
                           </div>
                           <div className="text-xs text-white/70">
@@ -535,8 +972,22 @@ const Experiences = () => {
                           </div>
                         </div>
 
-                        <div className="bg-purple-500/10 rounded-lg p-3 border border-purple-400/20">
-                          <div className="font-semibold text-purple-300 text-sm mb-1">
+                        <div
+                          className={`
+                            rounded-lg p-3 transition-colors duration-700
+                            ${
+                              isDarkMode
+                                ? "bg-pink-500/10 border border-pink-400/20"
+                                : "bg-purple-500/10 border border-purple-400/20"
+                            }
+                          `}
+                        >
+                          <div
+                            className={`
+                              font-semibold text-sm mb-1 transition-colors duration-700
+                              ${isDarkMode ? "text-pink-300" : "text-purple-300"}
+                            `}
+                          >
                             🏥 Santé Publique
                           </div>
                           <div className="text-xs text-white/70">
@@ -544,8 +995,22 @@ const Experiences = () => {
                           </div>
                         </div>
 
-                        <div className="bg-purple-500/10 rounded-lg p-3 border border-purple-400/20">
-                          <div className="font-semibold text-purple-300 text-sm mb-1">
+                        <div
+                          className={`
+                            rounded-lg p-3 transition-colors duration-700
+                            ${
+                              isDarkMode
+                                ? "bg-pink-500/10 border border-pink-400/20"
+                                : "bg-purple-500/10 border border-purple-400/20"
+                            }
+                          `}
+                        >
+                          <div
+                            className={`
+                              font-semibold text-sm mb-1 transition-colors duration-700
+                              ${isDarkMode ? "text-pink-300" : "text-purple-300"}
+                            `}
+                          >
                             💻 Informatique
                           </div>
                           <div className="text-xs text-white/70">
@@ -565,22 +1030,62 @@ const Experiences = () => {
               onClick={() => toggleStatCard(3)}
             >
               <div
-                className={`relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] ${
-                  flippedCard === 3
-                    ? "[transform:rotateY(180deg)]"
-                    : "lg:group-hover:[transform:rotateY(180deg)]"
-                }`}
+                className={`
+                  relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d]
+                  ${
+                    flippedCard === 3
+                      ? "[transform:rotateY(180deg)]"
+                      : "lg:group-hover:[transform:rotateY(180deg)]"
+                  }
+                `}
               >
                 {/* Face avant */}
                 <div className="absolute inset-0 [backface-visibility:hidden]">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                  <div
+                    className={`
+                      absolute -inset-1 rounded-2xl blur-xl opacity-20 group-hover:opacity-40
+                      transition-all duration-700
+                      ${
+                        isDarkMode
+                          ? "bg-gradient-to-r from-rose-400 to-red-400"
+                          : "bg-gradient-to-r from-[#5B9BD5] to-[#4682B4]"
+                      }
+                    `}
+                  ></div>
 
-                  <div className="relative h-full bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-[#5B9BD5]/20 p-8 text-center flex flex-col justify-center">
-                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#5B9BD5]/20 mb-4 mx-auto">
-                      <Code className="w-8 h-8 text-[#5B9BD5]" />
+                  <div
+                    className={`
+                      relative h-full bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl
+                      rounded-2xl p-8 text-center flex flex-col justify-center
+                      transition-all duration-700
+                      ${
+                        isDarkMode
+                          ? "border border-rose-400/20"
+                          : "border border-[#5B9BD5]/20"
+                      }
+                    `}
+                  >
+                    <div
+                      className={`
+                        inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 mx-auto
+                        transition-colors duration-700
+                        ${isDarkMode ? "bg-rose-400/20" : "bg-[#5B9BD5]/20"}
+                      `}
+                    >
+                      <Code
+                        className={`
+                          w-8 h-8 transition-colors duration-700
+                          ${isDarkMode ? "text-rose-400" : "text-[#5B9BD5]"}
+                        `}
+                      />
                     </div>
 
-                    <div className="text-4xl md:text-5xl font-bold text-[#5B9BD5] mb-2">
+                    <div
+                      className={`
+                        text-4xl md:text-5xl font-bold mb-2 transition-colors duration-700
+                        ${isDarkMode ? "text-rose-400" : "text-[#5B9BD5]"}
+                      `}
+                    >
                       35+
                     </div>
 
@@ -588,7 +1093,12 @@ const Experiences = () => {
                       Projets Informatiques
                     </div>
 
-                    <div className="mt-4 text-xs text-[#5B9BD5]/60 animate-pulse">
+                    <div
+                      className={`
+                        mt-4 text-xs animate-pulse transition-colors duration-700
+                        ${isDarkMode ? "text-rose-400/60" : "text-[#5B9BD5]/60"}
+                      `}
+                    >
                       <span className="hidden lg:inline">
                         Survolez pour détails ›
                       </span>
@@ -599,11 +1109,35 @@ const Experiences = () => {
 
                 {/* Face arrière */}
                 <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-                  <div className="absolute -inset-1 bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] rounded-2xl blur-xl opacity-40"></div>
+                  <div
+                    className={`
+                      absolute -inset-1 rounded-2xl blur-xl opacity-40 transition-colors duration-700
+                      ${
+                        isDarkMode
+                          ? "bg-gradient-to-r from-rose-400 to-red-400"
+                          : "bg-gradient-to-r from-[#5B9BD5] to-[#4682B4]"
+                      }
+                    `}
+                  ></div>
 
-                  <div className="relative h-full bg-gradient-to-br from-[#5B9BD5]/20 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-[#5B9BD5]/40 p-6 flex flex-col justify-center">
+                  <div
+                    className={`
+                      relative h-full backdrop-blur-xl rounded-2xl p-6 flex flex-col justify-center
+                      transition-all duration-700
+                      ${
+                        isDarkMode
+                          ? "bg-gradient-to-br from-rose-900/30 to-[#0a1f2e]/95 border border-rose-400/40"
+                          : "bg-gradient-to-br from-[#5B9BD5]/20 to-[#0a1f2e]/95 border border-[#5B9BD5]/40"
+                      }
+                    `}
+                  >
                     <div className="space-y-3 text-left">
-                      <div className="flex items-center gap-2 text-[#5B9BD5] mb-3">
+                      <div
+                        className={`
+                          flex items-center gap-2 mb-3 transition-colors duration-700
+                          ${isDarkMode ? "text-rose-400" : "text-[#5B9BD5]"}
+                        `}
+                      >
                         <Code className="w-5 h-5" />
                         <span className="font-semibold text-sm">
                           Portfolio Tech
@@ -613,23 +1147,49 @@ const Experiences = () => {
                       <div className="text-white/90 space-y-2 text-sm">
                         <div className="flex justify-between items-center pb-2 border-b border-white/10">
                           <span className="text-white/60">Apps E-Health</span>
-                          <span className="font-bold text-[#5B9BD5]">18</span>
+                          <span
+                            className={`
+                              font-bold transition-colors duration-700
+                              ${isDarkMode ? "text-rose-400" : "text-[#5B9BD5]"}
+                            `}
+                          >
+                            18
+                          </span>
                         </div>
                         <div className="flex justify-between items-center pb-2 border-b border-white/10">
                           <span className="text-white/60">
                             Systèmes gestion
                           </span>
-                          <span className="font-bold text-[#5B9BD5]">14</span>
+                          <span
+                            className={`
+                              font-bold transition-colors duration-700
+                              ${isDarkMode ? "text-rose-400" : "text-[#5B9BD5]"}
+                            `}
+                          >
+                            14
+                          </span>
                         </div>
                         <div className="flex justify-between items-center pb-2 border-b border-white/10">
                           <span className="text-white/60">Outils collecte</span>
-                          <span className="font-bold text-[#5B9BD5]">3</span>
+                          <span
+                            className={`
+                              font-bold transition-colors duration-700
+                              ${isDarkMode ? "text-rose-400" : "text-[#5B9BD5]"}
+                            `}
+                          >
+                            3
+                          </span>
                         </div>
                         <div className="flex justify-between items-center pt-2">
                           <span className="text-white/60 font-semibold">
                             Total
                           </span>
-                          <span className="font-bold text-[#5B9BD5] text-xl">
+                          <span
+                            className={`
+                              font-bold text-xl transition-colors duration-700
+                              ${isDarkMode ? "text-rose-400" : "text-[#5B9BD5]"}
+                            `}
+                          >
                             35+
                           </span>
                         </div>

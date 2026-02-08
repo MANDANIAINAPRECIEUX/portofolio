@@ -9,7 +9,11 @@ import {
   Boxes,
 } from "lucide-react";
 
-const Technologies = () => {
+interface TechnologiesProps {
+  isDarkMode: boolean;
+}
+
+const Technologies = ({ isDarkMode }: TechnologiesProps) => {
   // 🔥 Regroupement par taille de contenu
   const sections = {
     large: [
@@ -71,7 +75,6 @@ const Technologies = () => {
         icon: Code2,
         title: "Langages de programmation",
         color: "purple",
-        // 🔥 Ajout de PHP et C#
         items: [
           "JavaScript/TypeScript",
           "Ruby",
@@ -95,7 +98,6 @@ const Technologies = () => {
         icon: Boxes,
         title: "Stacks & Architectures",
         color: "purple",
-        // 🔥 Ajout des stacks Ruby
         items: [
           "MERN",
           "PERN",
@@ -118,12 +120,10 @@ const Technologies = () => {
         subCategories: [
           {
             name: "SQL",
-            // 🔥 Ajouts SQL
             items: ["PostgreSQL", "MySQL", "SQLite", "SQL Server"],
           },
           {
             name: "NOSQL",
-            // 🔥 Ajouts NoSQL
             items: ["MongoDB", "Redis", "Firebase"],
           },
         ],
@@ -163,11 +163,19 @@ const Technologies = () => {
       <div key={index} className="relative group h-full">
         {/* Glow effect */}
         <div
-          className={`absolute -inset-1 bg-gradient-to-r ${
-            isPurple
-              ? "from-purple-500 via-violet-500 to-purple-500"
-              : "from-[#5B9BD5] via-[#4682B4] to-[#5B9BD5]"
-          } rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500`}
+          className={`
+            absolute -inset-1 rounded-2xl blur-xl opacity-20 group-hover:opacity-40
+            transition-all duration-700
+            ${
+              isPurple
+                ? isDarkMode
+                  ? "bg-gradient-to-r from-pink-500 via-rose-500 to-pink-500"
+                  : "bg-gradient-to-r from-purple-500 via-violet-500 to-purple-500"
+                : isDarkMode
+                  ? "bg-gradient-to-r from-rose-400 via-red-400 to-rose-400"
+                  : "bg-gradient-to-r from-[#5B9BD5] via-[#4682B4] to-[#5B9BD5]"
+            }
+          `}
         ></div>
 
         {/* Card */}
@@ -178,14 +186,32 @@ const Technologies = () => {
           {/* En-tête */}
           <div className="relative flex items-center gap-4 mb-6">
             <div
-              className={`p-3 rounded-xl ${
-                isPurple ? "bg-purple-500/20" : "bg-[#5B9BD5]/20"
-              }`}
+              className={`
+                p-3 rounded-xl transition-colors duration-700
+                ${
+                  isPurple
+                    ? isDarkMode
+                      ? "bg-pink-500/20"
+                      : "bg-purple-500/20"
+                    : isDarkMode
+                      ? "bg-rose-400/20"
+                      : "bg-[#5B9BD5]/20"
+                }
+              `}
             >
               <Icon
-                className={`w-6 h-6 ${
-                  isPurple ? "text-purple-400" : "text-[#5B9BD5]"
-                }`}
+                className={`
+                  w-6 h-6 transition-colors duration-700
+                  ${
+                    isPurple
+                      ? isDarkMode
+                        ? "text-pink-400"
+                        : "text-purple-400"
+                      : isDarkMode
+                        ? "text-rose-400"
+                        : "text-[#5B9BD5]"
+                  }
+                `}
               />
             </div>
             <h3 className="text-lg md:text-xl font-bold text-white leading-tight">
@@ -201,11 +227,18 @@ const Technologies = () => {
                 {category.items.map((item: string, i: number) => (
                   <span
                     key={i}
-                    className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105 ${
-                      isPurple
-                        ? "bg-purple-500/10 text-purple-300 border border-purple-400/20 hover:bg-purple-500/20 hover:border-purple-400/40"
-                        : "bg-[#5B9BD5]/10 text-[#5B9BD5] border border-[#5B9BD5]/20 hover:bg-[#5B9BD5]/20 hover:border-[#5B9BD5]/40"
-                    }`}
+                    className={`
+                      px-3 py-2 rounded-lg text-sm font-medium transition-all duration-700 hover:scale-105
+                      ${
+                        isPurple
+                          ? isDarkMode
+                            ? "bg-pink-500/10 text-pink-300 border border-pink-400/20 hover:bg-pink-500/20 hover:border-pink-400/40"
+                            : "bg-purple-500/10 text-purple-300 border border-purple-400/20 hover:bg-purple-500/20 hover:border-purple-400/40"
+                          : isDarkMode
+                            ? "bg-rose-400/10 text-rose-400 border border-rose-400/20 hover:bg-rose-400/20 hover:border-rose-400/40"
+                            : "bg-[#5B9BD5]/10 text-[#5B9BD5] border border-[#5B9BD5]/20 hover:bg-[#5B9BD5]/20 hover:border-[#5B9BD5]/40"
+                      }
+                    `}
                   >
                     {item}
                   </span>
@@ -219,11 +252,18 @@ const Technologies = () => {
                 {category.itemsWithLogos.map((item: any, i: number) => (
                   <div
                     key={i}
-                    className={`group/item rounded-xl border transition-all duration-300 hover:scale-105 ${
-                      isPurple
-                        ? "bg-purple-500/10 border-purple-400/20 hover:bg-purple-500/20 hover:border-purple-400/40"
-                        : "bg-[#5B9BD5]/10 border-[#5B9BD5]/20 hover:bg-[#5B9BD5]/20 hover:border-[#5B9BD5]/40"
-                    }`}
+                    className={`
+                      group/item rounded-xl border transition-all duration-700 hover:scale-105
+                      ${
+                        isPurple
+                          ? isDarkMode
+                            ? "bg-pink-500/10 border-pink-400/20 hover:bg-pink-500/20 hover:border-pink-400/40"
+                            : "bg-purple-500/10 border-purple-400/20 hover:bg-purple-500/20 hover:border-purple-400/40"
+                          : isDarkMode
+                            ? "bg-rose-400/10 border-rose-400/20 hover:bg-rose-400/20 hover:border-rose-400/40"
+                            : "bg-[#5B9BD5]/10 border-[#5B9BD5]/20 hover:bg-[#5B9BD5]/20 hover:border-[#5B9BD5]/40"
+                      }
+                    `}
                   >
                     {/* Contenu centré */}
                     <div className="flex items-center justify-center gap-3 p-3">
@@ -242,9 +282,18 @@ const Technologies = () => {
 
                       {/* Nom */}
                       <span
-                        className={`text-sm font-medium ${
-                          isPurple ? "text-purple-300" : "text-[#5B9BD5]"
-                        }`}
+                        className={`
+                          text-sm font-medium transition-colors duration-700
+                          ${
+                            isPurple
+                              ? isDarkMode
+                                ? "text-pink-300"
+                                : "text-purple-300"
+                              : isDarkMode
+                                ? "text-rose-400"
+                                : "text-[#5B9BD5]"
+                          }
+                        `}
                       >
                         {item.name}
                       </span>
@@ -262,9 +311,18 @@ const Technologies = () => {
                     {/* Label */}
                     <div className="flex items-center gap-2 mb-3">
                       <div
-                        className={`w-1.5 h-1.5 rounded-full ${
-                          isPurple ? "bg-purple-400" : "bg-[#5B9BD5]"
-                        }`}
+                        className={`
+                          w-1.5 h-1.5 rounded-full transition-colors duration-700
+                          ${
+                            isPurple
+                              ? isDarkMode
+                                ? "bg-pink-400"
+                                : "bg-purple-400"
+                              : isDarkMode
+                                ? "bg-rose-400"
+                                : "bg-[#5B9BD5]"
+                          }
+                        `}
                       ></div>
                       <span className="text-xs font-semibold text-white/70 uppercase tracking-wider">
                         {sub.name}
@@ -276,11 +334,18 @@ const Technologies = () => {
                       {sub.items.map((item: string, j: number) => (
                         <span
                           key={j}
-                          className={`px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 hover:scale-105 ${
-                            isPurple
-                              ? "bg-purple-500/10 text-purple-300 border border-purple-400/20 hover:bg-purple-500/20 hover:border-purple-400/40"
-                              : "bg-[#5B9BD5]/10 text-[#5B9BD5] border border-[#5B9BD5]/20 hover:bg-[#5B9BD5]/20 hover:border-[#5B9BD5]/40"
-                          }`}
+                          className={`
+                            px-3 py-2 rounded-lg text-sm font-medium transition-all duration-700 hover:scale-105
+                            ${
+                              isPurple
+                                ? isDarkMode
+                                  ? "bg-pink-500/10 text-pink-300 border border-pink-400/20 hover:bg-pink-500/20 hover:border-pink-400/40"
+                                  : "bg-purple-500/10 text-purple-300 border border-purple-400/20 hover:bg-purple-500/20 hover:border-purple-400/40"
+                                : isDarkMode
+                                  ? "bg-rose-400/10 text-rose-400 border border-rose-400/20 hover:bg-rose-400/20 hover:border-rose-400/40"
+                                  : "bg-[#5B9BD5]/10 text-[#5B9BD5] border border-[#5B9BD5]/20 hover:bg-[#5B9BD5]/20 hover:border-[#5B9BD5]/40"
+                            }
+                          `}
                         >
                           {item}
                         </span>
@@ -302,19 +367,73 @@ const Technologies = () => {
         {/* Titre de section */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold animate-fade-in">
-            <span className="inline-flex items-center gap-4 bg-gradient-to-r from-[#f1f1f1] via-purple-300 to-[#f1f1f1] bg-clip-text text-transparent">
-              <Code2 className="w-12 h-12 md:w-14 md:h-14 text-purple-400" />
+            <span
+              className={`
+                inline-flex items-center gap-4 bg-gradient-to-r bg-clip-text text-transparent
+                transition-all duration-700
+                ${
+                  isDarkMode
+                    ? "from-[#f1f1f1] via-pink-300 to-[#f1f1f1]"
+                    : "from-[#f1f1f1] via-purple-300 to-[#f1f1f1]"
+                }
+              `}
+            >
+              <Code2
+                className={`
+                  w-12 h-12 md:w-14 md:h-14 transition-colors duration-700
+                  ${isDarkMode ? "text-pink-400" : "text-purple-400"}
+                `}
+              />
               Technologies & Compétences
             </span>
           </h2>
 
           {/* Ligne de séparation */}
           <div className="flex items-center justify-center gap-3 mt-6">
-            <div className="h-[2px] w-16 md:w-24 bg-gradient-to-r from-transparent to-[#5B9BD5]"></div>
-            <div className="w-2 h-2 rounded-full bg-purple-400 shadow-lg shadow-purple-400/50"></div>
-            <div className="h-[2px] w-32 md:w-48 bg-gradient-to-r from-[#5B9BD5] via-purple-400 to-[#5B9BD5]"></div>
-            <div className="w-2 h-2 rounded-full bg-purple-400 shadow-lg shadow-purple-400/50"></div>
-            <div className="h-[2px] w-16 md:w-24 bg-gradient-to-l from-transparent to-[#5B9BD5]"></div>
+            <div
+              className={`
+                h-[2px] w-16 md:w-24 bg-gradient-to-r from-transparent
+                transition-colors duration-700
+                ${isDarkMode ? "to-rose-400" : "to-[#5B9BD5]"}
+              `}
+            ></div>
+            <div
+              className={`
+                w-2 h-2 rounded-full shadow-lg transition-all duration-700
+                ${
+                  isDarkMode
+                    ? "bg-pink-400 shadow-pink-400/50"
+                    : "bg-purple-400 shadow-purple-400/50"
+                }
+              `}
+            ></div>
+            <div
+              className={`
+                h-[2px] w-32 md:w-48 bg-gradient-to-r transition-colors duration-700
+                ${
+                  isDarkMode
+                    ? "from-rose-400 via-pink-400 to-rose-400"
+                    : "from-[#5B9BD5] via-purple-400 to-[#5B9BD5]"
+                }
+              `}
+            ></div>
+            <div
+              className={`
+                w-2 h-2 rounded-full shadow-lg transition-all duration-700
+                ${
+                  isDarkMode
+                    ? "bg-pink-400 shadow-pink-400/50"
+                    : "bg-purple-400 shadow-purple-400/50"
+                }
+              `}
+            ></div>
+            <div
+              className={`
+                h-[2px] w-16 md:w-24 bg-gradient-to-l from-transparent
+                transition-colors duration-700
+                ${isDarkMode ? "to-rose-400" : "to-[#5B9BD5]"}
+              `}
+            ></div>
           </div>
         </div>
 
@@ -349,26 +468,86 @@ const Technologies = () => {
 
         {/* Stats */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-purple-500/10 to-transparent border border-purple-400/20">
-            <div className="text-3xl md:text-4xl font-bold text-purple-400 mb-2">
+          <div
+            className={`
+              text-center p-6 rounded-2xl bg-gradient-to-br from-transparent border
+              transition-all duration-700
+              ${
+                isDarkMode
+                  ? "bg-pink-500/10 border-pink-400/20"
+                  : "bg-purple-500/10 border-purple-400/20"
+              }
+            `}
+          >
+            <div
+              className={`
+                text-3xl md:text-4xl font-bold mb-2 transition-colors duration-700
+                ${isDarkMode ? "text-pink-400" : "text-purple-400"}
+              `}
+            >
               5+
             </div>
             <div className="text-sm text-white/70">Langages</div>
           </div>
-          <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-[#5B9BD5]/10 to-transparent border border-[#5B9BD5]/20">
-            <div className="text-3xl md:text-4xl font-bold text-[#5B9BD5] mb-2">
+          <div
+            className={`
+              text-center p-6 rounded-2xl bg-gradient-to-br from-transparent border
+              transition-all duration-700
+              ${
+                isDarkMode
+                  ? "bg-rose-400/10 border-rose-400/20"
+                  : "bg-[#5B9BD5]/10 border-[#5B9BD5]/20"
+              }
+            `}
+          >
+            <div
+              className={`
+                text-3xl md:text-4xl font-bold mb-2 transition-colors duration-700
+                ${isDarkMode ? "text-rose-400" : "text-[#5B9BD5]"}
+              `}
+            >
               10+
             </div>
             <div className="text-sm text-white/70">Frameworks</div>
           </div>
-          <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-purple-500/10 to-transparent border border-purple-400/20">
-            <div className="text-3xl md:text-4xl font-bold text-purple-400 mb-2">
-              4
+          <div
+            className={`
+              text-center p-6 rounded-2xl bg-gradient-to-br from-transparent border
+              transition-all duration-700
+              ${
+                isDarkMode
+                  ? "bg-pink-500/10 border-pink-400/20"
+                  : "bg-purple-500/10 border-purple-400/20"
+              }
+            `}
+          >
+            <div
+              className={`
+                text-3xl md:text-4xl font-bold mb-2 transition-colors duration-700
+                ${isDarkMode ? "text-pink-400" : "text-purple-400"}
+              `}
+            >
+              6+
             </div>
             <div className="text-sm text-white/70">Stacks</div>
           </div>
-          <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-[#5B9BD5]/10 to-transparent border border-[#5B9BD5]/20">
-            <div className="text-3xl md:text-4xl font-bold text-[#5B9BD5] mb-2">
+          <div
+            className={`
+              text-center p-6 rounded-2xl bg-gradient-to-br from-transparent border
+              transition-all duration-700
+              ${
+                isDarkMode
+                  ? "bg-rose-400/10 border-rose-400/20"
+                  : "bg-[#5B9BD5]/10 border-[#5B9BD5]/20"
+              }
+            `}
+          >
+            <div
+              className={`
+                text-3xl md:text-4xl font-bold mb-2 transition-colors duration-700
+                ${isDarkMode ? "text-rose-400" : "text-[#5B9BD5]"}
+              `}
+            >
               3+
             </div>
             <div className="text-sm text-white/70">DB Types</div>

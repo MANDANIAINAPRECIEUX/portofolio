@@ -47,7 +47,7 @@ function App() {
 
               {/* Fleche "Découvrir" */}
               <div className="col-span-full flex justify-center mt-8 md:mt-12">
-                <Fleche name="Découvrir" isDarkMode={isDarkMode} />
+                <Fleche name="Découvrir"  />
               </div>
             </div>
           </div>
@@ -64,7 +64,7 @@ function App() {
 
         {/* Fleche "DISCUTTONS" */}
         <div className="w-full flex justify-center mt-12 md:mt-16 lg:mt-20">
-          <Fleche name="DISCUTTONS DE VOTRE PROJET" isDarkMode={isDarkMode} />
+          <Fleche name="DISCUTTONS DE VOTRE PROJET"  />
         </div>
 
         <section id="parcours" className="w-full mt-8 md:mt-12 lg:mt-16">
