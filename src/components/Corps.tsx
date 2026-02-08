@@ -8,29 +8,25 @@ const Corps = ({ isDarkMode }: CorpsProps) => {
   const [animationKey, setAnimationKey] = useState(0);
 
   useEffect(() => {
-    // Durée totale de l'animation : 
-    // 18 lettres * 0.1s = 1.8s + 5s de pause = 6.8s
     const interval = setInterval(() => {
-      setAnimationKey((prev) => prev + 1); // Force le re-render et relance l'animation
-    }, 6800); // 6800ms = 6.8 secondes
+      setAnimationKey((prev) => prev + 1);
+    }, 6800);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section className="w-full space-y-4 md:space-y-6">
-      
       {/* Introduction */}
       <p className="text-sm sm:text-base md:text-lg font-normal text-white/80 tracking-wide">
         Bonjour, bienvenue sur mon site portfolio. Je suis
       </p>
 
       {/* Nom avec apparition lettre par lettre */}
-      <div 
-        key={animationKey} 
+      <div
+        key={animationKey}
         className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-tight"
       >
-        {/* ↑ Le key force React à recréer le composant et relancer l'animation */}
         <div className="bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/80">
           {"Mandaniaina".split("").map((letter, index) => (
             <span
@@ -97,12 +93,14 @@ const Corps = ({ isDarkMode }: CorpsProps) => {
         d&apos;interfaces utilisateur interactives.
       </p>
 
-      {/* CTA - Buttons */}
+      {/* CTA - Buttons avec liens */}
       <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-6 pt-4 md:pt-6">
-        <button
+        {/* Bouton "Voir mes projets" → #projets */}
+        <a
+          href="#projets"
           className={`
-            w-full sm:w-auto px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-xl font-semibold
-            text-xs sm:text-sm md:text-base
+            inline-block w-full sm:w-auto px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-xl font-semibold
+            text-xs sm:text-sm md:text-base text-center
             transition-all duration-300
             ${
               isDarkMode
@@ -114,10 +112,15 @@ const Corps = ({ isDarkMode }: CorpsProps) => {
           `}
         >
           Voir mes projets
-        </button>
-        <button className="w-full sm:w-auto px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-xl font-semibold text-xs sm:text-sm md:text-base bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]">
+        </a>
+
+        {/* Bouton "Me contacter" → #contact */}
+        <a
+          href="#contact"
+          className="inline-block w-full sm:w-auto px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 rounded-xl font-semibold text-xs sm:text-sm md:text-base text-center bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur-sm transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
+        >
           Me contacter
-        </button>
+        </a>
       </div>
     </section>
   );
