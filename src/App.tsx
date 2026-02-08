@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div
-      className="min-h-screen w-screen bg-cover bg-center bg-no-repeat relative"
+      className="min-h-screen w-full bg-cover bg-center bg-no-repeat relative"
       style={{ backgroundImage: "url('/photos/Design.png')" }}
     >
       {/* Overlay dynamique */}
@@ -35,7 +35,7 @@ function App() {
       />
 
       {/* Content */}
-      <div className="relative z-40 flex flex-col min-h-screen">
+      <div className="relative z-40 flex flex-col ">
         <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
 
         {/* HERO SECTION */}
