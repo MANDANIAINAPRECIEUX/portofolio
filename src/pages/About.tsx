@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <div className="w-full py-20">
+    <div id="about" className="w-full py-20">
       {/* Conteneur principal avec gradient subtil */}
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         {/* Titre de section avec animation */}

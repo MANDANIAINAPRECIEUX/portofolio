@@ -14,7 +14,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: "Home", href: "#home" },
+   
     { name: "À propos", href: "#about" },
     { name: "Projets", href: "#projets" },
     { name: "Parcours", href: "#parcours" },
@@ -23,7 +23,7 @@ const Navbar = ({ isDarkMode, setIsDarkMode }: NavbarProps) => {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 backdrop-blur-xl bg-[#0a1f2e]/80 border-b border-white/10">
+    <nav className="top-0 z-50 backdrop-blur-xl bg-[#0a1f2e]/80 border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo / Nom */}
