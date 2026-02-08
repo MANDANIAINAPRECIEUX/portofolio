@@ -178,31 +178,91 @@ const ProjectList = () => {
         </div>
       ) : (
         <>
-          <div className="relative flex items-center justify-center gap-4 mb-8 md:mb-10">
-            {/* Espace vide à gauche (équilibre visuel) */}
-            <div className="hidden sm:block flex-1"></div>
+          <>
+            <div className="relative flex items-center justify-center gap-4 mb-8 md:mb-10">
+              {/* Espace vide à gauche (équilibre visuel) */}
+              <div className="hidden sm:block flex-1"></div>
 
-            {/* Titre CENTRÉ */}
-            <div className="text-center">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold animate-fade-in">
-                <span className="inline-flex items-center gap-3 md:gap-4 bg-gradient-to-r from-[#f1f1f1] via-purple-300 to-[#f1f1f1] bg-clip-text text-transparent">
-                  <FolderOpen className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 text-purple-400" />
-                  Mes Projets
-                </span>
-              </h2>
+              {/* Titre CENTRÉ */}
+              <div className="text-center">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold animate-fade-in">
+                  <span className="inline-flex items-center gap-3 md:gap-4 bg-gradient-to-r from-[#f1f1f1] via-purple-300 to-[#f1f1f1] bg-clip-text text-transparent">
+                    <FolderOpen className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 text-purple-400" />
+                    Mes Projets
+                  </span>
+                </h2>
+              </div>
+
+              {/* Espace à droite avec bouton */}
+              <div className="flex-1 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => setShowProjects(false)}
+                  className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-[#f1f1f1] text-sm font-medium transition-all duration-300 hover:scale-105"
+                >
+                  Masquer
+                </button>
+              </div>
             </div>
 
-            {/* Espace à droite avec bouton */}
-            <div className="flex-1 flex justify-end">
-              <button
-                type="button"
-                onClick={() => setShowProjects(false)}
-                className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-[#f1f1f1] text-sm font-medium transition-all duration-300 hover:scale-105"
-              >
-                Masquer
-              </button>
+            {/* 🔥 CONTRÔLES DE TRI (À AJOUTER ICI) */}
+            <div className="mb-8 md:mb-10 space-y-4">
+              <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
+                {/* Grouper par */}
+                <div className="flex flex-wrap items-center justify-center gap-2">
+                  <span className="text-xs sm:text-sm font-medium text-[#f1f1f1]/80">
+                    Grouper par :
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setGroupBy("year")}
+                    className={`
+            flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-300
+            ${groupBy === "year" ? "bg-[#5B9BD5] text-white shadow-lg scale-105" : "bg-white/10 text-[#f1f1f1]/70 hover:bg-white/20"}
+          `}
+                  >
+                    <Calendar className="w-3 h-3 sm:w-4 sm:h-4" /> Année
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setGroupBy("type")}
+                    className={`
+            flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-300
+            ${groupBy === "type" ? "bg-[#5B9BD5] text-white shadow-lg scale-105" : "bg-white/10 text-[#f1f1f1]/70 hover:bg-white/20"}
+          `}
+                  >
+                    <Folder className="w-3 h-3 sm:w-4 sm:h-4" /> Type
+                  </button>
+                </div>
+
+                {/* Ordre de tri */}
+                <button
+                  type="button"
+                  onClick={() =>
+                    setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+                  }
+                  className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-[#f1f1f1] font-semibold text-xs sm:text-sm transition-all duration-300"
+                >
+                  {sortOrder === "desc" ? (
+                    <>
+                      <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" /> Plus
+                      récent
+                    </>
+                  ) : (
+                    <>
+                      <ChevronUp className="w-3 h-3 sm:w-4 sm:h-4" /> Plus
+                      ancien
+                    </>
+                  )}
+                </button>
+              </div>
             </div>
-          </div>
+
+            {/* GRILLE/CAROUSEL PAR GROUPE */}
+            <div className="space-y-12 md:space-y-16">
+              {/* ... reste du code ... */}
+            </div>
+          </>
 
           {/* GRILLE/CAROUSEL PAR GROUPE */}
           <div className="space-y-12 md:space-y-16">
