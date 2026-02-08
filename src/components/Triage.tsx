@@ -19,7 +19,11 @@ import type { Project } from "../../types/Project";
 type GroupBy = "year" | "type";
 type SortOrder = "asc" | "desc";
 
-const ProjectList = () => {
+interface ProjectListProps {
+  isDarkMode: boolean;
+}
+
+const ProjectList = ({ isDarkMode }: ProjectListProps) => {
   const [showProjects, setShowProjects] = useState(true);
   const [groupBy, setGroupBy] = useState<GroupBy>("year");
   const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
@@ -122,15 +126,36 @@ const ProjectList = () => {
       id="projets"
       className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12"
     >
-      {/* ↑ Padding responsive */}
-
       <div className="flex items-center justify-center gap-3 my-12 md:my-16">
-        <div className="h-[2px] flex-1 max-w-xs bg-gradient-to-r from-transparent to-purple-400"></div>
+        <div
+          className={`
+            h-[2px] flex-1 max-w-xs bg-gradient-to-r from-transparent
+            transition-colors duration-700
+            ${isDarkMode ? "to-pink-400" : "to-purple-400"}
+          `}
+        ></div>
         <div className="relative">
-          <div className="w-3 h-3 rounded-full bg-purple-400"></div>
-          <div className="absolute inset-0 w-3 h-3 rounded-full bg-purple-400 blur-md animate-pulse"></div>
+          <div
+            className={`
+              w-3 h-3 rounded-full transition-colors duration-700
+              ${isDarkMode ? "bg-pink-400" : "bg-purple-400"}
+            `}
+          ></div>
+          <div
+            className={`
+              absolute inset-0 w-3 h-3 rounded-full blur-md animate-pulse
+              transition-colors duration-700
+              ${isDarkMode ? "bg-pink-400" : "bg-purple-400"}
+            `}
+          ></div>
         </div>
-        <div className="h-[2px] flex-1 max-w-xs bg-gradient-to-l from-transparent to-purple-400"></div>
+        <div
+          className={`
+            h-[2px] flex-1 max-w-xs bg-gradient-to-l from-transparent
+            transition-colors duration-700
+            ${isDarkMode ? "to-pink-400" : "to-purple-400"}
+          `}
+        ></div>
       </div>
 
       {/* MODAL VIDÉO */}
@@ -149,7 +174,13 @@ const ProjectList = () => {
             >
               <span>✕ Fermer</span>
             </button>
-            <div className="relative pt-[56.25%] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl ring-2 sm:ring-4 ring-purple-500/50">
+            <div
+              className={`
+                relative pt-[56.25%] rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl ring-2 sm:ring-4
+                transition-colors duration-700
+                ${isDarkMode ? "ring-pink-500/50" : "ring-purple-500/50"}
+              `}
+            >
               <iframe
                 src={selectedVideo}
                 className="absolute inset-0 w-full h-full"
@@ -168,7 +199,17 @@ const ProjectList = () => {
           <button
             type="button"
             onClick={() => setShowProjects(true)}
-            className="group flex items-center gap-2 sm:gap-3 px-6 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] hover:from-[#4682B4] hover:to-[#5B9BD5] text-white text-lg sm:text-xl md:text-2xl font-bold rounded-xl sm:rounded-2xl shadow-2xl hover:shadow-[#5B9BD5]/50 transition-all duration-500 hover:scale-110 active:scale-95 relative overflow-hidden"
+            className={`
+              group flex items-center gap-2 sm:gap-3 px-6 sm:px-10 py-4 sm:py-5
+              text-white text-lg sm:text-xl md:text-2xl font-bold rounded-xl sm:rounded-2xl
+              shadow-2xl transition-all duration-700 hover:scale-110 active:scale-95
+              relative overflow-hidden
+              ${
+                isDarkMode
+                  ? "bg-gradient-to-r from-red-500 to-pink-500 hover:from-pink-500 hover:to-red-500 hover:shadow-pink-500/50"
+                  : "bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] hover:from-[#4682B4] hover:to-[#5B9BD5] hover:shadow-[#5B9BD5]/50"
+              }
+            `}
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             <Briefcase className="w-5 h-5 sm:w-7 sm:h-7 group-hover:rotate-12 transition-transform duration-300" />
@@ -178,91 +219,113 @@ const ProjectList = () => {
         </div>
       ) : (
         <>
-          <>
-            <div className="relative flex items-center justify-center gap-4 mb-8 md:mb-10">
-              {/* Espace vide à gauche (équilibre visuel) */}
-              <div className="hidden sm:block flex-1"></div>
+          <div className="relative flex items-center justify-center gap-4 mb-8 md:mb-10">
+            {/* Espace vide à gauche (équilibre visuel) */}
+            <div className="hidden sm:block flex-1"></div>
 
-              {/* Titre CENTRÉ */}
-              <div className="text-center">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold animate-fade-in">
-                  <span className="inline-flex items-center gap-3 md:gap-4 bg-gradient-to-r from-[#f1f1f1] via-purple-300 to-[#f1f1f1] bg-clip-text text-transparent">
-                    <FolderOpen className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 text-purple-400" />
-                    Mes Projets
-                  </span>
-                </h2>
-              </div>
+            {/* Titre CENTRÉ */}
+            <div className="text-center">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold animate-fade-in">
+                <span
+                  className={`
+                    inline-flex items-center gap-3 md:gap-4 bg-gradient-to-r bg-clip-text text-transparent
+                    transition-all duration-700
+                    ${
+                      isDarkMode
+                        ? "from-[#f1f1f1] via-pink-300 to-[#f1f1f1]"
+                        : "from-[#f1f1f1] via-purple-300 to-[#f1f1f1]"
+                    }
+                  `}
+                >
+                  <FolderOpen
+                    className={`
+                      w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14
+                      transition-colors duration-700
+                      ${isDarkMode ? "text-pink-400" : "text-purple-400"}
+                    `}
+                  />
+                  Mes Projets
+                </span>
+              </h2>
+            </div>
 
-              {/* Espace à droite avec bouton */}
-              <div className="flex-1 flex justify-end">
+            {/* Espace à droite avec bouton */}
+            <div className="flex-1 flex justify-end">
+              <button
+                type="button"
+                onClick={() => setShowProjects(false)}
+                className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-[#f1f1f1] text-sm font-medium transition-all duration-300 hover:scale-105"
+              >
+                Masquer
+              </button>
+            </div>
+          </div>
+
+          {/* 🔥 CONTRÔLES DE TRI */}
+          <div className="mb-8 md:mb-10 space-y-4">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
+              {/* Grouper par */}
+              <div className="flex flex-wrap items-center justify-center gap-2">
+                <span className="text-xs sm:text-sm font-medium text-[#f1f1f1]/80">
+                  Grouper par :
+                </span>
                 <button
                   type="button"
-                  onClick={() => setShowProjects(false)}
-                  className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-[#f1f1f1] text-sm font-medium transition-all duration-300 hover:scale-105"
+                  onClick={() => setGroupBy("year")}
+                  className={`
+                    flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg font-semibold text-xs sm:text-sm
+                    transition-all duration-700
+                    ${
+                      groupBy === "year"
+                        ? isDarkMode
+                          ? "bg-pink-500 text-white shadow-lg scale-105"
+                          : "bg-[#5B9BD5] text-white shadow-lg scale-105"
+                        : "bg-white/10 text-[#f1f1f1]/70 hover:bg-white/20"
+                    }
+                  `}
                 >
-                  Masquer
+                  <Calendar className="w-3 h-3 sm:w-4 sm:h-4" /> Année
                 </button>
-              </div>
-            </div>
-
-            {/* 🔥 CONTRÔLES DE TRI (À AJOUTER ICI) */}
-            <div className="mb-8 md:mb-10 space-y-4">
-              <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-3 sm:gap-4">
-                {/* Grouper par */}
-                <div className="flex flex-wrap items-center justify-center gap-2">
-                  <span className="text-xs sm:text-sm font-medium text-[#f1f1f1]/80">
-                    Grouper par :
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => setGroupBy("year")}
-                    className={`
-            flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-300
-            ${groupBy === "year" ? "bg-[#5B9BD5] text-white shadow-lg scale-105" : "bg-white/10 text-[#f1f1f1]/70 hover:bg-white/20"}
-          `}
-                  >
-                    <Calendar className="w-3 h-3 sm:w-4 sm:h-4" /> Année
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setGroupBy("type")}
-                    className={`
-            flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-300
-            ${groupBy === "type" ? "bg-[#5B9BD5] text-white shadow-lg scale-105" : "bg-white/10 text-[#f1f1f1]/70 hover:bg-white/20"}
-          `}
-                  >
-                    <Folder className="w-3 h-3 sm:w-4 sm:h-4" /> Type
-                  </button>
-                </div>
-
-                {/* Ordre de tri */}
                 <button
                   type="button"
-                  onClick={() =>
-                    setSortOrder(sortOrder === "asc" ? "desc" : "asc")
-                  }
-                  className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-[#f1f1f1] font-semibold text-xs sm:text-sm transition-all duration-300"
+                  onClick={() => setGroupBy("type")}
+                  className={`
+                    flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg font-semibold text-xs sm:text-sm
+                    transition-all duration-700
+                    ${
+                      groupBy === "type"
+                        ? isDarkMode
+                          ? "bg-pink-500 text-white shadow-lg scale-105"
+                          : "bg-[#5B9BD5] text-white shadow-lg scale-105"
+                        : "bg-white/10 text-[#f1f1f1]/70 hover:bg-white/20"
+                    }
+                  `}
                 >
-                  {sortOrder === "desc" ? (
-                    <>
-                      <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" /> Plus
-                      récent
-                    </>
-                  ) : (
-                    <>
-                      <ChevronUp className="w-3 h-3 sm:w-4 sm:h-4" /> Plus
-                      ancien
-                    </>
-                  )}
+                  <Folder className="w-3 h-3 sm:w-4 sm:h-4" /> Type
                 </button>
               </div>
-            </div>
 
-            {/* GRILLE/CAROUSEL PAR GROUPE */}
-            <div className="space-y-12 md:space-y-16">
-              {/* ... reste du code ... */}
+              {/* Ordre de tri */}
+              <button
+                type="button"
+                onClick={() =>
+                  setSortOrder(sortOrder === "asc" ? "desc" : "asc")
+                }
+                className="flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-[#f1f1f1] font-semibold text-xs sm:text-sm transition-all duration-300"
+              >
+                {sortOrder === "desc" ? (
+                  <>
+                    <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" /> Plus
+                    récent
+                  </>
+                ) : (
+                  <>
+                    <ChevronUp className="w-3 h-3 sm:w-4 sm:h-4" /> Plus ancien
+                  </>
+                )}
+              </button>
             </div>
-          </>
+          </div>
 
           {/* GRILLE/CAROUSEL PAR GROUPE */}
           <div className="space-y-12 md:space-y-16">
@@ -286,16 +349,46 @@ const ProjectList = () => {
               return (
                 <div key={group} className="space-y-4 md:space-y-6">
                   {/* En-tête du groupe */}
-                  <div className="flex items-center gap-2 md:gap-3 border-b-2 border-[#5B9BD5]/30 pb-2 md:pb-3">
+                  <div
+                    className={`
+                      flex items-center gap-2 md:gap-3 border-b-2 pb-2 md:pb-3
+                      transition-colors duration-700
+                      ${
+                        isDarkMode
+                          ? "border-pink-500/30"
+                          : "border-[#5B9BD5]/30"
+                      }
+                    `}
+                  >
                     {groupBy === "year" ? (
-                      <Calendar className="w-5 h-5 md:w-6 md:h-6 text-[#5B9BD5]" />
+                      <Calendar
+                        className={`
+                          w-5 h-5 md:w-6 md:h-6 transition-colors duration-700
+                          ${isDarkMode ? "text-pink-400" : "text-[#5B9BD5]"}
+                        `}
+                      />
                     ) : (
-                      <Folder className="w-5 h-5 md:w-6 md:h-6 text-[#5B9BD5]" />
+                      <Folder
+                        className={`
+                          w-5 h-5 md:w-6 md:h-6 transition-colors duration-700
+                          ${isDarkMode ? "text-pink-400" : "text-[#5B9BD5]"}
+                        `}
+                      />
                     )}
                     <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#f1f1f1]">
                       {group}
                     </h3>
-                    <span className="px-2 md:px-3 py-1 rounded-full bg-purple-500/20 text-purple-400 text-xs sm:text-sm font-semibold">
+                    <span
+                      className={`
+                        px-2 md:px-3 py-1 rounded-full text-xs sm:text-sm font-semibold
+                        transition-colors duration-700
+                        ${
+                          isDarkMode
+                            ? "bg-pink-500/20 text-pink-400"
+                            : "bg-purple-500/20 text-purple-400"
+                        }
+                      `}
+                    >
                       {projects.length} projet{projects.length > 1 ? "s" : ""}
                     </span>
                   </div>
@@ -322,6 +415,7 @@ const ProjectList = () => {
                                   project={project}
                                   groupBy={groupBy}
                                   onVideoClick={setSelectedVideo}
+                                  isDarkMode={isDarkMode}
                                 />
                               ))}
                             </div>
@@ -337,9 +431,13 @@ const ProjectList = () => {
                         disabled={currentSlide === 0}
                         className={`
                           absolute left-0 sm:-left-2 top-1/2 -translate-y-1/2 
-                          bg-white/20 hover:bg-purple-400/30 backdrop-blur-sm 
-                          p-2 sm:p-3 rounded-full text-white shadow-2xl 
-                          transition-all duration-300 hover:scale-110 z-10
+                          backdrop-blur-sm p-2 sm:p-3 rounded-full text-white shadow-2xl 
+                          transition-all duration-700 hover:scale-110 z-10
+                          ${
+                            isDarkMode
+                              ? "bg-white/20 hover:bg-pink-400/30"
+                              : "bg-white/20 hover:bg-purple-400/30"
+                          }
                           ${currentSlide === 0 ? "opacity-30 cursor-not-allowed" : ""}
                         `}
                       >
@@ -352,9 +450,13 @@ const ProjectList = () => {
                         disabled={currentSlide === totalSlides - 1}
                         className={`
                           absolute right-0 sm:-right-2 top-1/2 -translate-y-1/2 
-                          bg-white/20 hover:bg-purple-400/30 backdrop-blur-sm 
-                          p-2 sm:p-3 rounded-full text-white shadow-2xl 
-                          transition-all duration-300 hover:scale-110 z-10
+                          backdrop-blur-sm p-2 sm:p-3 rounded-full text-white shadow-2xl 
+                          transition-all duration-700 hover:scale-110 z-10
+                          ${
+                            isDarkMode
+                              ? "bg-white/20 hover:bg-pink-400/30"
+                              : "bg-white/20 hover:bg-purple-400/30"
+                          }
                           ${currentSlide === totalSlides - 1 ? "opacity-30 cursor-not-allowed" : ""}
                         `}
                       >
@@ -375,8 +477,16 @@ const ProjectList = () => {
                               }))
                             }
                             className={`
-                              w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300
-                              ${i === currentSlide ? "bg-purple-400 scale-125 shadow-lg shadow-purple-400/50" : "bg-white/40 hover:bg-purple-300/60"}
+                              w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-700
+                              ${
+                                i === currentSlide
+                                  ? isDarkMode
+                                    ? "bg-pink-400 scale-125 shadow-lg shadow-pink-400/50"
+                                    : "bg-purple-400 scale-125 shadow-lg shadow-purple-400/50"
+                                  : isDarkMode
+                                    ? "bg-white/40 hover:bg-pink-300/60"
+                                    : "bg-white/40 hover:bg-purple-300/60"
+                              }
                             `}
                           />
                         ))}
@@ -394,6 +504,7 @@ const ProjectList = () => {
                             project={project}
                             groupBy={groupBy}
                             onVideoClick={setSelectedVideo}
+                            isDarkMode={isDarkMode}
                           />
                         ))}
                       </div>
@@ -414,24 +525,39 @@ const ProjectCard = ({
   project,
   groupBy,
   onVideoClick,
+  isDarkMode,
 }: {
   project: Project;
   groupBy: GroupBy;
   onVideoClick: (video: string) => void;
+  isDarkMode: boolean;
 }) => (
   <div
-    className="
-    group relative p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl 
-    bg-gradient-to-br from-[#093540]/40 to-[#526687]/20
-    border-2 border-[#5B9BD5]/30 backdrop-blur-sm 
-    hover:border-purple-400/50 hover:shadow-2xl hover:shadow-purple-500/20 
-    transition-all duration-500 hover:scale-[1.03]
-    flex flex-col
-    w-full
-    min-h-[350px] sm:min-h-[380px] md:min-h-[420px]
-  "
+    className={`
+      group relative p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl 
+      bg-gradient-to-br from-[#093540]/40 to-[#526687]/20
+      border-2 backdrop-blur-sm shadow-2xl
+      transition-all duration-700 hover:scale-[1.03]
+      flex flex-col w-full
+      min-h-[350px] sm:min-h-[380px] md:min-h-[420px]
+      ${
+        isDarkMode
+          ? "border-pink-500/30 hover:border-pink-400/50 hover:shadow-pink-500/20"
+          : "border-[#5B9BD5]/30 hover:border-purple-400/50 hover:shadow-purple-500/20"
+      }
+    `}
   >
-    <div className="absolute top-3 sm:top-4 right-3 sm:right-4 px-2 py-1 rounded-lg bg-purple-500/20 text-purple-400 text-[10px] sm:text-xs font-bold">
+    <div
+      className={`
+        absolute top-3 sm:top-4 right-3 sm:right-4 px-2 py-1 rounded-lg
+        text-[10px] sm:text-xs font-bold transition-colors duration-700
+        ${
+          isDarkMode
+            ? "bg-pink-500/20 text-pink-400"
+            : "bg-purple-500/20 text-purple-400"
+        }
+      `}
+    >
       {groupBy === "year" ? project.type : project.year}
     </div>
 
@@ -458,7 +584,16 @@ const ProjectCard = ({
       {project.video && (
         <button
           onClick={() => onVideoClick(project.video!)}
-          className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 rounded-lg bg-purple-500/90 hover:bg-violet-600 text-white text-xs sm:text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-purple-500/30"
+          className={`
+            flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 rounded-lg
+            text-white text-xs sm:text-sm font-semibold
+            transition-all duration-700 hover:scale-105 hover:shadow-lg
+            ${
+              isDarkMode
+                ? "bg-pink-500/90 hover:bg-pink-600 hover:shadow-pink-500/30"
+                : "bg-purple-500/90 hover:bg-violet-600 hover:shadow-purple-500/30"
+            }
+          `}
         >
           <Play className="w-3 h-3 sm:w-4 sm:h-4" /> Démo
         </button>
@@ -478,7 +613,16 @@ const ProjectCard = ({
           href={project.link}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 rounded-lg bg-[#5B9BD5] hover:bg-[#4682B4] text-white text-xs sm:text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
+          className={`
+            flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 rounded-lg
+            text-white text-xs sm:text-sm font-semibold
+            transition-all duration-700 hover:scale-105 hover:shadow-lg
+            ${
+              isDarkMode
+                ? "bg-rose-500 hover:bg-rose-600"
+                : "bg-[#5B9BD5] hover:bg-[#4682B4]"
+            }
+          `}
         >
           <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" /> Site
         </a>
