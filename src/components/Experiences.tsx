@@ -15,6 +15,7 @@ import { useState } from "react";
 
 const Experiences = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [flippedCard, setFlippedCard] = useState<number | null>(null); // ← Nouveau state pour les stats
 
   const experiences = [
     {
@@ -80,6 +81,11 @@ const Experiences = () => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
+  // ← Nouvelle fonction pour toggle les cartes stats
+  const toggleStatCard = (index: number) => {
+    setFlippedCard(flippedCard === index ? null : index);
+  };
+
   return (
     <div className="w-full py-20">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -103,7 +109,7 @@ const Experiences = () => {
 
           {/* Sous-titre */}
           <p className="mt-6 text-lg text-white/70 max-w-3xl mx-auto">
-            Plus de {" "}
+            Plus de{" "}
             <span className="text-purple-400 font-semibold">
               13 ans d'expérience
             </span>{" "}
@@ -123,7 +129,7 @@ const Experiences = () => {
               const Icon = exp.icon;
               const isPurple = exp.color === "purple";
               const isOpen = openIndex === index;
-              const isLeft = index % 2 === 0; // Alterne gauche/droite
+              const isLeft = index % 2 === 0;
 
               return (
                 <div key={index} className="relative group">
@@ -141,9 +147,7 @@ const Experiences = () => {
                   {/* Card positionnée gauche ou droite */}
                   <div
                     className={`lg:w-[47%] ${
-                      isLeft
-                        ? "lg:mr-auto lg:pr-8" // Gauche
-                        : "lg:ml-auto lg:pl-8" // Droite
+                      isLeft ? "lg:mr-auto lg:pr-8" : "lg:ml-auto lg:pl-8"
                     }`}
                   >
                     <div
@@ -289,276 +293,358 @@ const Experiences = () => {
           </div>
         </div>
 
-      {/* Stats animées avec effet flip 3D */}
-<div className="mt-20">
-  {/* Titre des stats */}
-  <div className="text-center mb-12">
-    <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-      En chiffres
-    </h3>
-    <div className="h-1 w-20 bg-gradient-to-r from-purple-400 to-[#5B9BD5] rounded-full mx-auto"></div>
-  </div>
+        {/* Stats animées avec effet flip 3D */}
+        <div className="mt-20">
+          {/* Titre des stats */}
+          <div className="text-center mb-12">
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
+              En chiffres
+            </h3>
+            <div className="h-1 w-20 bg-gradient-to-r from-purple-400 to-[#5B9BD5] rounded-full mx-auto"></div>
+          </div>
 
-  {/* Grille de stats */}
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-    
-    {/* Stat 1 - Années d'expérience */}
-    <div className="group relative h-[280px] [perspective:1000px]">
-      <div className="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-        
-        {/* Face avant */}
-        <div className="absolute inset-0 [backface-visibility:hidden]">
-          <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-          
-          <div className="relative h-full bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-purple-400/20 p-8 text-center flex flex-col justify-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-purple-500/20 mb-4 mx-auto">
-              <Calendar className="w-8 h-8 text-purple-400" />
+          {/* Instruction mobile */}
+          <div className="text-center mb-6 lg:hidden">
+            <p className="text-sm text-white/60 animate-pulse">
+              👆 Appuyez sur une carte pour voir les détails
+            </p>
+          </div>
+
+          {/* Grille de stats */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Stat 1 - Années d'expérience */}
+            <div
+              className="group relative h-[280px] [perspective:1000px] cursor-pointer"
+              onClick={() => toggleStatCard(0)}
+            >
+              <div
+                className={`relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] ${
+                  flippedCard === 0
+                    ? "[transform:rotateY(180deg)]"
+                    : "lg:group-hover:[transform:rotateY(180deg)]"
+                }`}
+              >
+                {/* Face avant */}
+                <div className="absolute inset-0 [backface-visibility:hidden]">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+
+                  <div className="relative h-full bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-purple-400/20 p-8 text-center flex flex-col justify-center">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-purple-500/20 mb-4 mx-auto">
+                      <Calendar className="w-8 h-8 text-purple-400" />
+                    </div>
+
+                    <div className="text-4xl md:text-5xl font-bold text-purple-400 mb-2">
+                      13
+                    </div>
+
+                    <div className="text-sm text-white/70 font-medium">
+                      Années d'expérience
+                    </div>
+
+                    <div className="mt-4 text-xs text-purple-400/60 animate-pulse">
+                      <span className="hidden lg:inline">
+                        Survolez pour détails ›
+                      </span>
+                      <span className="lg:hidden">Appuyez pour détails ›</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Face arrière */}
+                <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl blur-xl opacity-40"></div>
+
+                  <div className="relative h-full bg-gradient-to-br from-purple-900/40 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-purple-400/40 p-6 flex flex-col justify-center">
+                    <div className="space-y-3 text-left">
+                      <div className="flex items-center gap-2 text-purple-300 mb-3">
+                        <Calendar className="w-5 h-5" />
+                        <span className="font-semibold text-sm">
+                          Parcours professionnel
+                        </span>
+                      </div>
+
+                      <div className="text-white/90 space-y-2 text-sm">
+                        <div className="flex justify-between items-center pb-2 border-b border-white/10">
+                          <span className="text-white/60">Total</span>
+                          <span className="font-bold text-purple-400">
+                            13 ans
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center pb-2 border-b border-white/10">
+                          <span className="text-white/60">Santé (2013)</span>
+                          <span className="font-bold text-purple-400">
+                            13 ans
+                          </span>
+                        </div>
+                        <div className="flex justify-between items-center pb-2 border-b border-white/10">
+                          <span className="text-white/60">
+                            Informatique (2024)
+                          </span>
+                          <span className="font-bold text-[#5B9BD5]">
+                            3 ans
+                          </span>
+                        </div>
+                        <div className="mt-3 text-xs text-white/60 italic">
+                          Expertise médicale enrichie par la tech 💻
+                        </div>
+                      </div>
+
+                      <div className="mt-4 h-1 bg-white/10 rounded-full overflow-hidden flex">
+                        <div className="h-full bg-gradient-to-r from-purple-400 to-purple-500 w-[77%]"></div>
+                        <div className="h-full bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] w-[23%]"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            
-            <div className="text-4xl md:text-5xl font-bold text-purple-400 mb-2">
-              13
+
+            {/* Stat 2 - Postes clés */}
+            <div
+              className="group relative h-[280px] [perspective:1000px] cursor-pointer"
+              onClick={() => toggleStatCard(1)}
+            >
+              <div
+                className={`relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] ${
+                  flippedCard === 1
+                    ? "[transform:rotateY(180deg)]"
+                    : "lg:group-hover:[transform:rotateY(180deg)]"
+                }`}
+              >
+                {/* Face avant */}
+                <div className="absolute inset-0 [backface-visibility:hidden]">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+
+                  <div className="relative h-full bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-[#5B9BD5]/20 p-8 text-center flex flex-col justify-center">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#5B9BD5]/20 mb-4 mx-auto">
+                      <Briefcase className="w-8 h-8 text-[#5B9BD5]" />
+                    </div>
+
+                    <div className="text-4xl md:text-5xl font-bold text-[#5B9BD5] mb-2">
+                      4
+                    </div>
+
+                    <div className="text-sm text-white/70 font-medium">
+                      Postes clés
+                    </div>
+
+                    <div className="mt-4 text-xs text-[#5B9BD5]/60 animate-pulse">
+                      <span className="hidden lg:inline">
+                        Survolez pour détails ›
+                      </span>
+                      <span className="lg:hidden">Appuyez pour détails ›</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Face arrière */}
+                <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] rounded-2xl blur-xl opacity-40"></div>
+
+                  <div className="relative h-full bg-gradient-to-br from-[#5B9BD5]/20 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-[#5B9BD5]/40 p-6 flex flex-col justify-center">
+                    <div className="space-y-2 text-left">
+                      <div className="flex items-center gap-2 text-[#5B9BD5] mb-3">
+                        <Briefcase className="w-5 h-5" />
+                        <span className="font-semibold text-sm">
+                          Rôles principaux
+                        </span>
+                      </div>
+
+                      <div className="space-y-2 text-xs text-white/90">
+                        <div className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#5B9BD5] mt-1.5 flex-shrink-0"></div>
+                          <span>Chirurgien-Dentiste & Manager</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#5B9BD5] mt-1.5 flex-shrink-0"></div>
+                          <span>Chef de Projet E-Santé</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#5B9BD5] mt-1.5 flex-shrink-0"></div>
+                          <span>Consultant Médical</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#5B9BD5] mt-1.5 flex-shrink-0"></div>
+                          <span>Développeur Full-Stack</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            
-            <div className="text-sm text-white/70 font-medium">
-              Années d'expérience
+
+            {/* Stat 3 - Domaines d'expertise */}
+            <div
+              className="group relative h-[280px] [perspective:1000px] cursor-pointer"
+              onClick={() => toggleStatCard(2)}
+            >
+              <div
+                className={`relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] ${
+                  flippedCard === 2
+                    ? "[transform:rotateY(180deg)]"
+                    : "lg:group-hover:[transform:rotateY(180deg)]"
+                }`}
+              >
+                {/* Face avant */}
+                <div className="absolute inset-0 [backface-visibility:hidden]">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+
+                  <div className="relative h-full bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-purple-400/20 p-8 text-center flex flex-col justify-center">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-purple-500/20 mb-4 mx-auto">
+                      <Target className="w-8 h-8 text-purple-400" />
+                    </div>
+
+                    <div className="text-4xl md:text-5xl font-bold text-purple-400 mb-2">
+                      3
+                    </div>
+
+                    <div className="text-sm text-white/70 font-medium">
+                      Domaines d'expertise
+                    </div>
+
+                    <div className="mt-4 text-xs text-purple-400/60 animate-pulse">
+                      <span className="hidden lg:inline">
+                        Survolez pour détails ›
+                      </span>
+                      <span className="lg:hidden">Appuyez pour détails ›</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Face arrière */}
+                <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl blur-xl opacity-40"></div>
+
+                  <div className="relative h-full bg-gradient-to-br from-purple-900/40 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-purple-400/40 p-6 flex flex-col justify-center">
+                    <div className="space-y-3 text-left">
+                      <div className="flex items-center gap-2 text-purple-300 mb-3">
+                        <Target className="w-5 h-5" />
+                        <span className="font-semibold text-sm">
+                          Expertise croisée
+                        </span>
+                      </div>
+
+                      <div className="space-y-3">
+                        <div className="bg-purple-500/10 rounded-lg p-3 border border-purple-400/20">
+                          <div className="font-semibold text-purple-300 text-sm mb-1">
+                            🦷 Dentisterie
+                          </div>
+                          <div className="text-xs text-white/70">
+                            Pratique clinique & chirurgie
+                          </div>
+                        </div>
+
+                        <div className="bg-purple-500/10 rounded-lg p-3 border border-purple-400/20">
+                          <div className="font-semibold text-purple-300 text-sm mb-1">
+                            🏥 Santé Publique
+                          </div>
+                          <div className="text-xs text-white/70">
+                            Projets communautaires
+                          </div>
+                        </div>
+
+                        <div className="bg-purple-500/10 rounded-lg p-3 border border-purple-400/20">
+                          <div className="font-semibold text-purple-300 text-sm mb-1">
+                            💻 Informatique
+                          </div>
+                          <div className="text-xs text-white/70">
+                            Développement E-Health
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
-            
-            <div className="mt-4 text-xs text-purple-400/60 animate-pulse">
-              Survolez pour détails ›
+
+            {/* Stat 4 - Projets Tech */}
+            <div
+              className="group relative h-[280px] [perspective:1000px] cursor-pointer"
+              onClick={() => toggleStatCard(3)}
+            >
+              <div
+                className={`relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] ${
+                  flippedCard === 3
+                    ? "[transform:rotateY(180deg)]"
+                    : "lg:group-hover:[transform:rotateY(180deg)]"
+                }`}
+              >
+                {/* Face avant */}
+                <div className="absolute inset-0 [backface-visibility:hidden]">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+
+                  <div className="relative h-full bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-[#5B9BD5]/20 p-8 text-center flex flex-col justify-center">
+                    <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#5B9BD5]/20 mb-4 mx-auto">
+                      <Code className="w-8 h-8 text-[#5B9BD5]" />
+                    </div>
+
+                    <div className="text-4xl md:text-5xl font-bold text-[#5B9BD5] mb-2">
+                      35+
+                    </div>
+
+                    <div className="text-sm text-white/70 font-medium">
+                      Projets Informatiques
+                    </div>
+
+                    <div className="mt-4 text-xs text-[#5B9BD5]/60 animate-pulse">
+                      <span className="hidden lg:inline">
+                        Survolez pour détails ›
+                      </span>
+                      <span className="lg:hidden">Appuyez pour détails ›</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Face arrière */}
+                <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
+                  <div className="absolute -inset-1 bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] rounded-2xl blur-xl opacity-40"></div>
+
+                  <div className="relative h-full bg-gradient-to-br from-[#5B9BD5]/20 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-[#5B9BD5]/40 p-6 flex flex-col justify-center">
+                    <div className="space-y-3 text-left">
+                      <div className="flex items-center gap-2 text-[#5B9BD5] mb-3">
+                        <Code className="w-5 h-5" />
+                        <span className="font-semibold text-sm">
+                          Portfolio Tech
+                        </span>
+                      </div>
+
+                      <div className="text-white/90 space-y-2 text-sm">
+                        <div className="flex justify-between items-center pb-2 border-b border-white/10">
+                          <span className="text-white/60">Apps E-Health</span>
+                          <span className="font-bold text-[#5B9BD5]">18</span>
+                        </div>
+                        <div className="flex justify-between items-center pb-2 border-b border-white/10">
+                          <span className="text-white/60">
+                            Systèmes gestion
+                          </span>
+                          <span className="font-bold text-[#5B9BD5]">14</span>
+                        </div>
+                        <div className="flex justify-between items-center pb-2 border-b border-white/10">
+                          <span className="text-white/60">Outils collecte</span>
+                          <span className="font-bold text-[#5B9BD5]">3</span>
+                        </div>
+                        <div className="flex justify-between items-center pt-2">
+                          <span className="text-white/60 font-semibold">
+                            Total
+                          </span>
+                          <span className="font-bold text-[#5B9BD5] text-xl">
+                            35+
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="mt-3 text-xs text-white/60 italic">
+                        🚀 Solutions tech pour la santé
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
-        {/* Face arrière (verso) */}
-        <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-          <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl blur-xl opacity-40"></div>
-          
-          <div className="relative h-full bg-gradient-to-br from-purple-900/40 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-purple-400/40 p-6 flex flex-col justify-center">
-            <div className="space-y-3 text-left">
-              <div className="flex items-center gap-2 text-purple-300 mb-3">
-                <Calendar className="w-5 h-5" />
-                <span className="font-semibold text-sm">Parcours professionnel</span>
-              </div>
-              
-              <div className="text-white/90 space-y-2 text-sm">
-                <div className="flex justify-between items-center pb-2 border-b border-white/10">
-                  <span className="text-white/60">Total</span>
-                  <span className="font-bold text-purple-400">13 ans</span>
-                </div>
-                <div className="flex justify-between items-center pb-2 border-b border-white/10">
-                  <span className="text-white/60">Santé (2013)</span>
-                  <span className="font-bold text-purple-400">13 ans</span>
-                </div>
-                <div className="flex justify-between items-center pb-2 border-b border-white/10">
-                  <span className="text-white/60">Informatique (2024)</span>
-                  <span className="font-bold text-[#5B9BD5]">3 ans</span>
-                </div>
-                <div className="mt-3 text-xs text-white/60 italic">
-                  Expertise médicale enrichie par la tech 💻
-                </div>
-              </div>
-              
-              <div className="mt-4 h-1 bg-white/10 rounded-full overflow-hidden flex">
-                <div className="h-full bg-gradient-to-r from-purple-400 to-purple-500 w-[77%]"></div>
-                <div className="h-full bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] w-[23%]"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {/* Stat 2 - Postes clés */}
-    <div className="group relative h-[280px] [perspective:1000px]">
-      <div className="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-        
-        {/* Face avant */}
-        <div className="absolute inset-0 [backface-visibility:hidden]">
-          <div className="absolute -inset-1 bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-          
-          <div className="relative h-full bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-[#5B9BD5]/20 p-8 text-center flex flex-col justify-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#5B9BD5]/20 mb-4 mx-auto">
-              <Briefcase className="w-8 h-8 text-[#5B9BD5]" />
-            </div>
-            
-            <div className="text-4xl md:text-5xl font-bold text-[#5B9BD5] mb-2">
-              4
-            </div>
-            
-            <div className="text-sm text-white/70 font-medium">
-              Postes clés
-            </div>
-            
-            <div className="mt-4 text-xs text-[#5B9BD5]/60 animate-pulse">
-              Survolez pour détails ›
-            </div>
-          </div>
-        </div>
-
-        {/* Face arrière */}
-        <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-          <div className="absolute -inset-1 bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] rounded-2xl blur-xl opacity-40"></div>
-          
-          <div className="relative h-full bg-gradient-to-br from-[#5B9BD5]/20 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-[#5B9BD5]/40 p-6 flex flex-col justify-center">
-            <div className="space-y-2 text-left">
-              <div className="flex items-center gap-2 text-[#5B9BD5] mb-3">
-                <Briefcase className="w-5 h-5" />
-                <span className="font-semibold text-sm">Rôles principaux</span>
-              </div>
-              
-              <div className="space-y-2 text-xs text-white/90">
-                <div className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#5B9BD5] mt-1.5 flex-shrink-0"></div>
-                  <span>Chirurgien-Dentiste & Manager</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#5B9BD5] mt-1.5 flex-shrink-0"></div>
-                  <span>Chef de Projet E-Santé</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#5B9BD5] mt-1.5 flex-shrink-0"></div>
-                  <span>Consultant Médical</span>
-                </div>
-                <div className="flex items-start gap-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#5B9BD5] mt-1.5 flex-shrink-0"></div>
-                  <span>Développeur Full-Stack</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {/* Stat 3 - Domaines d'expertise */}
-    <div className="group relative h-[280px] [perspective:1000px]">
-      <div className="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-        
-        {/* Face avant */}
-        <div className="absolute inset-0 [backface-visibility:hidden]">
-          <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-          
-          <div className="relative h-full bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-purple-400/20 p-8 text-center flex flex-col justify-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-purple-500/20 mb-4 mx-auto">
-              <Target className="w-8 h-8 text-purple-400" />
-            </div>
-            
-            <div className="text-4xl md:text-5xl font-bold text-purple-400 mb-2">
-              3
-            </div>
-            
-            <div className="text-sm text-white/70 font-medium">
-              Domaines d'expertise
-            </div>
-            
-            <div className="mt-4 text-xs text-purple-400/60 animate-pulse">
-              Survolez pour détails ›
-            </div>
-          </div>
-        </div>
-
-        {/* Face arrière */}
-        <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-          <div className="absolute -inset-1 bg-gradient-to-r from-purple-500 to-violet-500 rounded-2xl blur-xl opacity-40"></div>
-          
-          <div className="relative h-full bg-gradient-to-br from-purple-900/40 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-purple-400/40 p-6 flex flex-col justify-center">
-            <div className="space-y-3 text-left">
-              <div className="flex items-center gap-2 text-purple-300 mb-3">
-                <Target className="w-5 h-5" />
-                <span className="font-semibold text-sm">Expertise croisée</span>
-              </div>
-              
-              <div className="space-y-3">
-                <div className="bg-purple-500/10 rounded-lg p-3 border border-purple-400/20">
-                  <div className="font-semibold text-purple-300 text-sm mb-1">🦷 Dentisterie</div>
-                  <div className="text-xs text-white/70">Pratique clinique & chirurgie</div>
-                </div>
-                
-                <div className="bg-purple-500/10 rounded-lg p-3 border border-purple-400/20">
-                  <div className="font-semibold text-purple-300 text-sm mb-1">🏥 Santé Publique</div>
-                  <div className="text-xs text-white/70">Projets communautaires</div>
-                </div>
-                
-                <div className="bg-purple-500/10 rounded-lg p-3 border border-purple-400/20">
-                  <div className="font-semibold text-purple-300 text-sm mb-1">💻 Informatique</div>
-                  <div className="text-xs text-white/70">Développement E-Health</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {/* Stat 4 - Projets Tech */}
-    <div className="group relative h-[280px] [perspective:1000px]">
-      <div className="relative h-full w-full transition-transform duration-700 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
-        
-        {/* Face avant */}
-        <div className="absolute inset-0 [backface-visibility:hidden]">
-          <div className="absolute -inset-1 bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] rounded-2xl blur-xl opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
-          
-          <div className="relative h-full bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-[#5B9BD5]/20 p-8 text-center flex flex-col justify-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-[#5B9BD5]/20 mb-4 mx-auto">
-              <Code className="w-8 h-8 text-[#5B9BD5]" />
-            </div>
-            
-            <div className="text-4xl md:text-5xl font-bold text-[#5B9BD5] mb-2">
-              35+
-            </div>
-            
-            <div className="text-sm text-white/70 font-medium">
-              Projets Informatiques
-            </div>
-            
-            <div className="mt-4 text-xs text-[#5B9BD5]/60 animate-pulse">
-              Survolez pour détails ›
-            </div>
-          </div>
-        </div>
-
-        {/* Face arrière */}
-        <div className="absolute inset-0 [backface-visibility:hidden] [transform:rotateY(180deg)]">
-          <div className="absolute -inset-1 bg-gradient-to-r from-[#5B9BD5] to-[#4682B4] rounded-2xl blur-xl opacity-40"></div>
-          
-          <div className="relative h-full bg-gradient-to-br from-[#5B9BD5]/20 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-[#5B9BD5]/40 p-6 flex flex-col justify-center">
-            <div className="space-y-3 text-left">
-              <div className="flex items-center gap-2 text-[#5B9BD5] mb-3">
-                <Code className="w-5 h-5" />
-                <span className="font-semibold text-sm">Portfolio Tech</span>
-              </div>
-              
-              <div className="text-white/90 space-y-2 text-sm">
-                <div className="flex justify-between items-center pb-2 border-b border-white/10">
-                  <span className="text-white/60">Apps E-Health</span>
-                  <span className="font-bold text-[#5B9BD5]">18</span>
-                </div>
-                <div className="flex justify-between items-center pb-2 border-b border-white/10">
-                  <span className="text-white/60">Systèmes gestion</span>
-                  <span className="font-bold text-[#5B9BD5]">14</span>
-                </div>
-                <div className="flex justify-between items-center pb-2 border-b border-white/10">
-                  <span className="text-white/60">Outils collecte</span>
-                  <span className="font-bold text-[#5B9BD5]">3</span>
-                </div>
-                <div className="flex justify-between items-center pt-2">
-                  <span className="text-white/60 font-semibold">Total</span>
-                  <span className="font-bold text-[#5B9BD5] text-xl">15+</span>
-                </div>
-              </div>
-              
-              <div className="mt-3 text-xs text-white/60 italic">
-                🚀 Solutions tech pour la santé
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
       </div>
     </div>
   );

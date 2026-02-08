@@ -1,3 +1,4 @@
+import { User } from "lucide-react";
 const About = () => {
   return (
     <div className="w-full py-12 md:py-16 lg:py-20">
@@ -7,7 +8,8 @@ const About = () => {
         <div className="text-center mb-10 md:mb-12 lg:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold animate-fade-in">
             <span className="inline-flex items-center gap-3 md:gap-4 bg-gradient-to-r from-[#f1f1f1] via-purple-300 to-[#f1f1f1] bg-clip-text text-transparent">
-              <span className="text-4xl md:text-5xl">👨‍💻</span>À propos
+              <User className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 text-purple-400" />
+              À propos
             </span>
           </h2>
 
