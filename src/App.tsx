@@ -55,7 +55,7 @@ function App() {
               <div className="col-span-full flex justify-center mt-8 md:mt-12">
                 <Fleche
                   name={language === "fr" ? "Découvrir" : "Discover"}
-                  isDarkMode={isDarkMode}
+                
                 />
               </div>
             </div>
@@ -79,7 +79,7 @@ function App() {
                 ? "DISCUTTONS DE VOTRE PROJET"
                 : "LET'S DISCUSS YOUR PROJECT"
             }
-            isDarkMode={isDarkMode}
+           
           />
         </div>
 
