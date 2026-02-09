@@ -16,9 +16,10 @@ import emailjs from "@emailjs/browser";
 
 interface ContactProps {
   isDarkMode: boolean;
+  language: "fr" | "en";
 }
 
-const Contact = ({ isDarkMode }: ContactProps) => {
+const Contact = ({ isDarkMode, language }: ContactProps) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -31,6 +32,62 @@ const Contact = ({ isDarkMode }: ContactProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Traductions
+  const translations = {
+    fr: {
+      title: "Me Contacter",
+      subtitle: "Une question ? Un projet ? N'hésitez pas à me contacter.",
+      response: "Je réponds sous 24h",
+      stayConnected: "Restons connectés 🤝",
+      description: "Que ce soit pour discuter d'un projet, d'une collaboration ou simplement échanger, je suis toujours disponible !",
+      contactMe: "Contactez-moi",
+      modalTitle: "Envoyez-moi un message 📨",
+      modalSubtitle: "Je vous répondrai dans les plus brefs délais",
+      successTitle: "Message envoyé avec succès ! 🎉",
+      successMessage: "Merci pour votre message. Je vous répondrai dans les plus brefs délais.",
+      errorMessage: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
+      form: {
+        name: "Votre nom",
+        email: "Votre email",
+        subject: "Sujet",
+        message: "Votre message",
+        send: "Envoyer le message",
+      },
+      contactInfo: {
+        linkedin: "LinkedIn",
+        github: "GitHub",
+        whatsapp: "WhatsApp",
+      },
+    },
+    en: {
+      title: "Contact Me",
+      subtitle: "A question? A project? Don't hesitate to contact me.",
+      response: "I respond within 24h",
+      stayConnected: "Let's stay connected 🤝",
+      description: "Whether to discuss a project, a collaboration or simply exchange, I am always available!",
+      contactMe: "Contact Me",
+      modalTitle: "Send me a message 📨",
+      modalSubtitle: "I will respond to you as soon as possible",
+      successTitle: "Message sent successfully! 🎉",
+      successMessage: "Thank you for your message. I will respond to you as soon as possible.",
+      errorMessage: "An error occurred while sending. Please try again.",
+      form: {
+        name: "Your name",
+        email: "Your email",
+        subject: "Subject",
+        message: "Your message",
+        send: "Send message",
+      },
+      contactInfo: {
+        linkedin: "LinkedIn",
+        github: "GitHub",
+        whatsapp: "WhatsApp",
+      },
+    },
+  };
+
+  const t = translations[language];
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -80,7 +137,7 @@ const Contact = ({ isDarkMode }: ContactProps) => {
       console.error("❌ ERREUR COMPLÈTE:", err);
       console.error("Type d'erreur:", typeof err);
       console.error("Détails:", JSON.stringify(err, null, 2));
-      setError("Une erreur est survenue lors de l'envoi. Veuillez réessayer.");
+      setError(t.errorMessage);
       setIsLoading(false);
     }
   };
@@ -88,14 +145,14 @@ const Contact = ({ isDarkMode }: ContactProps) => {
   const contactInfo = [
     {
       icon: Linkedin,
-      label: "LinkedIn",
+      label: t.contactInfo.linkedin,
       value: "Andriamiarison Mandaniaina",
       href: "https://linkedin.com/in/andriamiarison-mandaniaina-precieux",
       color: "from-[#0077B5] to-[#00A0DC]",
     },
     {
       icon: Github,
-      label: "GitHub",
+      label: t.contactInfo.github,
       value: "MANDANIAINAPRECIEUX",
       href: "https://github.com/MANDANIAINAPRECIEUX",
       color: isDarkMode
@@ -104,7 +161,7 @@ const Contact = ({ isDarkMode }: ContactProps) => {
     },
     {
       icon: MessageSquare,
-      label: "WhatsApp",
+      label: t.contactInfo.whatsapp,
       value: "+261 34 61 223 35",
       href: "https://wa.me/261346122335",
       color: "from-[#25D366] to-[#128C7E]",
@@ -157,7 +214,7 @@ const Contact = ({ isDarkMode }: ContactProps) => {
                 }
               `}
             >
-              Me Contacter
+              {t.title}
             </h2>
             <Sparkles
               className={`
@@ -216,7 +273,7 @@ const Contact = ({ isDarkMode }: ContactProps) => {
           </div>
 
           <p className="mt-8 text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-            Une question ? Un projet ? N'hésitez pas à me contacter.
+            {t.subtitle}
             <span
               className={`
                 font-semibold transition-colors duration-700
@@ -224,7 +281,7 @@ const Contact = ({ isDarkMode }: ContactProps) => {
               `}
             >
               {" "}
-              Je réponds sous 24h
+              {t.response}
             </span>{" "}
             ⚡
           </p>
@@ -237,11 +294,10 @@ const Contact = ({ isDarkMode }: ContactProps) => {
             {/* Titre */}
             <div className="space-y-4">
               <h3 className="text-3xl md:text-4xl font-bold text-white">
-                Restons connectés 🤝
+                {t.stayConnected}
               </h3>
               <p className="text-lg text-white/70 leading-relaxed">
-                Que ce soit pour discuter d'un projet, d'une collaboration ou
-                simplement échanger, je suis toujours disponible !
+                {t.description}
               </p>
             </div>
 
@@ -339,7 +395,7 @@ const Contact = ({ isDarkMode }: ContactProps) => {
               >
                 <Mail className="w-7 h-7 text-white" />
                 <span className="text-white font-bold text-2xl">
-                  Contactez-moi
+                  {t.contactMe}
                 </span>
                 <Send className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
               </div>
@@ -421,10 +477,10 @@ const Contact = ({ isDarkMode }: ContactProps) => {
               {/* Titre du modal */}
               <div className="text-center mb-10">
                 <h3 className="text-4xl font-bold text-white mb-3">
-                  Envoyez-moi un message 📨
+                  {t.modalTitle}
                 </h3>
                 <p className="text-lg text-white/70">
-                  Je vous répondrai dans les plus brefs délais
+                  {t.modalSubtitle}
                 </p>
               </div>
 
@@ -446,11 +502,10 @@ const Contact = ({ isDarkMode }: ContactProps) => {
                     />
                   </div>
                   <h3 className="text-3xl font-bold text-white mb-4">
-                    Message envoyé avec succès ! 🎉
+                    {t.successTitle}
                   </h3>
                   <p className="text-lg text-white/70">
-                    Merci pour votre message. Je vous répondrai dans les plus
-                    brefs délais.
+                    {t.successMessage}
                   </p>
                 </div>
               ) : (
@@ -470,7 +525,7 @@ const Contact = ({ isDarkMode }: ContactProps) => {
                         }
                       `}
                     >
-                      Votre nom
+                      {t.form.name}
                     </label>
                     <div className="relative flex items-center">
                       <div className="absolute left-5 flex items-center justify-center w-8">
@@ -526,7 +581,7 @@ const Contact = ({ isDarkMode }: ContactProps) => {
                         }
                       `}
                     >
-                      Votre email
+                      {t.form.email}
                     </label>
                     <div className="relative flex items-center">
                       <div className="absolute left-5 flex items-center justify-center w-8">
@@ -582,7 +637,7 @@ const Contact = ({ isDarkMode }: ContactProps) => {
                         }
                       `}
                     >
-                      Sujet
+                      {t.form.subject}
                     </label>
                     <div className="relative flex items-center">
                       <div className="absolute left-5 flex items-center justify-center w-8">
@@ -638,7 +693,7 @@ const Contact = ({ isDarkMode }: ContactProps) => {
                         }
                       `}
                     >
-                      Votre message
+                      {t.form.message}
                     </label>
                     <div className="relative">
                       <div className="absolute left-5 top-5 flex items-center justify-center w-8">
@@ -680,7 +735,7 @@ const Contact = ({ isDarkMode }: ContactProps) => {
                   </div>
 
                   {/* Bouton d'envoi */}
-                  <button type="submit" className="group relative w-full mt-8">
+                  <button type="submit" className="group relative w-full mt-8" disabled={isLoading}>
                     {/* Glow effect */}
                     <div
                       className={`
@@ -707,7 +762,7 @@ const Contact = ({ isDarkMode }: ContactProps) => {
                       `}
                     >
                       <span className="text-white font-bold text-xl">
-                        Envoyer le message
+                        {isLoading ? (language === "fr" ? "Envoi..." : "Sending...") : t.form.send}
                       </span>
                       <Send className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
                     </div>

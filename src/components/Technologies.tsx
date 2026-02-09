@@ -11,15 +11,60 @@ import {
 
 interface TechnologiesProps {
   isDarkMode: boolean;
+  language: "fr" | "en";
 }
 
-const Technologies = ({ isDarkMode }: TechnologiesProps) => {
+const Technologies = ({ isDarkMode, language }: TechnologiesProps) => {
+  // Traductions
+  const translations = {
+    fr: {
+      title: "Technologies & Compétences",
+      statsLabels: {
+        languages: "Langages",
+        frameworks: "Frameworks",
+        stacks: "Stacks",
+        dbTypes: "DB Types",
+      },
+      categories: {
+        frameworks: "Frameworks & Bibliothèques",
+        devops: "DevOps & Déploiement",
+        languages: "Langages de programmation",
+        dataAI: "Data & IA (Python)",
+        stacksArch: "Stacks & Architectures",
+        design: "Conception & Méthodologies",
+        databases: "Bases de données",
+        versioning: "Versioning & Collaboration",
+      },
+    },
+    en: {
+      title: "Technologies & Skills",
+      statsLabels: {
+        languages: "Languages",
+        frameworks: "Frameworks",
+        stacks: "Stacks",
+        dbTypes: "DB Types",
+      },
+      categories: {
+        frameworks: "Frameworks & Libraries",
+        devops: "DevOps & Deployment",
+        languages: "Programming Languages",
+        dataAI: "Data & AI (Python)",
+        stacksArch: "Stacks & Architectures",
+        design: "Design & Methodologies",
+        databases: "Databases",
+        versioning: "Versioning & Collaboration",
+      },
+    },
+  };
+
+  const t = translations[language];
+
   // 🔥 Regroupement par taille de contenu
   const sections = {
     large: [
       {
         icon: Layers,
-        title: "Frameworks & Bibliothèques",
+        title: t.categories.frameworks,
         color: "blue",
         subCategories: [
           {
@@ -38,7 +83,7 @@ const Technologies = ({ isDarkMode }: TechnologiesProps) => {
       },
       {
         icon: Cloud,
-        title: "DevOps & Déploiement",
+        title: t.categories.devops,
         color: "purple",
         hasLogos: true,
         itemsWithLogos: [
@@ -73,7 +118,7 @@ const Technologies = ({ isDarkMode }: TechnologiesProps) => {
     medium: [
       {
         icon: Code2,
-        title: "Langages de programmation",
+        title: t.categories.languages,
         color: "purple",
         items: [
           "JavaScript/TypeScript",
@@ -87,7 +132,7 @@ const Technologies = ({ isDarkMode }: TechnologiesProps) => {
       },
       {
         icon: Brain,
-        title: "Data & IA (Python)",
+        title: t.categories.dataAI,
         color: "blue",
         items: ["PyTorch", "Pandas", "NumPy", "Matplotlib", "Jupyter Notebook"],
       },
@@ -96,7 +141,7 @@ const Technologies = ({ isDarkMode }: TechnologiesProps) => {
     small: [
       {
         icon: Boxes,
-        title: "Stacks & Architectures",
+        title: t.categories.stacksArch,
         color: "purple",
         items: [
           "MERN",
@@ -109,13 +154,13 @@ const Technologies = ({ isDarkMode }: TechnologiesProps) => {
       },
       {
         icon: Palette,
-        title: "Conception & Méthodologies",
+        title: t.categories.design,
         color: "blue",
         items: ["UML", "Merise", "SCRUM / Agile"],
       },
       {
         icon: Database,
-        title: "Bases de données",
+        title: t.categories.databases,
         color: "purple",
         subCategories: [
           {
@@ -130,7 +175,7 @@ const Technologies = ({ isDarkMode }: TechnologiesProps) => {
       },
       {
         icon: GitBranch,
-        title: "Versioning & Collaboration",
+        title: t.categories.versioning,
         color: "blue",
         hasLogos: true,
         itemsWithLogos: [
@@ -384,7 +429,7 @@ const Technologies = ({ isDarkMode }: TechnologiesProps) => {
                   ${isDarkMode ? "text-pink-400" : "text-purple-400"}
                 `}
               />
-              Technologies & Compétences
+              {t.title}
             </span>
           </h2>
 
@@ -487,7 +532,9 @@ const Technologies = ({ isDarkMode }: TechnologiesProps) => {
             >
               5+
             </div>
-            <div className="text-sm text-white/70">Langages</div>
+            <div className="text-sm text-white/70">
+              {t.statsLabels.languages}
+            </div>
           </div>
           <div
             className={`
@@ -508,7 +555,9 @@ const Technologies = ({ isDarkMode }: TechnologiesProps) => {
             >
               10+
             </div>
-            <div className="text-sm text-white/70">Frameworks</div>
+            <div className="text-sm text-white/70">
+              {t.statsLabels.frameworks}
+            </div>
           </div>
           <div
             className={`
@@ -529,7 +578,7 @@ const Technologies = ({ isDarkMode }: TechnologiesProps) => {
             >
               6+
             </div>
-            <div className="text-sm text-white/70">Stacks</div>
+            <div className="text-sm text-white/70">{t.statsLabels.stacks}</div>
           </div>
           <div
             className={`
@@ -550,7 +599,7 @@ const Technologies = ({ isDarkMode }: TechnologiesProps) => {
             >
               3+
             </div>
-            <div className="text-sm text-white/70">DB Types</div>
+            <div className="text-sm text-white/70">{t.statsLabels.dbTypes}</div>
           </div>
         </div>
       </div>
