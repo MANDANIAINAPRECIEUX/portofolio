@@ -1,0 +1,29 @@
+/* src/components/Navbar.css */
+
+/* Support Safari pour backdrop-filter */
+.backdrop-blur-sm {
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.backdrop-blur-xl {
+  -webkit-backdrop-filter: blur(24px);
+  backdrop-filter: blur(24px);
+}
+
+/* Animation delays pour le menu mobile */
+.mobile-nav-item-delay-0 {
+  animation-delay: 0ms;
+}
+.mobile-nav-item-delay-1 {
+  animation-delay: 50ms;
+}
+.mobile-nav-item-delay-2 {
+  animation-delay: 100ms;
+}
+.mobile-nav-item-delay-3 {
+  animation-delay: 150ms;
+}
+.mobile-nav-item-delay-4 {
+  animation-delay: 200ms;
+}

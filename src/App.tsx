@@ -10,33 +10,19 @@ import Diplomes from "./components/Diplomes";
 import Technologies from "./components/Technologies";
 import Experiences from "./components/Experiences";
 import Contact from "./components/Contact";
+import "./App.css";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [language, setLanguage] = useState<"fr" | "en">("fr");
 
   return (
-    <div
-      className="min-h-screen w-full bg-cover bg-center bg-no-repeat relative overflow-x-hidden"
-      style={{ backgroundImage: "url('/photos/Design.png')" }}
-    >
+    <div className="app-container">
       {/* Overlay dynamique */}
-      <div
-        className={`
-          absolute inset-0
-          bg-gradient-to-b
-          backdrop-blur-[1px]
-          transition-colors duration-500
-          ${
-            isDarkMode
-              ? "from-slate-950/60 via-slate-900/55 to-slate-950/70"
-              : "from-black/60 via-black/40 to-black/60"
-          }
-        `}
-      />
+      <div className={`app-overlay ${isDarkMode ? "dark" : "light"}`} />
 
       {/* Content */}
-      <div className="relative z-40 flex flex-col">
+      <div className="app-content">
         <Navbar
           isDarkMode={isDarkMode}
           setIsDarkMode={setIsDarkMode}
@@ -53,10 +39,7 @@ function App() {
 
               {/* Fleche "Découvrir" */}
               <div className="col-span-full flex justify-center mt-8 md:mt-12">
-                <Fleche
-                  name={language === "fr" ? "Découvrir" : "Discover"}
-                
-                />
+                <Fleche name={language === "fr" ? "Découvrir la suite" : "Discover more"} />
               </div>
             </div>
           </div>
@@ -73,14 +56,7 @@ function App() {
 
         {/* Fleche "DISCUTTONS" */}
         <div className="w-full flex justify-center mt-12 md:mt-16 lg:mt-20">
-          <Fleche
-            name={
-              language === "fr"
-                ? "DISCUTTONS DE VOTRE PROJET"
-                : "LET'S DISCUSS YOUR PROJECT"
-            }
-           
-          />
+         
         </div>
 
         <section id="parcours" className="w-full mt-8 md:mt-12 lg:mt-16">

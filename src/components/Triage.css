@@ -1,0 +1,53 @@
+/* src/components/Triage.css */
+
+/* Animation fade in pour le modal */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Classes pour le carousel slide dynamique */
+.carousel-slide-0 {
+  transform: translateX(0%);
+}
+.carousel-slide-1 {
+  transform: translateX(-100%);
+}
+.carousel-slide-2 {
+  transform: translateX(-200%);
+}
+.carousel-slide-3 {
+  transform: translateX(-300%);
+}
+.carousel-slide-4 {
+  transform: translateX(-400%);
+}
+.carousel-slide-5 {
+  transform: translateX(-500%);
+}
+.carousel-slide-6 {
+  transform: translateX(-600%);
+}
+.carousel-slide-7 {
+  transform: translateX(-700%);
+}
+.carousel-slide-8 {
+  transform: translateX(-800%);
+}
+.carousel-slide-9 {
+  transform: translateX(-900%);
+}
+
+/* Transition fluide du carousel */
+.carousel-container {
+  display: flex;
+  transition: transform 500ms ease-in-out;
+}

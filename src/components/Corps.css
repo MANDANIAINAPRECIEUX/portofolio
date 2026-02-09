@@ -1,0 +1,40 @@
+/* src/components/Corps.css */
+
+/* Animation de fade-in pour les lettres */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.letter-animation {
+  display: inline-block;
+  animation: fadeIn 0.5s ease-out;
+  animation-fill-mode: backwards;
+}
+
+/* Classes pour les délais d'animation (0 à 18 lettres: "Mandaniaina Precieux") */
+.letter-delay-0 { animation-delay: 0s; }
+.letter-delay-1 { animation-delay: 0.1s; }
+.letter-delay-2 { animation-delay: 0.2s; }
+.letter-delay-3 { animation-delay: 0.3s; }
+.letter-delay-4 { animation-delay: 0.4s; }
+.letter-delay-5 { animation-delay: 0.5s; }
+.letter-delay-6 { animation-delay: 0.6s; }
+.letter-delay-7 { animation-delay: 0.7s; }
+.letter-delay-8 { animation-delay: 0.8s; }
+.letter-delay-9 { animation-delay: 0.9s; }
+.letter-delay-10 { animation-delay: 1.0s; }
+.letter-delay-11 { animation-delay: 1.1s; }
+.letter-delay-12 { animation-delay: 1.2s; }
+.letter-delay-13 { animation-delay: 1.3s; }
+.letter-delay-14 { animation-delay: 1.4s; }
+.letter-delay-15 { animation-delay: 1.5s; }
+.letter-delay-16 { animation-delay: 1.6s; }
+.letter-delay-17 { animation-delay: 1.7s; }
+.letter-delay-18 { animation-delay: 1.8s; }

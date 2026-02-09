@@ -1,0 +1,50 @@
+/* src/App.css */
+
+.app-container {
+  min-height: 100vh;
+  width: 100%;
+  background-image: url("/photos/Design.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.app-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    var(--overlay-from),
+    var(--overlay-via),
+    var(--overlay-to)
+  );
+
+  /* Support Safari 9+ et iOS Safari 9+ */
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+
+  transition: background 500ms;
+}
+
+/* Dark mode colors */
+.app-overlay.dark {
+  --overlay-from: rgba(2, 6, 23, 0.6);
+  --overlay-via: rgba(15, 23, 42, 0.55);
+  --overlay-to: rgba(2, 6, 23, 0.7);
+}
+
+/* Light mode colors */
+.app-overlay.light {
+  --overlay-from: rgba(0, 0, 0, 0.6);
+  --overlay-via: rgba(0, 0, 0, 0.4);
+  --overlay-to: rgba(0, 0, 0, 0.6);
+}
+
+.app-content {
+  position: relative;
+  z-index: 40;
+  display: flex;
+  flex-direction: column;
+}

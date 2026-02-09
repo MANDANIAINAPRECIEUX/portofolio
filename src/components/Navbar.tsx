@@ -1,6 +1,7 @@
 "use client";
-import { Moon, Sun, Menu, X, ChevronDown, Globe } from "lucide-react";
+import { Moon, Sun, Menu, X, ChevronDown } from "lucide-react";
 import { useState } from "react";
+import "./Navbar.css";
 
 interface NavbarProps {
   isDarkMode: boolean;
@@ -44,14 +45,16 @@ const Navbar = ({
 
   // Sélectionner les items selon la langue active
   const currentNavItems = navItems[language];
-  const currentLanguage = languageOptions.find((lang) => lang.code === language);
+  const currentLanguage = languageOptions.find(
+    (lang) => lang.code === language,
+  );
 
   return (
-    <nav className="top-0 z-50 backdrop-blur-xl bg-[#0a1f2e]/80 border-b border-white/10">
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-[#0a1f2e]/80 border-b border-white/10">
       <div className="w-full px-6 md:px-12">
         {/* Menu Fixe */}
         <div className="flex items-center justify-end h-16 md:h-20">
-          {/* Navigation Desktop - 30px à gauche du Toggle */}
+          {/* Navigation Desktop */}
           <div className="hidden md:flex items-center gap-1 mr-[190px]">
             {currentNavItems.map((item) => (
               <a
@@ -62,10 +65,8 @@ const Navbar = ({
                   transition-all duration-700
                 `}
               >
-                {/* Texte */}
                 <span className="relative z-10 tracking-wide">{item.name}</span>
 
-                {/* Effet de fond au survol */}
                 <div
                   className={`
                     absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100
@@ -78,7 +79,6 @@ const Navbar = ({
                   `}
                 ></div>
 
-                {/* Barre de soulignement animée */}
                 <div
                   className={`
                     absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[3px] rounded-full
@@ -110,8 +110,9 @@ const Navbar = ({
                 `}
                 aria-label="Sélectionner la langue"
               >
-               
-                <span className="hidden sm:inline">{currentLanguage?.flag}</span>
+                <span className="hidden sm:inline">
+                  {currentLanguage?.flag}
+                </span>
                 <span className="uppercase tracking-wider">{language}</span>
                 <ChevronDown
                   size={16}
@@ -151,7 +152,9 @@ const Navbar = ({
                     >
                       <span className="text-2xl">{lang.flag}</span>
                       <div className="flex-1">
-                        <div className="font-semibold text-sm">{lang.label}</div>
+                        <div className="font-semibold text-sm">
+                          {lang.label}
+                        </div>
                         <div className="text-xs text-white/50 uppercase">
                           {lang.code}
                         </div>
@@ -176,7 +179,6 @@ const Navbar = ({
 
             {/* Toggle Dark/Light Mode */}
             <div className="relative flex items-center bg-white/10 backdrop-blur-sm rounded-full p-1 border border-white/20 shadow-lg">
-              {/* Indicateur glissant */}
               <div
                 className={`
                   absolute w-9 h-9 rounded-full shadow-md
@@ -189,7 +191,6 @@ const Navbar = ({
                 `}
               />
 
-              {/* Bouton Soleil */}
               <button
                 type="button"
                 onClick={() => setIsDarkMode(false)}
@@ -209,7 +210,6 @@ const Navbar = ({
                 <Sun size={20} strokeWidth={2.5} />
               </button>
 
-              {/* Bouton Lune */}
               <button
                 type="button"
                 onClick={() => setIsDarkMode(true)}
@@ -258,15 +258,13 @@ const Navbar = ({
                 className={`
                   group px-5 py-3.5 rounded-xl text-white/90 hover:text-white hover:bg-white/10
                   transition-all duration-700 border border-transparent font-semibold text-base
+                  mobile-nav-item-delay-${index}
                   ${
                     isDarkMode
                       ? "hover:border-pink-400/30"
                       : "hover:border-purple-400/30"
                   }
                 `}
-                style={{
-                  animationDelay: `${index * 50}ms`,
-                }}
               >
                 <span className="flex items-center gap-3">
                   <div

@@ -3,7 +3,7 @@ import {
   Github,
   Linkedin,
   Twitter,
-  Heart,
+ 
   ArrowUp,
   Code2,
   Brain,

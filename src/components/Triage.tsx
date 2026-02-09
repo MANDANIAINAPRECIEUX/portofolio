@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import PROJECTS from "../../types/Project";
 import type { Project } from "../../types/Project";
+import "./Triage.css";
 
 type GroupBy = "year" | "type";
 type SortOrder = "asc" | "desc";
@@ -438,14 +439,13 @@ const ProjectList = ({ isDarkMode, language }: ProjectListProps) => {
                   {/* 🔥 CAROUSEL OU GRILLE */}
                   {isCarouselGroup ? (
                     <div className="relative px-0 sm:px-8 md:px-12 lg:px-16">
-                      {/* SLIDES CONTAINER */}
-                      <div className="overflow-hidden">
-                        <div
-                          className="flex transition-transform duration-500 ease-in-out"
-                          style={{
-                            transform: `translateX(-${currentSlide * 100}%)`,
-                          }}
-                        >
+                    
+                     {/* SLIDES CONTAINER */}
+<div className="overflow-hidden">
+  <div
+    className={`carousel-container carousel-slide-${currentSlide}`}
+  >
+
                           {projectPages.map((pageProjects, pageIndex) => (
                             <div
                               key={pageIndex}

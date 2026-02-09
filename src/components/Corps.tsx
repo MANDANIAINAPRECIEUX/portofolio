@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Corps.css";
 
 interface CorpsProps {
   isDarkMode: boolean;
@@ -60,11 +61,7 @@ const Corps = ({ isDarkMode, language }: CorpsProps) => {
           {"Mandaniaina".split("").map((letter, index) => (
             <span
               key={index}
-              className="inline-block animate-fade-in"
-              style={{
-                animationDelay: `${index * 0.1}s`,
-                animationFillMode: "backwards",
-              }}
+              className={`letter-animation letter-delay-${index}`}
             >
               {letter}
             </span>
@@ -73,11 +70,7 @@ const Corps = ({ isDarkMode, language }: CorpsProps) => {
           {"Precieux".split("").map((letter, index) => (
             <span
               key={index}
-              className="inline-block animate-fade-in"
-              style={{
-                animationDelay: `${(index + 11) * 0.1}s`,
-                animationFillMode: "backwards",
-              }}
+              className={`letter-animation letter-delay-${index + 11}`}
             >
               {letter}
             </span>

@@ -40,13 +40,16 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
       subtitle: "Une question ? Un projet ? N'hésitez pas à me contacter.",
       response: "Je réponds sous 24h",
       stayConnected: "Restons connectés 🤝",
-      description: "Que ce soit pour discuter d'un projet, d'une collaboration ou simplement échanger, je suis toujours disponible !",
+      description:
+        "Que ce soit pour discuter d'un projet, d'une collaboration ou simplement échanger, je suis toujours disponible !",
       contactMe: "Contactez-moi",
       modalTitle: "Envoyez-moi un message 📨",
       modalSubtitle: "Je vous répondrai dans les plus brefs délais",
       successTitle: "Message envoyé avec succès ! 🎉",
-      successMessage: "Merci pour votre message. Je vous répondrai dans les plus brefs délais.",
-      errorMessage: "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
+      successMessage:
+        "Merci pour votre message. Je vous répondrai dans les plus brefs délais.",
+      errorMessage:
+        "Une erreur est survenue lors de l'envoi. Veuillez réessayer.",
       form: {
         name: "Votre nom",
         email: "Votre email",
@@ -65,12 +68,14 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
       subtitle: "A question? A project? Don't hesitate to contact me.",
       response: "I respond within 24h",
       stayConnected: "Let's stay connected 🤝",
-      description: "Whether to discuss a project, a collaboration or simply exchange, I am always available!",
+      description:
+        "Whether to discuss a project, a collaboration or simply exchange, I am always available!",
       contactMe: "Contact Me",
       modalTitle: "Send me a message 📨",
       modalSubtitle: "I will respond to you as soon as possible",
       successTitle: "Message sent successfully! 🎉",
-      successMessage: "Thank you for your message. I will respond to you as soon as possible.",
+      successMessage:
+        "Thank you for your message. I will respond to you as soon as possible.",
       errorMessage: "An error occurred while sending. Please try again.",
       form: {
         name: "Your name",
@@ -103,12 +108,7 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
     setIsLoading(true);
     setError(null);
 
-    console.log("🚀 DÉBUT DE L'ENVOI");
-    console.log("📝 Données du formulaire:", formData);
-
     try {
-      console.log("📤 Envoi vers EmailJS...");
-
       const result = await emailjs.send(
         "service_95xdnni",
         "template_o6vnq4e",
@@ -121,9 +121,7 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
         "BNkwaqkgFyKfYQVhk",
       );
 
-      console.log("✅ SUCCÈS! Réponse EmailJS:", result);
-      console.log("Status:", result.status);
-      console.log("Text:", result.text);
+      console.log("✅ Email sent successfully:", result.status);
 
       setIsSubmitted(true);
       setIsLoading(false);
@@ -134,9 +132,7 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
         setIsModalOpen(false);
       }, 3000);
     } catch (err) {
-      console.error("❌ ERREUR COMPLÈTE:", err);
-      console.error("Type d'erreur:", typeof err);
-      console.error("Détails:", JSON.stringify(err, null, 2));
+      console.error("❌ Email sending error:", err);
       setError(t.errorMessage);
       setIsLoading(false);
     }
@@ -314,7 +310,6 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
                     rel="noopener noreferrer"
                     className="group block relative"
                   >
-                    {/* Glow effect */}
                     <div
                       className={`
                         absolute -inset-1 bg-gradient-to-r ${info.color} rounded-2xl blur-xl
@@ -322,10 +317,8 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
                       `}
                     ></div>
 
-                    {/* Card */}
                     <div className="relative bg-gradient-to-br from-[#172033]/95 to-[#0a1f2e]/95 backdrop-blur-xl rounded-2xl border border-white/10 group-hover:border-white/30 p-7 transition-all duration-300 group-hover:scale-[1.02] group-hover:-translate-y-1">
                       <div className="flex items-center gap-5">
-                        {/* Icône */}
                         <div
                           className={`
                             p-4 rounded-xl bg-gradient-to-br ${info.color} bg-opacity-20
@@ -335,7 +328,6 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
                           <Icon className="w-7 h-7 text-white" />
                         </div>
 
-                        {/* Texte */}
                         <div className="flex-1">
                           <div className="text-sm text-white/50 mb-1.5">
                             {info.label}
@@ -354,7 +346,6 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
                           </div>
                         </div>
 
-                        {/* Flèche */}
                         <Send className="w-5 h-5 text-white/50 group-hover:text-white opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300" />
                       </div>
                     </div>
@@ -368,7 +359,6 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
               onClick={() => setIsModalOpen(true)}
               className="group relative w-full mt-12"
             >
-              {/* Glow effect */}
               <div
                 className={`
                   absolute -inset-1 rounded-2xl blur-xl animate-pulse
@@ -381,7 +371,6 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
                 `}
               ></div>
 
-              {/* Button */}
               <div
                 className={`
                   relative rounded-2xl px-10 py-6 flex items-center justify-center gap-4
@@ -404,7 +393,6 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
 
           {/* Colonne droite - Image cartoon */}
           <div className="relative group">
-            {/* Glow effect subtil */}
             <div
               className={`
                 absolute -inset-6 rounded-3xl blur-3xl
@@ -417,7 +405,6 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
               `}
             ></div>
 
-            {/* Container image */}
             <div className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#172033]/30 to-[#0a1f2e]/30 backdrop-blur-sm border border-white/10 p-4 group-hover:border-white/20 transition-all duration-300">
               <div className="relative rounded-2xl overflow-hidden">
                 <img
@@ -428,7 +415,6 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
               </div>
             </div>
 
-            {/* Décorations */}
             <div
               className={`
                 absolute -top-8 -right-8 w-32 h-32 rounded-full blur-3xl animate-pulse
@@ -451,7 +437,6 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fade-in overflow-y-auto">
           <div className="relative w-full max-w-3xl my-8">
-            {/* Bouton de fermeture */}
             <button
               onClick={() => setIsModalOpen(false)}
               aria-label="Fermer le formulaire de contact"
@@ -460,7 +445,6 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
               <X className="w-6 h-6 text-gray-800 group-hover:rotate-90 transition-transform duration-300" />
             </button>
 
-            {/* Glow effect du formulaire */}
             <div
               className={`
                 absolute -inset-2 rounded-3xl blur-2xl opacity-50 transition-colors duration-700
@@ -472,20 +456,22 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
               `}
             ></div>
 
-            {/* Card du formulaire */}
             <div className="relative bg-gradient-to-br from-[#172033] to-[#0a1f2e] backdrop-blur-xl rounded-3xl border border-white/20 p-10 md:p-12">
-              {/* Titre du modal */}
               <div className="text-center mb-10">
                 <h3 className="text-4xl font-bold text-white mb-3">
                   {t.modalTitle}
                 </h3>
-                <p className="text-lg text-white/70">
-                  {t.modalSubtitle}
-                </p>
+                <p className="text-lg text-white/70">{t.modalSubtitle}</p>
               </div>
 
+              {/* Affichage de l'erreur */}
+              {error && (
+                <div className="mb-6 p-4 rounded-xl bg-red-500/20 border border-red-400/50 text-red-300 text-sm">
+                  {error}
+                </div>
+              )}
+
               {isSubmitted ? (
-                // Message de succès
                 <div className="text-center py-16">
                   <div
                     className={`
@@ -504,9 +490,7 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
                   <h3 className="text-3xl font-bold text-white mb-4">
                     {t.successTitle}
                   </h3>
-                  <p className="text-lg text-white/70">
-                    {t.successMessage}
-                  </p>
+                  <p className="text-lg text-white/70">{t.successMessage}</p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-7">
@@ -735,8 +719,11 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
                   </div>
 
                   {/* Bouton d'envoi */}
-                  <button type="submit" className="group relative w-full mt-8" disabled={isLoading}>
-                    {/* Glow effect */}
+                  <button
+                    type="submit"
+                    className="group relative w-full mt-8"
+                    disabled={isLoading}
+                  >
                     <div
                       className={`
                         absolute -inset-1 rounded-2xl blur-xl
@@ -749,7 +736,6 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
                       `}
                     ></div>
 
-                    {/* Button */}
                     <div
                       className={`
                         relative rounded-2xl px-10 py-5 flex items-center justify-center gap-4
@@ -762,7 +748,11 @@ const Contact = ({ isDarkMode, language }: ContactProps) => {
                       `}
                     >
                       <span className="text-white font-bold text-xl">
-                        {isLoading ? (language === "fr" ? "Envoi..." : "Sending...") : t.form.send}
+                        {isLoading
+                          ? language === "fr"
+                            ? "Envoi..."
+                            : "Sending..."
+                          : t.form.send}
                       </span>
                       <Send className="w-6 h-6 text-white group-hover:translate-x-1 transition-transform duration-300" />
                     </div>

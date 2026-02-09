@@ -1,4 +1,5 @@
 import { User } from "lucide-react";
+import "./About.css";
 
 interface AboutProps {
   isDarkMode: boolean;
@@ -200,47 +201,46 @@ const About = ({ isDarkMode, language }: AboutProps) => {
             <div className="relative p-6 sm:p-8 md:p-10 lg:p-16">
               <div className="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-12">
                 {/* Image avec cadre */}
-                <div className="w-full sm:w-2/3 md:w-1/2 lg:w-2/5 mx-auto lg:mx-0 shrink-0">
-                  <div className="relative group/img">
-                    {/* Cadre animé */}
-                    <div
-                      className={`
-                        absolute -inset-2 rounded-2xl blur-md opacity-50 group-hover/img:opacity-75
-                        transition-all duration-700
-                        ${
-                          isDarkMode
-                            ? "bg-gradient-to-r from-pink-500 via-rose-400 to-red-500"
-                            : "bg-gradient-to-r from-purple-500 via-[#5B9BD5] to-purple-500"
-                        }
-                      `}
-                    ></div>
+                {/* Image avec cadre */}
+<div className="w-full sm:w-2/3 md:w-1/2 lg:w-2/5 mx-auto lg:mx-0 shrink-0">
+  <div className="relative group/img about-image-container">
+    {/* Cadre animé */}
+    <div
+      className={`
+        absolute -inset-2 rounded-2xl blur-md opacity-50 group-hover/img:opacity-75
+        transition-all duration-700
+        ${
+          isDarkMode
+            ? "bg-gradient-to-r from-pink-500 via-rose-400 to-red-500"
+            : "bg-gradient-to-r from-purple-500 via-[#5B9BD5] to-purple-500"
+        }
+      `}
+    ></div>
 
-                    {/* Bordure */}
-                    <div
-                      className={`
-                        relative rounded-2xl p-[3px] shadow-xl
-                        transition-all duration-700
-                        ${
-                          isDarkMode
-                            ? "bg-gradient-to-br from-rose-400 via-pink-400 to-red-400"
-                            : "bg-gradient-to-br from-[#5B9BD5] via-purple-400 to-[#5B9BD5]"
-                        }
-                      `}
-                    >
-                      <div className="rounded-xl overflow-hidden bg-[#0a1f2e]">
-                        <img
-                          src="/photos/manda.png"
-                          alt="Mandaniaina Precieux"
-                          className="w-full h-full object-cover object-center transition-transform duration-500 group-hover/img:scale-105"
-                          style={{
-                            transform: "translate(-8%, -3%) scale(1.1)",
-                          }}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+    {/* Bordure */}
+    <div
+      className={`
+        relative rounded-2xl p-[3px] shadow-xl
+        transition-all duration-700
+        ${
+          isDarkMode
+            ? "bg-gradient-to-br from-rose-400 via-pink-400 to-red-400"
+            : "bg-gradient-to-br from-[#5B9BD5] via-purple-400 to-[#5B9BD5]"
+        }
+      `}
+    >
+      <div className="rounded-xl overflow-hidden bg-[#0a1f2e]">
+        <img
+          src="/photos/manda.png"
+          alt="Mandaniaina Precieux"
+          className="about-image"
+        />
+      </div>
+    </div>
+  </div>
+</div>
 
+               
                 {/* Contenu texte */}
                 <div className="flex-1 space-y-4 md:space-y-6">
                   {/* Titre */}
