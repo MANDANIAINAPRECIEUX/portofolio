@@ -1,5 +1,5 @@
 "use client";
-import { Moon, Sun, Menu, X } from "lucide-react";
+import { Moon, Sun, Menu, X, ChevronDown, Globe } from "lucide-react";
 import { useState } from "react";
 
 interface NavbarProps {
@@ -16,6 +16,7 @@ const Navbar = ({
   setLanguage,
 }: NavbarProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isLangDropdownOpen, setIsLangDropdownOpen] = useState(false);
 
   // Navigation items avec traductions
   const navItems = {
@@ -35,8 +36,15 @@ const Navbar = ({
     ],
   };
 
+  // Options de langue
+  const languageOptions = [
+    { code: "fr", label: "Français", flag: "🇫🇷" },
+    { code: "en", label: "English", flag: "🇬🇧" },
+  ];
+
   // Sélectionner les items selon la langue active
   const currentNavItems = navItems[language];
+  const currentLanguage = languageOptions.find((lang) => lang.code === language);
 
   return (
     <nav className="top-0 z-50 backdrop-blur-xl bg-[#0a1f2e]/80 border-b border-white/10">
@@ -44,7 +52,7 @@ const Navbar = ({
         {/* Menu Fixe */}
         <div className="flex items-center justify-end h-16 md:h-20">
           {/* Navigation Desktop - 30px à gauche du Toggle */}
-          <div className="hidden md:flex items-center gap-1 mr-[140px]">
+          <div className="hidden md:flex items-center gap-1 mr-[190px]">
             {currentNavItems.map((item) => (
               <a
                 key={item.name}
@@ -86,63 +94,84 @@ const Navbar = ({
             ))}
           </div>
 
-          {/* Contrôles : Langue + Dark Mode + Menu Mobile */}
+          {/* Contrôles : Menu Déroulant Langue + Dark Mode + Menu Mobile */}
           <div className="flex items-center gap-3">
-            {/* Sélecteur de Langue */}
-            <div className="relative flex items-center bg-white/10 backdrop-blur-sm rounded-full p-1 border border-white/20 shadow-lg">
-              {/* Indicateur glissant */}
-              <div
-                className={`
-                  absolute w-9 h-9 rounded-full shadow-md
-                  transition-all duration-700 ease-out
-                  ${language === "fr" ? "translate-x-0" : "translate-x-9"}
-                  ${
-                    isDarkMode
-                      ? "bg-gradient-to-br from-pink-500 to-rose-600"
-                      : "bg-gradient-to-br from-purple-400 to-blue-500"
-                  }
-                `}
-              />
-
-              {/* Bouton Français */}
+            {/* Menu Déroulant de Langue */}
+            <div className="relative">
               <button
                 type="button"
-                onClick={() => setLanguage("fr")}
+                onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
                 className={`
-                  relative z-10 w-9 h-9 rounded-full
-                  flex items-center justify-center text-xs font-bold
-                  transition-all duration-700
-                  ${
-                    language === "fr"
-                      ? "text-white scale-100"
-                      : "text-white/40 scale-90"
-                  }
-                  hover:scale-110 active:scale-95
+                  flex items-center gap-2 px-4 py-2 rounded-full
+                  bg-white/10 backdrop-blur-sm border border-white/20
+                  hover:bg-white/20 transition-all duration-300
+                  text-white text-sm font-semibold
+                  hover:scale-105 active:scale-95
                 `}
-                aria-label="Français"
+                aria-label="Sélectionner la langue"
               >
-                FR
+               
+                <span className="hidden sm:inline">{currentLanguage?.flag}</span>
+                <span className="uppercase tracking-wider">{language}</span>
+                <ChevronDown
+                  size={16}
+                  className={`
+                    transition-transform duration-300
+                    ${isLangDropdownOpen ? "rotate-180" : "rotate-0"}
+                  `}
+                />
               </button>
 
-              {/* Bouton Anglais */}
-              <button
-                type="button"
-                onClick={() => setLanguage("en")}
-                className={`
-                  relative z-10 w-9 h-9 rounded-full
-                  flex items-center justify-center text-xs font-bold
-                  transition-all duration-700
-                  ${
-                    language === "en"
-                      ? "text-white scale-100"
-                      : "text-white/40 scale-90"
-                  }
-                  hover:scale-110 active:scale-95
-                `}
-                aria-label="English"
-              >
-                EN
-              </button>
+              {/* Dropdown Menu */}
+              {isLangDropdownOpen && (
+                <div
+                  className="absolute top-full mt-2 right-0 w-48 rounded-xl bg-[#172033]/95 backdrop-blur-xl border border-white/20 shadow-2xl overflow-hidden animate-fade-in"
+                  onMouseLeave={() => setIsLangDropdownOpen(false)}
+                >
+                  {languageOptions.map((lang) => (
+                    <button
+                      key={lang.code}
+                      type="button"
+                      onClick={() => {
+                        setLanguage(lang.code as "fr" | "en");
+                        setIsLangDropdownOpen(false);
+                      }}
+                      className={`
+                        w-full flex items-center gap-3 px-4 py-3
+                        text-left text-white/90 hover:text-white
+                        transition-all duration-300
+                        ${
+                          language === lang.code
+                            ? isDarkMode
+                              ? "bg-pink-500/20 border-l-4 border-pink-400"
+                              : "bg-purple-500/20 border-l-4 border-purple-400"
+                            : "hover:bg-white/10"
+                        }
+                      `}
+                    >
+                      <span className="text-2xl">{lang.flag}</span>
+                      <div className="flex-1">
+                        <div className="font-semibold text-sm">{lang.label}</div>
+                        <div className="text-xs text-white/50 uppercase">
+                          {lang.code}
+                        </div>
+                      </div>
+                      {language === lang.code && (
+                        <div
+                          className={`
+                            w-2 h-2 rounded-full
+                            ${
+                              isDarkMode
+                                ? "bg-pink-400 shadow-lg shadow-pink-400/50"
+                                : "bg-purple-400 shadow-lg shadow-purple-400/50"
+                            }
+                          `}
+                        ></div>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {/* Toggle Dark/Light Mode */}
