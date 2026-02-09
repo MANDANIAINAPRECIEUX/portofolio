@@ -11,14 +11,35 @@ import {
 
 interface FooterProps {
   isDarkMode: boolean;
+  language: "fr" | "en";
 }
 
-const Footer = ({ isDarkMode }: FooterProps) => {
+const Footer = ({ isDarkMode, language }: FooterProps) => {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const currentYear = new Date().getFullYear();
+
+  // Traductions
+  const translations = {
+    fr: {
+      tagline: "Développeur Full-Stack • Expert E-Health",
+      copyright: "tout droits reservé",
+      madeWith: "Fait avec",
+      location: "à Madagascar",
+      backToTop: "Retour en haut",
+    },
+    en: {
+      tagline: "Full-Stack Developer • E-Health Expert",
+      copyright: "all rights reserved",
+      madeWith: "Made with",
+      location: "in Madagascar",
+      backToTop: "Back to top",
+    },
+  };
+
+  const t = translations[language];
 
   return (
     <footer className="relative w-full mt-20 border-t border-white/10 bg-gradient-to-b from-[#0a1f2e] to-[#000000]">
@@ -69,7 +90,7 @@ const Footer = ({ isDarkMode }: FooterProps) => {
                 Mandaniaina
               </h3>
               <p className="text-white/60 text-xs sm:text-sm md:text-base">
-                Développeur Full-Stack • Expert E-Health
+                {t.tagline}
               </p>
             </div>
           </div>
@@ -77,7 +98,7 @@ const Footer = ({ isDarkMode }: FooterProps) => {
           {/* Réseaux sociaux */}
           <div className="flex items-center gap-3 sm:gap-4">
             <a
-              href="https://github.com/yourusername"
+              href="https://github.com/MANDANIAINAPRECIEUX"
               target="_blank"
               rel="noopener noreferrer"
               className={`
@@ -95,7 +116,7 @@ const Footer = ({ isDarkMode }: FooterProps) => {
             </a>
 
             <a
-              href="https://linkedin.com/in/yourusername"
+              href="https://linkedin.com/in/andriamiarison-mandaniaina-precieux"
               target="_blank"
               rel="noopener noreferrer"
               className={`
@@ -150,11 +171,11 @@ const Footer = ({ isDarkMode }: FooterProps) => {
           {/* Copyright */}
           <p className="text-white/60 text-sm sm:text-base md:text-lg flex flex-wrap items-center justify-center gap-2">
             <span className="whitespace-nowrap">
-              © {currentYear} tout droits reservé{" "}
+              © {currentYear} {t.copyright}{" "}
             </span>
             <span className="hidden sm:inline">•</span>
             <span className="flex items-center gap-2 whitespace-nowrap">
-              Fait avec
+              {t.madeWith}
               <Brain
                 className={`
                   w-4 h-4 sm:w-5 sm:h-5 animate-pulse transition-colors duration-700
@@ -162,7 +183,7 @@ const Footer = ({ isDarkMode }: FooterProps) => {
                 `}
                 fill="currentColor"
               />
-              à Madagascar
+              {t.location}
             </span>
           </p>
         </div>
@@ -180,7 +201,7 @@ const Footer = ({ isDarkMode }: FooterProps) => {
               : "bg-gradient-to-r from-purple-500 to-violet-600 hover:from-purple-600 hover:to-violet-700 shadow-purple-500/30 hover:shadow-2xl hover:shadow-purple-500/50"
           }
         `}
-        aria-label="Retour en haut"
+        aria-label={t.backToTop}
       >
         <ArrowUp className="w-5 h-5 sm:w-6 sm:h-6 group-hover:animate-bounce" />
       </button>
