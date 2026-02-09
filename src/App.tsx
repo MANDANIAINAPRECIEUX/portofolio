@@ -13,6 +13,7 @@ import Contact from "./components/Contact";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [language, setLanguage] = useState<"fr" | "en">("fr");
 
   return (
     <div
@@ -36,18 +37,26 @@ function App() {
 
       {/* Content */}
       <div className="relative z-40 flex flex-col">
-        <Navbar isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+        <Navbar
+          isDarkMode={isDarkMode}
+          setIsDarkMode={setIsDarkMode}
+          language={language}
+          setLanguage={setLanguage}
+        />
 
         {/* HERO SECTION - ID pour navigation */}
         <main id="home" className="min-h-screen flex items-center">
           <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-12 lg:px-20 py-10 md:py-16">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10 lg:gap-16">
-              <Corps isDarkMode={isDarkMode} />
+              <Corps isDarkMode={isDarkMode} language={language} />
               <Mon_photo isDarkMode={isDarkMode} />
 
               {/* Fleche "Découvrir" */}
               <div className="col-span-full flex justify-center mt-8 md:mt-12">
-                <Fleche name="Découvrir"  />
+                <Fleche
+                  name={language === "fr" ? "Découvrir" : "Discover"}
+                  isDarkMode={isDarkMode}
+                />
               </div>
             </div>
           </div>
@@ -55,36 +64,43 @@ function App() {
 
         {/* Sections avec IDs pour navigation */}
         <section id="about" className="w-full">
-          <About isDarkMode={isDarkMode} />
+          <About isDarkMode={isDarkMode} language={language} />
         </section>
 
         <section id="projets" className="w-full mt-8 md:mt-12 lg:mt-16">
-          <Triage isDarkMode={isDarkMode} />
+          <Triage isDarkMode={isDarkMode} language={language} />
         </section>
 
         {/* Fleche "DISCUTTONS" */}
         <div className="w-full flex justify-center mt-12 md:mt-16 lg:mt-20">
-          <Fleche name="DISCUTTONS DE VOTRE PROJET"  />
+          <Fleche
+            name={
+              language === "fr"
+                ? "DISCUTTONS DE VOTRE PROJET"
+                : "LET'S DISCUSS YOUR PROJECT"
+            }
+            isDarkMode={isDarkMode}
+          />
         </div>
 
         <section id="parcours" className="w-full mt-8 md:mt-12 lg:mt-16">
-          <Diplomes isDarkMode={isDarkMode} />
+          <Diplomes isDarkMode={isDarkMode} language={language} />
           <div className="mt-8 md:mt-12">
-            <Experiences isDarkMode={isDarkMode} />
+            <Experiences isDarkMode={isDarkMode} language={language} />
           </div>
         </section>
 
         <section id="technologies" className="w-full mt-8 md:mt-12 lg:mt-16">
-          <Technologies isDarkMode={isDarkMode} />
+          <Technologies isDarkMode={isDarkMode} language={language} />
         </section>
 
         <section id="contact" className="w-full mt-8 md:mt-12 lg:mt-16">
-          <Contact isDarkMode={isDarkMode} />
+          <Contact isDarkMode={isDarkMode} language={language} />
         </section>
 
         {/* Espace avant footer */}
         <div className="mt-16 md:mt-24">
-          <Footer isDarkMode={isDarkMode} />
+          <Footer isDarkMode={isDarkMode} language={language} />
         </div>
       </div>
     </div>

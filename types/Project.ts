@@ -1,10 +1,12 @@
+
 const PROJECTS: Project[] = [
-  // 🔥 PROJETS 1-6 (existants améliorés)
   {
     id: 1,
     title: "Portfolio Personnel v2",
-    description:
-      "Site web ultra-moderne avec animations 3D, PWA, mode sombre/clair adaptatif, SEO optimisé et performances Lighthouse 100%.",
+    description: {
+      fr: "Site web ultra-moderne avec animations 3D, PWA, mode sombre/clair adaptatif, SEO optimisé et performances Lighthouse 100%.",
+      en: "Ultra-modern website with 3D animations, PWA, adaptive dark/light mode, optimized SEO and 100% Lighthouse performance.",
+    },
     year: 2026,
     type: "Web",
     technologies: ["React", "Next.js 15", "Tailwind CSS", "Framer Motion"],
@@ -16,7 +18,10 @@ const PROJECTS: Project[] = [
   {
     id: 2,
     title: "smartRide",
-    description: "service de transport d'ecolier en ligne",
+    description: {
+      fr: "Service de transport d'écolier en ligne",
+      en: "Online school transportation service",
+    },
     year: 2025,
     type: "Web",
     technologies: ["Next.js", "PostgreSQL", "Tailwind CSS"],
@@ -28,7 +33,10 @@ const PROJECTS: Project[] = [
   {
     id: 3,
     title: "DME dentaire",
-    description: "Dossier Medical Electronique dentaire",
+    description: {
+      fr: "Dossier Médical Électronique dentaire",
+      en: "Dental Electronic Medical Record",
+    },
     year: 2025,
     type: "Mobile",
     technologies: ["React Native", "Expo", "PostgreSQL", "Tailwind CSS"],
@@ -40,8 +48,10 @@ const PROJECTS: Project[] = [
   {
     id: 4,
     title: "Pytorch-Tutorial",
-    description:
-      "Code tutoriel destiné aux chercheurs en apprentissage profond pour apprendre PyTorch",
+    description: {
+      fr: "Code tutoriel destiné aux chercheurs en apprentissage profond pour apprendre PyTorch",
+      en: "Tutorial code for deep learning researchers to learn PyTorch",
+    },
     year: 2024,
     type: "IA/ML",
     technologies: ["Python", "Pytorch", "Streamlit"],
@@ -53,8 +63,10 @@ const PROJECTS: Project[] = [
   {
     id: 5,
     title: "LogInsight",
-    description:
-      "LogInsight est un outil CLI en Ruby que j'ai créé, permettant d’analyser des fichiers de logs HTTP, d’extraire des statistiques (méthodes, codes de statut, erreurs) et d’exporter les résultats en CSV et JSON.",
+    description: {
+      fr: "LogInsight est un outil CLI en Ruby que j'ai créé, permettant d'analyser des fichiers de logs HTTP, d'extraire des statistiques (méthodes, codes de statut, erreurs) et d'exporter les résultats en CSV et JSON.",
+      en: "LogInsight is a Ruby CLI tool I created to analyze HTTP log files, extract statistics (methods, status codes, errors) and export results to CSV and JSON.",
+    },
     year: 2025,
     type: "Backend",
     technologies: ["Ruby on Rails", "PostgreSQL", "Hotwire", "Stimulus"],
@@ -66,8 +78,10 @@ const PROJECTS: Project[] = [
   {
     id: 6,
     title: "/manda_analyzer_ruby_text",
-    description:
-      "Un petit outil CLI en Ruby pour analyser des fichiers texte, rechercher des mots, détecter la langue et même repérer des tableaux.",
+    description: {
+      fr: "Un petit outil CLI en Ruby pour analyser des fichiers texte, rechercher des mots, détecter la langue et même repérer des tableaux.",
+      en: "A small Ruby CLI tool to analyze text files, search for words, detect language and even identify tables.",
+    },
     year: 2025,
     type: "Backend",
     technologies: ["Ruby"],
@@ -76,12 +90,13 @@ const PROJECTS: Project[] = [
     video: "https://www.youtube.com/embed/example5",
     mode: "Freelance",
   },
-
-  // 🔥 NOUVEAUX PROJETS 7-12
   {
     id: 7,
     title: "projet_covoiturage",
-    description: "projet scolaire de gestion d'un plateforme de covoiturage ",
+    description: {
+      fr: "Projet scolaire de gestion d'une plateforme de covoiturage",
+      en: "School project for managing a carpooling platform",
+    },
     year: 2025,
     type: "Web",
     technologies: ["Next.js", "Node.js", "MySql"],
@@ -93,7 +108,10 @@ const PROJECTS: Project[] = [
   {
     id: 8,
     title: "calculator-app",
-    description: "remise à jour d'un projet de calculatrice simple",
+    description: {
+      fr: "Remise à jour d'un projet de calculatrice simple",
+      en: "Updated version of a simple calculator project",
+    },
     year: 2025,
     type: "Web",
     technologies: ["HTML", "CSS", "JavaScript"],
@@ -105,8 +123,10 @@ const PROJECTS: Project[] = [
   {
     id: 9,
     title: "Buanderie-express",
-    description:
-      "sevice de buanderie en ligne: repassage, nettoyage de divers types de linges et de vetements",
+    description: {
+      fr: "Service de buanderie en ligne: repassage, nettoyage de divers types de linges et de vêtements",
+      en: "Online laundry service: ironing, cleaning of various types of linens and clothing",
+    },
     year: 2025,
     type: "Web",
     technologies: ["Nest.js", "PostgreSql", "Tailwind"],
@@ -115,49 +135,15 @@ const PROJECTS: Project[] = [
     video: "https://www.youtube.com/embed/example8",
     mode: "Personnel",
   },
-
-  // {
-  //   id: 16,
-  //   title: "Marketplace Freelance Santé",
-  //   description: "Plateforme matching médecins/patients avec géolocalisation, calendriers intelligents, Stripe + IA matching.",
-  //   year: 2026,
-  //   type: "Web",
-  //   technologies: ["Next.js", "Prisma", "Supabase", "Stripe"],
-  //   link: "https://example.com",
-  //   github: "https://github.com/username/health-marketplace",
-  //   video: "https://www.youtube.com/embed/example15",
-  //   mode: "Personnel",
-  // },
-  // {
-  //   id: 17,
-  //   title: "Simulateur Épidémies",
-  //   description: "Modèle SIR + agent-based pour simulation épidémies Madagascar avec interface interactive + export rapports.",
-  //   year: 2025,
-  //   type: "IA/ML",
-  //   technologies: ["Python", "Plotly Dash", "NetworkX"],
-  //   link: "https://example.com",
-  //   github: "https://github.com/username/epidemic-simulator",
-  //   video: "https://www.youtube.com/embed/example16",
-  //   mode: "Académique",
-  // },
-  // {
-  //   id: 18,
-  //   title: "OCR Ordonnances Malgaches",
-  //   description: "Vision IA pour extraction automatique données ordonnances manuelles (fr/malgache) + validation pharmacie.",
-  //   year: 2026,
-  //   type: "IA/ML",
-  //   technologies: ["Tesseract", "PaddleOCR", "FastAPI", "React"],
-  //   link: "https://example.com",
-  //   github: "https://github.com/username/prescription-ocr",
-  //   video: "https://www.youtube.com/embed/example17",
-  //   mode: "Freelance",
-  // },
 ];
 
 export type Project = {
   id: number;
   title: string;
-  description: string;
+  description: {
+    fr: string;
+    en: string;
+  };
   year: number;
   type: "Web" | "Backend" | "Mobile" | "IA/ML" | "IoT";
   technologies: string[];
@@ -166,5 +152,8 @@ export type Project = {
   video: string;
   mode: "Personnel" | "Stage" | "Freelance" | "Académique" | "Recherche";
 };
+
+
+
 
 export default PROJECTS;

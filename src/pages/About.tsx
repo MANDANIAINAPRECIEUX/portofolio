@@ -2,9 +2,90 @@ import { User } from "lucide-react";
 
 interface AboutProps {
   isDarkMode: boolean;
+  language: "fr" | "en";
 }
 
-const About = ({ isDarkMode }: AboutProps) => {
+const About = ({ isDarkMode, language }: AboutProps) => {
+  // Traductions
+  const translations = {
+    fr: {
+      title: "À propos",
+      subtitle: "Qui suis-je ?",
+      paragraph1: {
+        start: "Basé à",
+        location: "Madagascar",
+        middle: ", je suis diplômé en informatique et développeur",
+        role: "full-stack",
+        end: "passionné par les technologies du web.",
+      },
+      paragraph2: {
+        start:
+          "Je conçois des applications complètes, du backend au frontend, avec un fort accent sur la",
+        quality: "qualité du code",
+        middle: "et l'",
+        experience: "expérience utilisateur",
+        end: ".",
+      },
+      paragraph3: {
+        start: "Issu d'une première carrière en",
+        career: "chirurgie dentaire",
+        middle: ", ma reconversion en ingénierie informatique m'a apporté",
+        rigor: "rigueur",
+        and: "et",
+        detail: "sens du détail",
+        end: ".",
+      },
+      paragraph4:
+        "Curieux et en apprentissage continu, j'aime automatiser, optimiser et développer des solutions fiables et évolutives.",
+      stats: {
+        experience: "Années d'exp.",
+        projects: "Projets réalisés",
+        technologies: "Technologies",
+      },
+      downloadCV: "Télécharger mon CV",
+      cvFile: "/Doc/cv_precieux_fr.pdf",
+    },
+    en: {
+      title: "About",
+      subtitle: "Who am I?",
+      paragraph1: {
+        start: "Based in",
+        location: "Madagascar",
+        middle: ", I'm a computer science graduate and",
+        role: "full-stack",
+        end: "developer passionate about web technologies.",
+      },
+      paragraph2: {
+        start:
+          "I design complete applications, from backend to frontend, with a strong focus on",
+        quality: "code quality",
+        middle: "and ",
+        experience: "user experience",
+        end: ".",
+      },
+      paragraph3: {
+        start: "Coming from a first career in",
+        career: "dental surgery",
+        middle: ", my transition to software engineering has brought me",
+        rigor: "rigor",
+        and: "and",
+        detail: "attention to detail",
+        end: ".",
+      },
+      paragraph4:
+        "Curious and continuously learning, I enjoy automating, optimizing and developing reliable and scalable solutions.",
+      stats: {
+        experience: "Years of exp.",
+        projects: "Projects completed",
+        technologies: "Technologies",
+      },
+      downloadCV: "Download my CV",
+      cvFile: "/Doc/cv_precieux_en.pdf",
+    },
+  };
+
+  const t = translations[language];
+
   return (
     <div className="w-full py-12 md:py-16 lg:py-20">
       {/* Conteneur principal */}
@@ -30,7 +111,7 @@ const About = ({ isDarkMode }: AboutProps) => {
                   ${isDarkMode ? "text-pink-400" : "text-purple-400"}
                 `}
               />
-              À propos
+              {t.title}
             </span>
           </h2>
 
@@ -175,7 +256,7 @@ const About = ({ isDarkMode }: AboutProps) => {
                         }
                       `}
                     >
-                      Qui suis-je ?
+                      {t.subtitle}
                     </h3>
                     <div
                       className={`
@@ -193,18 +274,18 @@ const About = ({ isDarkMode }: AboutProps) => {
                   {/* Paragraphes */}
                   <div className="space-y-3 md:space-y-4 text-sm sm:text-base md:text-lg leading-relaxed text-[#f1f1f1]/90">
                     <p>
-                      Basé à{" "}
+                      {t.paragraph1.start}{" "}
                       <span
                         className={`
                           font-semibold transition-colors duration-700
                           ${isDarkMode ? "text-pink-300" : "text-purple-300"}
                         `}
                       >
-                        Madagascar
+                        {t.paragraph1.location}
                       </span>
-                      , je suis diplômé en informatique et développeur{" "}
+                      {t.paragraph1.middle}{" "}
                       <span className="font-semibold text-white relative group/word">
-                        full-stack
+                        {t.paragraph1.role}
                         <span
                           className={`
                             absolute bottom-0 left-0 w-0 h-0.5 group-hover/word:w-full
@@ -217,55 +298,54 @@ const About = ({ isDarkMode }: AboutProps) => {
                           `}
                         ></span>
                       </span>{" "}
-                      passionné par les technologies du web.
+                      {t.paragraph1.end}
                     </p>
 
                     <p>
-                      Je conçois des applications complètes, du backend au
-                      frontend, avec un fort accent sur la{" "}
+                      {t.paragraph2.start}{" "}
                       <span
                         className={`
                           font-medium transition-colors duration-700
                           ${isDarkMode ? "text-pink-300" : "text-purple-300"}
                         `}
                       >
-                        qualité du code
+                        {t.paragraph2.quality}
                       </span>{" "}
-                      et l'
+                      {t.paragraph2.middle}
                       <span
                         className={`
                           font-medium transition-colors duration-700
                           ${isDarkMode ? "text-pink-300" : "text-purple-300"}
                         `}
                       >
-                        expérience utilisateur
+                        {t.paragraph2.experience}
                       </span>
-                      .
+                      {t.paragraph2.end}
                     </p>
 
                     <p>
-                      Issu d'une première carrière en{" "}
+                      {t.paragraph3.start}{" "}
                       <span
                         className={`
                           font-medium transition-colors duration-700
                           ${isDarkMode ? "text-rose-400" : "text-[#5B9BD5]"}
                         `}
                       >
-                        chirurgie dentaire
+                        {t.paragraph3.career}
                       </span>
-                      , ma reconversion en ingénierie informatique m'a apporté{" "}
-                      <span className="font-semibold text-white">rigueur</span>{" "}
-                      et{" "}
+                      {t.paragraph3.middle}{" "}
                       <span className="font-semibold text-white">
-                        sens du détail
+                        {t.paragraph3.rigor}
+                      </span>{" "}
+                      {t.paragraph3.and}{" "}
+                      <span className="font-semibold text-white">
+                        {t.paragraph3.detail}
                       </span>
-                      .
+                      {t.paragraph3.end}
                     </p>
 
                     <p className="text-[#f1f1f1]/80 italic text-xs sm:text-sm md:text-base">
-                      Curieux et en apprentissage continu, j'aime automatiser,
-                      optimiser et développer des solutions fiables et
-                      évolutives.
+                      {t.paragraph4}
                     </p>
                   </div>
 
@@ -282,7 +362,7 @@ const About = ({ isDarkMode }: AboutProps) => {
                         3+
                       </div>
                       <div className="text-[10px] sm:text-xs md:text-sm text-white/60 mt-1">
-                        Années d'exp.
+                        {t.stats.experience}
                       </div>
                     </div>
                     <div className="text-center">
@@ -296,7 +376,7 @@ const About = ({ isDarkMode }: AboutProps) => {
                         35+
                       </div>
                       <div className="text-[10px] sm:text-xs md:text-sm text-white/60 mt-1">
-                        Projets réalisés
+                        {t.stats.projects}
                       </div>
                     </div>
                     <div className="text-center">
@@ -310,7 +390,7 @@ const About = ({ isDarkMode }: AboutProps) => {
                         10+
                       </div>
                       <div className="text-[10px] sm:text-xs md:text-sm text-white/60 mt-1">
-                        Technologies
+                        {t.stats.technologies}
                       </div>
                     </div>
                   </div>
@@ -320,8 +400,8 @@ const About = ({ isDarkMode }: AboutProps) => {
               {/* Bouton CV */}
               <div className="mt-8 md:mt-10 lg:mt-12 flex justify-center">
                 <a
-                  href="/Doc/cv_precieux_fr.pdf"
-                  download="CV_Mandaniaina_Precieux.pdf"
+                  href={t.cvFile}
+                  download={`CV_Mandaniaina_Precieux_${language.toUpperCase()}.pdf`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`
@@ -352,7 +432,7 @@ const About = ({ isDarkMode }: AboutProps) => {
                         d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                       />
                     </svg>
-                    Télécharger mon CV
+                    {t.downloadCV}
                   </span>
                 </a>
               </div>

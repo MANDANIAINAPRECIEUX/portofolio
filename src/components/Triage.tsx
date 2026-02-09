@@ -21,9 +21,10 @@ type SortOrder = "asc" | "desc";
 
 interface ProjectListProps {
   isDarkMode: boolean;
+  language: "fr" | "en";
 }
 
-const ProjectList = ({ isDarkMode }: ProjectListProps) => {
+const ProjectList = ({ isDarkMode, language }: ProjectListProps) => {
   const [showProjects, setShowProjects] = useState(true);
   const [groupBy, setGroupBy] = useState<GroupBy>("year");
   const [sortOrder, setSortOrder] = useState<SortOrder>("desc");
@@ -34,6 +35,46 @@ const ProjectList = ({ isDarkMode }: ProjectListProps) => {
   const [carouselStates, setCarouselStates] = useState<
     Record<string, { current: number; totalSlides: number }>
   >({});
+
+  // Traductions
+  const translations = {
+    fr: {
+      title: "Mes Projets",
+      hide: "Masquer",
+      showProjects: "MES PROJETS",
+      groupBy: "Grouper par :",
+      year: "Année",
+      type: "Type",
+      orderDesc: "Plus récent",
+      orderAsc: "Plus ancien",
+      project: "projet",
+      projects: "projets",
+      demo: "Démo",
+      code: "Code",
+      site: "Site",
+      close: "Fermer",
+      videoTitle: "Démo du projet",
+    },
+    en: {
+      title: "My Projects",
+      hide: "Hide",
+      showProjects: "MY PROJECTS",
+      groupBy: "Group by:",
+      year: "Year",
+      type: "Type",
+      orderDesc: "Most recent",
+      orderAsc: "Oldest",
+      project: "project",
+      projects: "projects",
+      demo: "Demo",
+      code: "Code",
+      site: "Site",
+      close: "Close",
+      videoTitle: "Project demo",
+    },
+  };
+
+  const t = translations[language];
 
   // 🔥 RESPONSIVE: Calculer slidesPerView selon la largeur d'écran
   useEffect(() => {
@@ -172,7 +213,7 @@ const ProjectList = ({ isDarkMode }: ProjectListProps) => {
               onClick={() => setSelectedVideo(null)}
               className="absolute -top-10 sm:-top-14 right-0 flex items-center gap-2 text-white hover:text-red-400 text-base sm:text-lg font-semibold transition-colors duration-300"
             >
-              <span>✕ Fermer</span>
+              <span>✕ {t.close}</span>
             </button>
             <div
               className={`
@@ -186,7 +227,7 @@ const ProjectList = ({ isDarkMode }: ProjectListProps) => {
                 className="absolute inset-0 w-full h-full"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
-                title="Démo du projet"
+                title={t.videoTitle}
               />
             </div>
           </div>
@@ -213,7 +254,7 @@ const ProjectList = ({ isDarkMode }: ProjectListProps) => {
           >
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             <Briefcase className="w-5 h-5 sm:w-7 sm:h-7 group-hover:rotate-12 transition-transform duration-300" />
-            <span className="relative z-10">MES PROJETS</span>
+            <span className="relative z-10">{t.showProjects}</span>
             <ChevronDown className="w-5 h-5 sm:w-6 sm:h-6 group-hover:translate-y-1 transition-transform duration-300" />
           </button>
         </div>
@@ -244,7 +285,7 @@ const ProjectList = ({ isDarkMode }: ProjectListProps) => {
                       ${isDarkMode ? "text-pink-400" : "text-purple-400"}
                     `}
                   />
-                  Mes Projets
+                  {t.title}
                 </span>
               </h2>
             </div>
@@ -256,7 +297,7 @@ const ProjectList = ({ isDarkMode }: ProjectListProps) => {
                 onClick={() => setShowProjects(false)}
                 className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-[#f1f1f1] text-sm font-medium transition-all duration-300 hover:scale-105"
               >
-                Masquer
+                {t.hide}
               </button>
             </div>
           </div>
@@ -267,7 +308,7 @@ const ProjectList = ({ isDarkMode }: ProjectListProps) => {
               {/* Grouper par */}
               <div className="flex flex-wrap items-center justify-center gap-2">
                 <span className="text-xs sm:text-sm font-medium text-[#f1f1f1]/80">
-                  Grouper par :
+                  {t.groupBy}
                 </span>
                 <button
                   type="button"
@@ -284,7 +325,7 @@ const ProjectList = ({ isDarkMode }: ProjectListProps) => {
                     }
                   `}
                 >
-                  <Calendar className="w-3 h-3 sm:w-4 sm:h-4" /> Année
+                  <Calendar className="w-3 h-3 sm:w-4 sm:h-4" /> {t.year}
                 </button>
                 <button
                   type="button"
@@ -301,7 +342,7 @@ const ProjectList = ({ isDarkMode }: ProjectListProps) => {
                     }
                   `}
                 >
-                  <Folder className="w-3 h-3 sm:w-4 sm:h-4" /> Type
+                  <Folder className="w-3 h-3 sm:w-4 sm:h-4" /> {t.type}
                 </button>
               </div>
 
@@ -315,12 +356,12 @@ const ProjectList = ({ isDarkMode }: ProjectListProps) => {
               >
                 {sortOrder === "desc" ? (
                   <>
-                    <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" /> Plus
-                    récent
+                    <ChevronDown className="w-3 h-3 sm:w-4 sm:h-4" />{" "}
+                    {t.orderDesc}
                   </>
                 ) : (
                   <>
-                    <ChevronUp className="w-3 h-3 sm:w-4 sm:h-4" /> Plus ancien
+                    <ChevronUp className="w-3 h-3 sm:w-4 sm:h-4" /> {t.orderAsc}
                   </>
                 )}
               </button>
@@ -389,7 +430,8 @@ const ProjectList = ({ isDarkMode }: ProjectListProps) => {
                         }
                       `}
                     >
-                      {projects.length} projet{projects.length > 1 ? "s" : ""}
+                      {projects.length}{" "}
+                      {projects.length > 1 ? t.projects : t.project}
                     </span>
                   </div>
 
@@ -416,6 +458,7 @@ const ProjectList = ({ isDarkMode }: ProjectListProps) => {
                                   groupBy={groupBy}
                                   onVideoClick={setSelectedVideo}
                                   isDarkMode={isDarkMode}
+                                  language={language}
                                 />
                               ))}
                             </div>
@@ -426,7 +469,9 @@ const ProjectList = ({ isDarkMode }: ProjectListProps) => {
                       {/* FLÈCHES CAROUSEL */}
                       <button
                         type="button"
-                        aria-label="Précédent"
+                        aria-label={
+                          language === "fr" ? "Précédent" : "Previous"
+                        }
                         onClick={() => goToSlide(group, "prev", totalSlides)}
                         disabled={currentSlide === 0}
                         className={`
@@ -445,7 +490,7 @@ const ProjectList = ({ isDarkMode }: ProjectListProps) => {
                       </button>
                       <button
                         type="button"
-                        aria-label="Suivant"
+                        aria-label={language === "fr" ? "Suivant" : "Next"}
                         onClick={() => goToSlide(group, "next", totalSlides)}
                         disabled={currentSlide === totalSlides - 1}
                         className={`
@@ -468,7 +513,7 @@ const ProjectList = ({ isDarkMode }: ProjectListProps) => {
                         {Array.from({ length: totalSlides }).map((_, i) => (
                           <button
                             type="button"
-                            aria-label={`Aller à la slide ${i + 1}`}
+                            aria-label={`${language === "fr" ? "Aller à la slide" : "Go to slide"} ${i + 1}`}
                             key={i}
                             onClick={() =>
                               setCarouselStates((prev) => ({
@@ -505,6 +550,7 @@ const ProjectList = ({ isDarkMode }: ProjectListProps) => {
                             groupBy={groupBy}
                             onVideoClick={setSelectedVideo}
                             isDarkMode={isDarkMode}
+                            language={language}
                           />
                         ))}
                       </div>
@@ -526,109 +572,119 @@ const ProjectCard = ({
   groupBy,
   onVideoClick,
   isDarkMode,
+  language,
 }: {
   project: Project;
   groupBy: GroupBy;
   onVideoClick: (video: string) => void;
   isDarkMode: boolean;
-}) => (
-  <div
-    className={`
-      group relative p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl 
-      bg-gradient-to-br from-[#093540]/40 to-[#526687]/20
-      border-2 backdrop-blur-sm shadow-2xl
-      transition-all duration-700 hover:scale-[1.03]
-      flex flex-col w-full
-      min-h-[350px] sm:min-h-[380px] md:min-h-[420px]
-      ${
-        isDarkMode
-          ? "border-pink-500/30 hover:border-pink-400/50 hover:shadow-pink-500/20"
-          : "border-[#5B9BD5]/30 hover:border-purple-400/50 hover:shadow-purple-500/20"
-      }
-    `}
-  >
+  language: "fr" | "en";
+}) => {
+  const t = {
+    fr: { demo: "Démo", code: "Code", site: "Site" },
+    en: { demo: "Demo", code: "Code", site: "Site" },
+  }[language];
+
+  return (
     <div
       className={`
-        absolute top-3 sm:top-4 right-3 sm:right-4 px-2 py-1 rounded-lg
-        text-[10px] sm:text-xs font-bold transition-colors duration-700
+        group relative p-4 sm:p-5 md:p-6 rounded-xl sm:rounded-2xl 
+        bg-gradient-to-br from-[#093540]/40 to-[#526687]/20
+        border-2 backdrop-blur-sm shadow-2xl
+        transition-all duration-700 hover:scale-[1.03]
+        flex flex-col w-full
+        min-h-[350px] sm:min-h-[380px] md:min-h-[420px]
         ${
           isDarkMode
-            ? "bg-pink-500/20 text-pink-400"
-            : "bg-purple-500/20 text-purple-400"
+            ? "border-pink-500/30 hover:border-pink-400/50 hover:shadow-pink-500/20"
+            : "border-[#5B9BD5]/30 hover:border-purple-400/50 hover:shadow-purple-500/20"
         }
       `}
     >
-      {groupBy === "year" ? project.type : project.year}
+      <div
+        className={`
+          absolute top-3 sm:top-4 right-3 sm:right-4 px-2 py-1 rounded-lg
+          text-[10px] sm:text-xs font-bold transition-colors duration-700
+          ${
+            isDarkMode
+              ? "bg-pink-500/20 text-pink-400"
+              : "bg-purple-500/20 text-purple-400"
+          }
+        `}
+      >
+        {groupBy === "year" ? project.type : project.year}
+      </div>
+
+      <h4 className="text-base sm:text-lg md:text-xl font-bold text-[#f1f1f1] mb-2 sm:mb-3 pr-12 sm:pr-16 line-clamp-2">
+        {project.title}
+      </h4>
+
+      {/* 🔥 CORRECTION ICI: Accès à project.description[language] */}
+      <p className="text-xs sm:text-sm text-[#f1f1f1]/70 mb-3 sm:mb-4 flex-1 line-clamp-3 sm:line-clamp-4 overflow-hidden">
+        {project.description[language]}
+      </p>
+
+      <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4 max-h-[60px] sm:max-h-[68px] overflow-hidden">
+        {project.technologies.map((tech) => (
+          <span
+            key={tech}
+            className="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md bg-[#8497bf]/20 text-[#8497bf] text-[10px] sm:text-xs font-medium h-fit"
+          >
+            {tech}
+          </span>
+        ))}
+      </div>
+
+      <div className="flex flex-col sm:flex-row gap-2 mt-auto">
+        {project.video && (
+          <button
+            onClick={() => onVideoClick(project.video!)}
+            className={`
+              flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 rounded-lg
+              text-white text-xs sm:text-sm font-semibold
+              transition-all duration-700 hover:scale-105 hover:shadow-lg
+              ${
+                isDarkMode
+                  ? "bg-pink-500/90 hover:bg-pink-600 hover:shadow-pink-500/30"
+                  : "bg-purple-500/90 hover:bg-violet-600 hover:shadow-purple-500/30"
+              }
+            `}
+          >
+            <Play className="w-3 h-3 sm:w-4 sm:h-4" /> {t.demo}
+          </button>
+        )}
+        {project.github && (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 rounded-lg bg-gray-700/90 hover:bg-gray-800 text-white text-xs sm:text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
+          >
+            <Github className="w-3 h-3 sm:w-4 sm:h-4" /> {t.code}
+          </a>
+        )}
+        {project.link && (
+          <a
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`
+              flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 rounded-lg
+              text-white text-xs sm:text-sm font-semibold
+              transition-all duration-700 hover:scale-105 hover:shadow-lg
+              ${
+                isDarkMode
+                  ? "bg-rose-500 hover:bg-rose-600"
+                  : "bg-[#5B9BD5] hover:bg-[#4682B4]"
+              }
+            `}
+          >
+            <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" /> {t.site}
+          </a>
+        )}
+      </div>
     </div>
-
-    <h4 className="text-base sm:text-lg md:text-xl font-bold text-[#f1f1f1] mb-2 sm:mb-3 pr-12 sm:pr-16 line-clamp-2">
-      {project.title}
-    </h4>
-
-    <p className="text-xs sm:text-sm text-[#f1f1f1]/70 mb-3 sm:mb-4 flex-1 line-clamp-3 sm:line-clamp-4 overflow-hidden">
-      {project.description}
-    </p>
-
-    <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4 max-h-[60px] sm:max-h-[68px] overflow-hidden">
-      {project.technologies.map((tech) => (
-        <span
-          key={tech}
-          className="px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-md bg-[#8497bf]/20 text-[#8497bf] text-[10px] sm:text-xs font-medium h-fit"
-        >
-          {tech}
-        </span>
-      ))}
-    </div>
-
-    <div className="flex flex-col sm:flex-row gap-2 mt-auto">
-      {project.video && (
-        <button
-          onClick={() => onVideoClick(project.video!)}
-          className={`
-            flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 rounded-lg
-            text-white text-xs sm:text-sm font-semibold
-            transition-all duration-700 hover:scale-105 hover:shadow-lg
-            ${
-              isDarkMode
-                ? "bg-pink-500/90 hover:bg-pink-600 hover:shadow-pink-500/30"
-                : "bg-purple-500/90 hover:bg-violet-600 hover:shadow-purple-500/30"
-            }
-          `}
-        >
-          <Play className="w-3 h-3 sm:w-4 sm:h-4" /> Démo
-        </button>
-      )}
-      {project.github && (
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 rounded-lg bg-gray-700/90 hover:bg-gray-800 text-white text-xs sm:text-sm font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
-        >
-          <Github className="w-3 h-3 sm:w-4 sm:h-4" /> Code
-        </a>
-      )}
-      {project.link && (
-        <a
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={`
-            flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2 sm:py-2.5 rounded-lg
-            text-white text-xs sm:text-sm font-semibold
-            transition-all duration-700 hover:scale-105 hover:shadow-lg
-            ${
-              isDarkMode
-                ? "bg-rose-500 hover:bg-rose-600"
-                : "bg-[#5B9BD5] hover:bg-[#4682B4]"
-            }
-          `}
-        >
-          <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" /> Site
-        </a>
-      )}
-    </div>
-  </div>
-);
+  );
+};
 
 export default ProjectList;

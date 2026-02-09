@@ -2,9 +2,82 @@ import { GraduationCap, Award, BookOpen, Calendar } from "lucide-react";
 
 interface DiplomesProps {
   isDarkMode: boolean;
+  language: "fr" | "en";
 }
 
-const Diplomes = ({ isDarkMode }: DiplomesProps) => {
+const Diplomes = ({ isDarkMode, language }: DiplomesProps) => {
+  // Traductions
+  const translations = {
+    fr: {
+      title: "Parcours Académique",
+      inProgress: "En cours",
+      computerScience: "Informatique & Technologies",
+      healthScience: "Santé & Sciences Médicales",
+      certifications: "Certifications Professionnelles",
+      
+      // Informatique
+      m2Title: "M2 en Informatique Générale",
+      m2School: "École Nationale d'Informatique (ENI) - Fianarantsoa",
+      m2Description: "Master d'ingénierie en systèmes informatiques avancés et Intelligence Artificiel.",
+      
+      licenceTitle: "Licence en Informatique",
+      licenceSchool: "École Nationale d'Informatique (ENI) - Fianarantsoa",
+      licenceDescription: "Spécialisation en développement full-stack et architecture applicative.",
+      
+      // Certifications
+      cert1: "Apprendre Ruby",
+      cert1Org: "Grafikart.fr - CURSA",
+      cert2: "Getting Started with DevOps on AWS",
+      cert2Org: "AWS Training & Certification",
+      cert3: "Build and Deploy APIs with Serverless CI/CD",
+      cert3Org: "AWS Training & Certification",
+      
+      // Santé
+      masterTitle: "Master en Santé Publique",
+      masterSchool: "Institut d'Odontostomatologie Tropicale de Madagascar (IOSTM)",
+      masterDescription: "Spécialisation en gestion des systèmes de santé et politiques sanitaires. Expertise en épidémiologie et santé communautaire.",
+      
+      doctoratTitle: "Doctorat en Chirurgie Dentaire",
+      doctoratSchool: "Institut d'Odontostomatologie Tropicale de Madagascar (IOSTM)",
+      doctoratDescription: "Formation médicale complète en soins et diagnostiques dentaires et chirurgie maxillo-faciale, en radiologie, orthopedie dento-faciale et prothetiques. Gestion et fonctionnement d'un cabinet dentaire.",
+    },
+    en: {
+      title: "Academic Background",
+      inProgress: "In progress",
+      computerScience: "Computer Science & Technologies",
+      healthScience: "Health & Medical Sciences",
+      certifications: "Professional Certifications",
+      
+      // Informatique
+      m2Title: "Master's Degree (M2) in General Computer Science",
+      m2School: "National School of Computer Science (ENI) - Fianarantsoa",
+      m2Description: "Engineering Master's in advanced computer systems and Artificial Intelligence.",
+      
+      licenceTitle: "Bachelor's Degree in Computer Science",
+      licenceSchool: "National School of Computer Science (ENI) - Fianarantsoa",
+      licenceDescription: "Specialization in full-stack development and application architecture.",
+      
+      // Certifications
+      cert1: "Learn Ruby",
+      cert1Org: "Grafikart.fr - CURSA",
+      cert2: "Getting Started with DevOps on AWS",
+      cert2Org: "AWS Training & Certification",
+      cert3: "Build and Deploy APIs with Serverless CI/CD",
+      cert3Org: "AWS Training & Certification",
+      
+      // Santé
+      masterTitle: "Master's Degree in Public Health",
+      masterSchool: "Institute of Tropical Odontostomatology of Madagascar (IOSTM)",
+      masterDescription: "Specialization in health systems management and health policies. Expertise in epidemiology and community health.",
+      
+      doctoratTitle: "Doctorate in Dental Surgery",
+      doctoratSchool: "Institute of Tropical Odontostomatology of Madagascar (IOSTM)",
+      doctoratDescription: "Comprehensive medical training in dental care and diagnostics, maxillofacial surgery, radiology, dentofacial orthopedics and prosthetics. Dental practice management and operations.",
+    },
+  };
+
+  const t = translations[language];
+
   return (
     <div id="parcours" className="w-full py-20">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
@@ -28,7 +101,7 @@ const Diplomes = ({ isDarkMode }: DiplomesProps) => {
                   ${isDarkMode ? "text-pink-400" : "text-purple-400"}
                 `}
               />
-              Parcours Académique
+              {t.title}
             </span>
           </h2>
 
@@ -128,7 +201,7 @@ const Diplomes = ({ isDarkMode }: DiplomesProps) => {
                   />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-white">
-                  Informatique & Technologies
+                  {t.computerScience}
                 </h3>
               </div>
 
@@ -178,12 +251,12 @@ const Diplomes = ({ isDarkMode }: DiplomesProps) => {
                       </span>
                       <span className="text-xs text-white/60 flex items-center gap-1">
                         <Calendar className="w-3 h-3" />
-                        En cours
+                        {t.inProgress}
                       </span>
                     </div>
 
                     <h4 className="text-xl md:text-2xl font-bold text-white">
-                      M2 en Informatique Générale
+                      {t.m2Title}
                     </h4>
 
                     <p
@@ -193,12 +266,11 @@ const Diplomes = ({ isDarkMode }: DiplomesProps) => {
                       `}
                     >
                       <GraduationCap className="w-5 h-5" />
-                      École Nationale d'Informatique (ENI) - Fianarantsoa
+                      {t.m2School}
                     </p>
 
                     <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                      Master d'ingénierie en systèmes informatiques avancés et
-                      Intelligence Artificiel.
+                      {t.m2Description}
                     </p>
                   </div>
                 </div>
@@ -233,7 +305,7 @@ const Diplomes = ({ isDarkMode }: DiplomesProps) => {
                     </span>
 
                     <h4 className="text-xl md:text-2xl font-bold text-white">
-                      Licence en Informatique
+                      {t.licenceTitle}
                     </h4>
 
                     <p
@@ -243,12 +315,11 @@ const Diplomes = ({ isDarkMode }: DiplomesProps) => {
                       `}
                     >
                       <GraduationCap className="w-5 h-5" />
-                      École Nationale d'Informatique (ENI) - Fianarantsoa
+                      {t.licenceSchool}
                     </p>
 
                     <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                      Spécialisation en développement full-stack et architecture
-                      applicative.
+                      {t.licenceDescription}
                     </p>
                   </div>
                 </div>
@@ -276,7 +347,7 @@ const Diplomes = ({ isDarkMode }: DiplomesProps) => {
                         `}
                       />
                       <h4 className="text-lg md:text-xl font-bold text-white">
-                        Certifications Professionnelles
+                        {t.certifications}
                       </h4>
                     </div>
 
@@ -302,10 +373,10 @@ const Diplomes = ({ isDarkMode }: DiplomesProps) => {
                           ></div>
                           <div>
                             <p className="font-semibold text-white">
-                              Apprendre Ruby
+                              {t.cert1}
                             </p>
                             <p className="text-sm text-white/60">
-                              Grafikart.fr - CURSA
+                              {t.cert1Org}
                             </p>
                           </div>
                         </div>
@@ -332,10 +403,10 @@ const Diplomes = ({ isDarkMode }: DiplomesProps) => {
                           ></div>
                           <div>
                             <p className="font-semibold text-white">
-                              Getting Started with DevOps on AWS
+                              {t.cert2}
                             </p>
                             <p className="text-sm text-white/60">
-                              AWS Training & Certification
+                              {t.cert2Org}
                             </p>
                           </div>
                         </div>
@@ -362,10 +433,10 @@ const Diplomes = ({ isDarkMode }: DiplomesProps) => {
                           ></div>
                           <div>
                             <p className="font-semibold text-white">
-                              Build and Deploy APIs with Serverless CI/CD
+                              {t.cert3}
                             </p>
                             <p className="text-sm text-white/60">
-                              AWS Training & Certification
+                              {t.cert3Org}
                             </p>
                           </div>
                         </div>
@@ -423,7 +494,7 @@ const Diplomes = ({ isDarkMode }: DiplomesProps) => {
                   />
                 </div>
                 <h3 className="text-2xl md:text-3xl font-bold text-white">
-                  Santé & Sciences Médicales
+                  {t.healthScience}
                 </h3>
               </div>
 
@@ -472,7 +543,7 @@ const Diplomes = ({ isDarkMode }: DiplomesProps) => {
                     </span>
 
                     <h4 className="text-xl md:text-2xl font-bold text-white">
-                      Master en Santé Publique
+                      {t.masterTitle}
                     </h4>
 
                     <p
@@ -482,14 +553,11 @@ const Diplomes = ({ isDarkMode }: DiplomesProps) => {
                       `}
                     >
                       <GraduationCap className="w-5 h-5" />
-                      Institut d'Odontostomatologie Tropicale de Madagascar
-                      (IOSTM)
+                      {t.masterSchool}
                     </p>
 
                     <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                      Spécialisation en gestion des systèmes de santé et
-                      politiques sanitaires. Expertise en épidémiologie et santé
-                      communautaire.
+                      {t.masterDescription}
                     </p>
                   </div>
                 </div>
@@ -524,7 +592,7 @@ const Diplomes = ({ isDarkMode }: DiplomesProps) => {
                     </span>
 
                     <h4 className="text-xl md:text-2xl font-bold text-white">
-                      Doctorat en Chirurgie Dentaire
+                      {t.doctoratTitle}
                     </h4>
 
                     <p
@@ -534,15 +602,11 @@ const Diplomes = ({ isDarkMode }: DiplomesProps) => {
                       `}
                     >
                       <GraduationCap className="w-5 h-5" />
-                      Institut d'Odontostomatologie Tropicale de Madagascar
-                      (IOSTM)
+                      {t.doctoratSchool}
                     </p>
 
                     <p className="text-white/70 text-sm md:text-base leading-relaxed">
-                      Formation médicale complète en soins et diagnostiques
-                      dentaires et chirurgie maxillo-faciale, en radiologie,
-                      orthopedie dento - faciale et prothetiques. gestion et
-                      fonctionnement d'un cabinet dentaire
+                      {t.doctoratDescription}
                     </p>
                   </div>
                 </div>

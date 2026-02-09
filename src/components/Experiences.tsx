@@ -15,71 +15,216 @@ import { useState } from "react";
 
 interface ExperiencesProps {
   isDarkMode: boolean;
+  language: "fr" | "en";
 }
 
-const Experiences = ({ isDarkMode }: ExperiencesProps) => {
+const Experiences = ({ isDarkMode, language }: ExperiencesProps) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [flippedCard, setFlippedCard] = useState<number | null>(null);
 
-  const experiences = [
-    {
-      period: "2024 - Présent",
-      title: "Développeur d'Applications E-Health",
-      company: "Bro-Coding & Projets Personnels",
-      location: "Madagascar",
-      type: "Développement Full-Stack",
-      color: "purple",
-      icon: Code,
-      missions: [
-        "Développement et maintenance d'applications full-stack pour les systèmes de santé digitale et administratifs",
-        "Participation aux revues de code, débogage et déploiement",
-        "Collaboration avec d'autres développeurs pour livrer des solutions logicielles efficaces et conviviales",
+  // Traductions complètes
+  const translations = {
+    fr: {
+      title: "Expériences Professionnelles",
+      subtitle: "Plus de",
+      years: "13 ans d'expérience",
+      subtitleEnd: "combinant expertise médicale, gestion de projet et développement logiciel",
+      mainMissions: "Missions principales",
+      statsTitle: "En chiffres",
+      clickInstruction: "👆 Appuyez sur une carte pour voir les détails",
+      hoverDetails: "Survolez pour détails ›",
+      tapDetails: "Appuyez pour détails ›",
+      
+      // Stats
+      yearsExp: "Années d'expérience",
+      careerPath: "Parcours professionnel",
+      total: "Total",
+      health2013: "Santé (2013)",
+      it2024: "Informatique (2024)",
+      years13: "13 ans",
+      years3: "3 ans",
+      enrichedExpertise: "Expertise médicale enrichie par la tech 💻",
+      
+      keyPositions: "Postes clés",
+      mainRoles: "Rôles principaux",
+      dentistManager: "Chirurgien-Dentiste & Manager",
+      eHealthPM: "Chef de Projet E-Santé",
+      medicalConsultant: "Consultant Médical",
+      fullStackDev: "Développeur Full-Stack",
+      
+      expertiseDomains: "Domaines d'expertise",
+      crossExpertise: "Expertise croisée",
+      dentistry: "🦷 Dentisterie",
+      clinicalPractice: "Pratique clinique & chirurgie",
+      publicHealth: "🏥 Santé Publique",
+      communityProjects: "Projets communautaires",
+      itField: "💻 Informatique",
+      eHealthDev: "Développement E-Health",
+      
+      itProjects: "Projets Informatiques",
+      techPortfolio: "Portfolio Tech",
+      eHealthApps: "Apps E-Health",
+      managementSys: "Systèmes gestion",
+      dataTools: "Outils collecte",
+      techSolutions: "🚀 Solutions tech pour la santé",
+      
+      experiences: [
+        {
+          period: "2024 - Présent",
+          title: "Développeur d'Applications E-Health",
+          company: "Bro-Coding & Projets Personnels",
+          location: "Madagascar",
+          type: "Développement Full-Stack",
+          missions: [
+            "Développement et maintenance d'applications full-stack pour les systèmes de santé digitale et administratifs",
+            "Participation aux revues de code, débogage et déploiement",
+            "Collaboration avec d'autres développeurs pour livrer des solutions logicielles efficaces et conviviales",
+          ],
+        },
+        {
+          period: "2022 - Présent",
+          title: "Chef de Projet E-Santé & Santé Publique",
+          company: "Diocèse de Tuléar - Patriarcat d'Alexandrie",
+          location: "Tuléar, Madagascar",
+          type: "Gestion de projet & Innovation digitale",
+          missions: [
+            "Mise en œuvre de projets de santé communautaire et numérisation des services hospitaliers",
+            "Déploiement d'outils de collecte de données numériques (ODK) et formation du personnel médical",
+            "Direction de campagnes humanitaires de santé bucco-dentaire",
+          ],
+        },
+        {
+          period: "2021 - 2023",
+          title: "Consultant Médical - Coordinateur de Projet",
+          company: "ONG ATIA Madagascar",
+          location: "Antananarivo & Antsirabe, Madagascar",
+          type: "Coordination de projets de santé",
+          missions: [
+            "Coordination et supervision de campagnes de santé bucco-dentaire communautaires",
+            "Analyse des données de suivi de projet et préparation de rapports pour les donateurs",
+            "Formation du personnel à la collecte et saisie de données numériques avec ODK",
+          ],
+        },
+        {
+          period: "2013 - Présent",
+          title: "Chirurgien-Dentiste & Gestionnaire de Clinique",
+          company: "Cabinet Dentaire",
+          location: "6, Rue Flayelle, Tuléar, Madagascar",
+          type: "Pratique médicale & Management",
+          missions: [
+            "Fourniture de soins dentaires, chirurgicaux et prothétiques aux patients",
+            "Gestion des opérations de la clinique, dossiers patients et finances",
+            "Introduction d'outils numériques pour le suivi des patients et la gestion administrative",
+            "Contrôle qualité des matériaux médicaux et respect des normes d'hygiène",
+          ],
+        },
       ],
     },
-    {
-      period: "2022 - Présent",
-      title: "Chef de Projet E-Santé & Santé Publique",
-      company: "Diocèse de Tuléar - Patriarcat d'Alexandrie",
-      location: "Tuléar, Madagascar",
-      type: "Gestion de projet & Innovation digitale",
-      color: "blue",
-      icon: Heart,
-      missions: [
-        "Mise en œuvre de projets de santé communautaire et numérisation des services hospitaliers",
-        "Déploiement d'outils de collecte de données numériques (ODK) et formation du personnel médical",
-        "Direction de campagnes humanitaires de santé bucco-dentaire",
+    en: {
+      title: "Professional Experience",
+      subtitle: "Over",
+      years: "13 years of experience",
+      subtitleEnd: "combining medical expertise, project management and software development",
+      mainMissions: "Main Responsibilities",
+      statsTitle: "By The Numbers",
+      clickInstruction: "👆 Tap a card to see details",
+      hoverDetails: "Hover for details ›",
+      tapDetails: "Tap for details ›",
+      
+      // Stats
+      yearsExp: "Years of experience",
+      careerPath: "Career path",
+      total: "Total",
+      health2013: "Health (2013)",
+      it2024: "IT (2024)",
+      years13: "13 years",
+      years3: "3 years",
+      enrichedExpertise: "Medical expertise enriched by tech 💻",
+      
+      keyPositions: "Key positions",
+      mainRoles: "Main roles",
+      dentistManager: "Dental Surgeon & Manager",
+      eHealthPM: "E-Health Project Manager",
+      medicalConsultant: "Medical Consultant",
+      fullStackDev: "Full-Stack Developer",
+      
+      expertiseDomains: "Expertise domains",
+      crossExpertise: "Cross-domain expertise",
+      dentistry: "🦷 Dentistry",
+      clinicalPractice: "Clinical practice & surgery",
+      publicHealth: "🏥 Public Health",
+      communityProjects: "Community projects",
+      itField: "💻 Computer Science",
+      eHealthDev: "E-Health Development",
+      
+      itProjects: "IT Projects",
+      techPortfolio: "Tech Portfolio",
+      eHealthApps: "E-Health Apps",
+      managementSys: "Management systems",
+      dataTools: "Data collection tools",
+      techSolutions: "🚀 Tech solutions for healthcare",
+      
+      experiences: [
+        {
+          period: "2024 - Present",
+          title: "E-Health Application Developer",
+          company: "Bro-Coding & Personal Projects",
+          location: "Madagascar",
+          type: "Full-Stack Development",
+          missions: [
+            "Development and maintenance of full-stack applications for digital health and administrative systems",
+            "Participation in code reviews, debugging and deployment",
+            "Collaboration with other developers to deliver efficient and user-friendly software solutions",
+          ],
+        },
+        {
+          period: "2022 - Present",
+          title: "E-Health & Public Health Project Manager",
+          company: "Diocese of Tuléar - Patriarchate of Alexandria",
+          location: "Tuléar, Madagascar",
+          type: "Project Management & Digital Innovation",
+          missions: [
+            "Implementation of community health projects and digitization of hospital services",
+            "Deployment of digital data collection tools (ODK) and training of medical staff",
+            "Leadership of humanitarian oral health campaigns",
+          ],
+        },
+        {
+          period: "2021 - 2023",
+          title: "Medical Consultant - Project Coordinator",
+          company: "NGO ATIA Madagascar",
+          location: "Antananarivo & Antsirabe, Madagascar",
+          type: "Health Project Coordination",
+          missions: [
+            "Coordination and supervision of community oral health campaigns",
+            "Project monitoring data analysis and donor report preparation",
+            "Staff training in digital data collection and entry with ODK",
+          ],
+        },
+        {
+          period: "2013 - Present",
+          title: "Dental Surgeon & Clinic Manager",
+          company: "Dental Practice",
+          location: "6, Rue Flayelle, Tuléar, Madagascar",
+          type: "Medical Practice & Management",
+          missions: [
+            "Provision of dental, surgical and prosthetic care to patients",
+            "Management of clinic operations, patient records and finances",
+            "Introduction of digital tools for patient tracking and administrative management",
+            "Quality control of medical materials and compliance with hygiene standards",
+          ],
+        },
       ],
     },
-    {
-      period: "2021 - 2023",
-      title: "Consultant Médical - Coordinateur de Projet",
-      company: "ONG ATIA Madagascar",
-      location: "Antananarivo & Antsirabe, Madagascar",
-      type: "Coordination de projets de santé",
-      color: "purple",
-      icon: Users,
-      missions: [
-        "Coordination et supervision de campagnes de santé bucco-dentaire communautaires",
-        "Analyse des données de suivi de projet et préparation de rapports pour les donateurs",
-        "Formation du personnel à la collecte et saisie de données numériques avec ODK",
-      ],
-    },
-    {
-      period: "2013 - Présent",
-      title: "Chirurgien-Dentiste & Gestionnaire de Clinique",
-      company: "Cabinet Dentaire",
-      location: "6, Rue Flayelle, Tuléar, Madagascar",
-      type: "Pratique médicale & Management",
-      color: "blue",
-      icon: Building2,
-      missions: [
-        "Fourniture de soins dentaires, chirurgicaux et prothétiques aux patients",
-        "Gestion des opérations de la clinique, dossiers patients et finances",
-        "Introduction d'outils numériques pour le suivi des patients et la gestion administrative",
-        "Contrôle qualité des matériaux médicaux et respect des normes d'hygiène",
-      ],
-    },
-  ];
+  };
+
+  const t = translations[language];
+  
+  const experiences = t.experiences.map((exp, index) => ({
+    ...exp,
+    color: index % 2 === 0 ? "purple" : "blue",
+    icon: [Code, Heart, Users, Building2][index],
+  }));
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -112,7 +257,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                   ${isDarkMode ? "text-pink-400" : "text-purple-400"}
                 `}
               />
-              Expériences Professionnelles
+              {t.title}
             </span>
           </h2>
 
@@ -166,17 +311,16 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
 
           {/* Sous-titre */}
           <p className="mt-6 text-lg text-white/70 max-w-3xl mx-auto">
-            Plus de{" "}
+            {t.subtitle}{" "}
             <span
               className={`
                 font-semibold transition-colors duration-700
                 ${isDarkMode ? "text-pink-400" : "text-purple-400"}
               `}
             >
-              13 ans d'expérience
+              {t.years}
             </span>{" "}
-            combinant expertise médicale, gestion de projet et développement
-            logiciel
+            {t.subtitleEnd}
           </p>
         </div>
 
@@ -404,7 +548,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                             {/* Missions */}
                             <div className="space-y-3">
                               <h4 className="text-sm font-semibold text-white/80 uppercase tracking-wide">
-                                Missions principales
+                                {t.mainMissions}
                               </h4>
                               {exp.missions.map((mission, i) => (
                                 <div
@@ -448,7 +592,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
           {/* Titre des stats */}
           <div className="text-center mb-12">
             <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">
-              En chiffres
+              {t.statsTitle}
             </h3>
             <div
               className={`
@@ -465,7 +609,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
           {/* Instruction mobile */}
           <div className="text-center mb-6 lg:hidden">
             <p className="text-sm text-white/60 animate-pulse">
-              👆 Appuyez sur une carte pour voir les détails
+              {t.clickInstruction}
             </p>
           </div>
 
@@ -537,7 +681,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                     </div>
 
                     <div className="text-sm text-white/70 font-medium">
-                      Années d'expérience
+                      {t.yearsExp}
                     </div>
 
                     <div
@@ -549,9 +693,9 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                       `}
                     >
                       <span className="hidden lg:inline">
-                        Survolez pour détails ›
+                        {t.hoverDetails}
                       </span>
-                      <span className="lg:hidden">Appuyez pour détails ›</span>
+                      <span className="lg:hidden">{t.tapDetails}</span>
                     </div>
                   </div>
                 </div>
@@ -589,36 +733,36 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                       >
                         <Calendar className="w-5 h-5" />
                         <span className="font-semibold text-sm">
-                          Parcours professionnel
+                          {t.careerPath}
                         </span>
                       </div>
 
                       <div className="text-white/90 space-y-2 text-sm">
                         <div className="flex justify-between items-center pb-2 border-b border-white/10">
-                          <span className="text-white/60">Total</span>
+                          <span className="text-white/60">{t.total}</span>
                           <span
                             className={`
                               font-bold transition-colors duration-700
                               ${isDarkMode ? "text-pink-400" : "text-purple-400"}
                             `}
                           >
-                            13 ans
+                            {t.years13}
                           </span>
                         </div>
                         <div className="flex justify-between items-center pb-2 border-b border-white/10">
-                          <span className="text-white/60">Santé (2013)</span>
+                          <span className="text-white/60">{t.health2013}</span>
                           <span
                             className={`
                               font-bold transition-colors duration-700
                               ${isDarkMode ? "text-pink-400" : "text-purple-400"}
                             `}
                           >
-                            13 ans
+                            {t.years13}
                           </span>
                         </div>
                         <div className="flex justify-between items-center pb-2 border-b border-white/10">
                           <span className="text-white/60">
-                            Informatique (2024)
+                            {t.it2024}
                           </span>
                           <span
                             className={`
@@ -626,11 +770,11 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                               ${isDarkMode ? "text-rose-400" : "text-[#5B9BD5]"}
                             `}
                           >
-                            3 ans
+                            {t.years3}
                           </span>
                         </div>
                         <div className="mt-3 text-xs text-white/60 italic">
-                          Expertise médicale enrichie par la tech 💻
+                          {t.enrichedExpertise}
                         </div>
                       </div>
 
@@ -728,7 +872,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                     </div>
 
                     <div className="text-sm text-white/70 font-medium">
-                      Postes clés
+                      {t.keyPositions}
                     </div>
 
                     <div
@@ -738,9 +882,9 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                       `}
                     >
                       <span className="hidden lg:inline">
-                        Survolez pour détails ›
+                        {t.hoverDetails}
                       </span>
-                      <span className="lg:hidden">Appuyez pour détails ›</span>
+                      <span className="lg:hidden">{t.tapDetails}</span>
                     </div>
                   </div>
                 </div>
@@ -778,7 +922,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                       >
                         <Briefcase className="w-5 h-5" />
                         <span className="font-semibold text-sm">
-                          Rôles principaux
+                          {t.mainRoles}
                         </span>
                       </div>
 
@@ -790,7 +934,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                               ${isDarkMode ? "bg-rose-400" : "bg-[#5B9BD5]"}
                             `}
                           ></div>
-                          <span>Chirurgien-Dentiste & Manager</span>
+                          <span>{t.dentistManager}</span>
                         </div>
                         <div className="flex items-start gap-2">
                           <div
@@ -799,7 +943,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                               ${isDarkMode ? "bg-rose-400" : "bg-[#5B9BD5]"}
                             `}
                           ></div>
-                          <span>Chef de Projet E-Santé</span>
+                          <span>{t.eHealthPM}</span>
                         </div>
                         <div className="flex items-start gap-2">
                           <div
@@ -808,7 +952,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                               ${isDarkMode ? "bg-rose-400" : "bg-[#5B9BD5]"}
                             `}
                           ></div>
-                          <span>Consultant Médical</span>
+                          <span>{t.medicalConsultant}</span>
                         </div>
                         <div className="flex items-start gap-2">
                           <div
@@ -817,7 +961,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                               ${isDarkMode ? "bg-rose-400" : "bg-[#5B9BD5]"}
                             `}
                           ></div>
-                          <span>Développeur Full-Stack</span>
+                          <span>{t.fullStackDev}</span>
                         </div>
                       </div>
                     </div>
@@ -892,7 +1036,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                     </div>
 
                     <div className="text-sm text-white/70 font-medium">
-                      Domaines d'expertise
+                      {t.expertiseDomains}
                     </div>
 
                     <div
@@ -904,9 +1048,9 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                       `}
                     >
                       <span className="hidden lg:inline">
-                        Survolez pour détails ›
+                        {t.hoverDetails}
                       </span>
-                      <span className="lg:hidden">Appuyez pour détails ›</span>
+                      <span className="lg:hidden">{t.tapDetails}</span>
                     </div>
                   </div>
                 </div>
@@ -944,7 +1088,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                       >
                         <Target className="w-5 h-5" />
                         <span className="font-semibold text-sm">
-                          Expertise croisée
+                          {t.crossExpertise}
                         </span>
                       </div>
 
@@ -965,10 +1109,10 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                               ${isDarkMode ? "text-pink-300" : "text-purple-300"}
                             `}
                           >
-                            🦷 Dentisterie
+                            {t.dentistry}
                           </div>
                           <div className="text-xs text-white/70">
-                            Pratique clinique & chirurgie
+                            {t.clinicalPractice}
                           </div>
                         </div>
 
@@ -988,10 +1132,10 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                               ${isDarkMode ? "text-pink-300" : "text-purple-300"}
                             `}
                           >
-                            🏥 Santé Publique
+                            {t.publicHealth}
                           </div>
                           <div className="text-xs text-white/70">
-                            Projets communautaires
+                            {t.communityProjects}
                           </div>
                         </div>
 
@@ -1011,10 +1155,10 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                               ${isDarkMode ? "text-pink-300" : "text-purple-300"}
                             `}
                           >
-                            💻 Informatique
+                            {t.itField}
                           </div>
                           <div className="text-xs text-white/70">
-                            Développement E-Health
+                            {t.eHealthDev}
                           </div>
                         </div>
                       </div>
@@ -1090,7 +1234,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                     </div>
 
                     <div className="text-sm text-white/70 font-medium">
-                      Projets Informatiques
+                      {t.itProjects}
                     </div>
 
                     <div
@@ -1100,9 +1244,9 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                       `}
                     >
                       <span className="hidden lg:inline">
-                        Survolez pour détails ›
+                        {t.hoverDetails}
                       </span>
-                      <span className="lg:hidden">Appuyez pour détails ›</span>
+                      <span className="lg:hidden">{t.tapDetails}</span>
                     </div>
                   </div>
                 </div>
@@ -1140,13 +1284,13 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                       >
                         <Code className="w-5 h-5" />
                         <span className="font-semibold text-sm">
-                          Portfolio Tech
+                          {t.techPortfolio}
                         </span>
                       </div>
 
                       <div className="text-white/90 space-y-2 text-sm">
                         <div className="flex justify-between items-center pb-2 border-b border-white/10">
-                          <span className="text-white/60">Apps E-Health</span>
+                          <span className="text-white/60">{t.eHealthApps}</span>
                           <span
                             className={`
                               font-bold transition-colors duration-700
@@ -1158,7 +1302,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                         </div>
                         <div className="flex justify-between items-center pb-2 border-b border-white/10">
                           <span className="text-white/60">
-                            Systèmes gestion
+                            {t.managementSys}
                           </span>
                           <span
                             className={`
@@ -1170,7 +1314,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                           </span>
                         </div>
                         <div className="flex justify-between items-center pb-2 border-b border-white/10">
-                          <span className="text-white/60">Outils collecte</span>
+                          <span className="text-white/60">{t.dataTools}</span>
                           <span
                             className={`
                               font-bold transition-colors duration-700
@@ -1182,7 +1326,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                         </div>
                         <div className="flex justify-between items-center pt-2">
                           <span className="text-white/60 font-semibold">
-                            Total
+                            {t.total}
                           </span>
                           <span
                             className={`
@@ -1196,7 +1340,7 @@ const Experiences = ({ isDarkMode }: ExperiencesProps) => {
                       </div>
 
                       <div className="mt-3 text-xs text-white/60 italic">
-                        🚀 Solutions tech pour la santé
+                        {t.techSolutions}
                       </div>
                     </div>
                   </div>
