@@ -10,9 +10,9 @@ const PROJECTS: Project[] = [
     year: 2026,
     type: "Web",
     technologies: ["React", "Next.js 15", "Tailwind CSS", "Framer Motion"],
-    link: "https://example.com",
+    link: "https://portofolio-ra6p.vercel.app/",
     github: "https://github.com/MANDANIAINAPRECIEUX/portofolio",
-    video: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+    video: "https://youtu.be/-mH3i9ZKhvE",
     mode: "Personnel",
   },
   {
