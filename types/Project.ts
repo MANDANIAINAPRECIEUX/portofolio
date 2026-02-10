@@ -25,7 +25,7 @@ const PROJECTS: Project[] = [
     year: 2025,
     type: "Web",
     technologies: ["Next.js", "PostgreSQL", "Tailwind CSS"],
-    link: "https://example.com",
+    link: "https://example1.com",
     github: "https://github.com/MANDANIAINAPRECIEUX/smartRide",
     video: "https://www.youtube.com/embed/example1",
     mode: "Stage",
