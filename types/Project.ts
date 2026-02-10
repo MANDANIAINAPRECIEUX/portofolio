@@ -12,7 +12,7 @@ const PROJECTS: Project[] = [
     technologies: ["React", "Next.js 15", "Tailwind CSS", "Framer Motion"],
     link: "https://portofolio-ra6p.vercel.app/",
     github: "https://github.com/MANDANIAINAPRECIEUX/portofolio",
-    video: "https://youtu.be/-mH3i9ZKhvE",
+    video: "https://www.youtube.com/embed/-mH3i9ZKhvE",
     mode: "Personnel",
   },
   {
