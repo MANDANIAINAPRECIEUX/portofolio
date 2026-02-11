@@ -70,9 +70,9 @@ const PROJECTS: Project[] = [
     year: 2025,
     type: "Backend",
     technologies: ["Ruby on Rails", "PostgreSQL", "Hotwire", "Stimulus"],
-    link: "https://example.com",
+    link: "https://rubygems.org/gems/log_insight",
     github: "https://github.com/MANDANIAINAPRECIEUX/log_insight",
-    video: "https://www.youtube.com/embed/example4",
+    video: "https://youtu.be/embed/HdGmYhMrmPo",
     mode: "Stage",
   },
   {
