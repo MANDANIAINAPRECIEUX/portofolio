@@ -1,4 +1,3 @@
-
 const PROJECTS: Project[] = [
   {
     id: 1,
@@ -135,8 +134,31 @@ const PROJECTS: Project[] = [
     video: "https://www.youtube.com/embed/example8",
     mode: "Personnel",
   },
+  {
+    id: 10,
+    title: "personality-test",
+    description: {
+      fr: "application web de test de personnalité DISC développée avec Ruby on Rails, Docker, PostgreSQL et déployée sur Fly.io avec une architecture DevOps moderne.",
+      en: "a DISC personality test web application built with Ruby on Rails, Docker, PostgreSQL, and deployed on Fly.io using a modern DevOps architecture.",
+    },
+    year: 2026,
+    type: "Web",
+    technologies: [
+      "Ruby on Rails 8",
+      "PostgreSQL",
+      "Docker",
+      "Fly.io",
+      "GitHub Actions",
+      "Tailwind CSS",
+      "Puma",
+      "Neon PostgreSQL",
+    ],
+    link: "https://personality-test.fly.dev",
+    github: "https://github.com/MANDANIAINAPRECIEUX/test_de_personnalite",
+    video: "https://www.youtube.com/embed/watch?v=aL72Q7So0C0",
+    mode: "Personnel",
+  },
 ];
-
 
 export type Project = {
   id: number;
@@ -153,8 +175,5 @@ export type Project = {
   video: string;
   mode: "Personnel" | "Stage" | "Freelance" | "Académique" | "Recherche";
 };
-
-
-
 
 export default PROJECTS;
