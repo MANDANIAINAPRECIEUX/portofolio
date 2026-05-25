@@ -145,7 +145,7 @@ const PROJECTS: Project[] = [
     type: "Web",
     technologies: [
       "Ruby on Rails 8",
-      "PostgreSQL",
+
       "Docker",
       "Fly.io",
       "GitHub Actions",
