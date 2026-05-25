@@ -149,7 +149,7 @@ const PROJECTS: Project[] = [
       "Docker",
       "Fly.io",
       "GitHub Actions",
-      "Tailwind CSS",
+
       "Puma",
       "Neon PostgreSQL",
     ],
