@@ -158,6 +158,21 @@ const PROJECTS: Project[] = [
     video: "https://www.youtube.com/watch?v=aL72Q7So0C0",
     mode: "Personnel",
   },
+  {
+    id: 11,
+    title: "BLOG-KO",
+    description: {
+      fr: "BLOG-KO est un mini blog personnel orienté développement web, architecture simple, et retour d’expérience technique. Le projet met volontairement l’accent sur la clarté du code, la maîtrise des fondamentaux et l’utilisation d’un backend léger en Ruby (Sinatra) Ce blog sert à la fois de plateforme de publication et de terrain d’expérimentation technique.",
+      en: "BLOG-KO is a personal mini-blog focused on web development, simple architecture, and technical experience sharing. The project intentionally emphasizes clean code, a solid understanding of programming fundamentals, and the use of a lightweight Ruby backend powered by Sinatra. This blog serves both as a publishing platform and as a technical experimentation playground, where ideas, projects, and development practices can be explored and documented.",
+    },
+    year: 2024,
+    type: "Web",
+    technologies: ["Ruby", "Sinatra", "Puma", "Rack", "GitHub", "Render"],
+    link: "https://mini-blog-4yix.onrender.com/",
+    github: "https://github.com/MANDANIAINAPRECIEUX/mini_blog",
+    video: "https://youtu.be/k-BU6UR208g",
+    mode: "Personnel",
+  },
 ];
 
 export type Project = {
