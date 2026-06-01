@@ -153,7 +153,7 @@ const PROJECTS: Project[] = [
       "Puma",
       "Neon PostgreSQL",
     ],
-    link: "https://personality-test.fly.dev",
+    link: "https://test-de-personnalite-cer3.onrender.com/",
     github: "https://github.com/MANDANIAINAPRECIEUX/test_de_personnalite",
     video: "https://www.youtube.com/watch?v=aL72Q7So0C0",
     mode: "Personnel",
