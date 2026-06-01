@@ -155,7 +155,7 @@ const PROJECTS: Project[] = [
     ],
     link: "https://test-de-personnalite-cer3.onrender.com/",
     github: "https://github.com/MANDANIAINAPRECIEUX/test_de_personnalite",
-    video: "https://youtube.com/embed/k-BU6UR208g",
+    video: "https://www.youtube.com/embed/k-BU6UR208g",
     mode: "Personnel",
   },
   {
